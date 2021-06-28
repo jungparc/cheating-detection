@@ -113,7 +113,7 @@ Content-type : application/json;charset=utf-8
 
 ### 1\. 행동 감지 요청 API
 <br>
-``` yaml
+```
 URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
@@ -125,22 +125,24 @@ Content-type : multipart/form-data
 | Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
-<br>
+
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | camLocation | String | 카메라 위치 정보(side(측면), front(정면)) | O |
 | reqTime | long | 요청시간(timestamp 10자리)(초 단위까지) | O |
-<br>
+
+
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | file | Binary | 이미지 파일 | O |
-<br>
+
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생번호) | O |
-<br>
+
 ##### Response body
 
 ``` json
@@ -161,7 +163,7 @@ Content-type : multipart/form-data
 <br>
 ### 2\. 음성 감지 요청 API
 <br>
-``` yaml
+```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
@@ -173,15 +175,15 @@ Content-type : multipart/form-data
 | Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
-<br>
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | reqTime | long | 요청시간(timestamp 10자리)(초 단위까지) | O |
-<br>
+
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | file | Binary | 음성 파일<br>(지원 포맷 wav, wave, webm)<br>(권장 16bit, 16000 sampling rate, mono channel) | O |
-<br>
+
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
