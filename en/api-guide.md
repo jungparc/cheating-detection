@@ -2,11 +2,11 @@
 
 ## 인증 API
 
-### 1\. Token 발급 API
+### 1. Token 발급 API
 
-\- 부정 행위 감지 API 요청 시 필요한 Token 발급 API
+- 부정 행위 감지 API 요청 시 필요한 Token 발급 API
 
-``` yaml
+```
 URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
 METHOD : POST
 Content-type : application/x-www-form-urlencoded;charset=utf-8
@@ -18,7 +18,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 | :---: | :---: | --- | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | expiresIn | Integer | 토큰 유효시간(초) | O |
-<br>
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
 | userId | String | 사용자 ID (수험생 번호) | O |
@@ -43,7 +43,7 @@ body sample
     }
 }
 ```
-<br>
+
 ##### Response
 
 | Key | Type | desc |
@@ -69,10 +69,10 @@ body sample
     }
 }
 ```
-<br>
-### 2\. Token 취소 API
 
-\- 발급 받은 Token을 취소\(강제 만료 시키기 위한\) API
+### 2. Token 취소 API
+
+- 발급 받은 Token을 취소\(강제 만료 시키기 위한\) API
 
 ``` yaml
 URL : /auth/revoke
@@ -86,7 +86,7 @@ Content-type : application/json;charset=utf-8
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
 | token | String | 취소할 엑세스 토큰 값 | O |
-<br>
+
 ##### ResponseBody
 
 | Key | Type | desc |
@@ -108,12 +108,12 @@ Content-type : application/json;charset=utf-8
 	}
 }
 ```
-<br>
+
 ## 부정행위 감지 요청 API
 
-### 1\. 행동 감지 요청 API
-<br>
-``` yaml
+### 1. 행동 감지 요청 API
+
+```
 URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
@@ -125,22 +125,24 @@ Content-type : multipart/form-data
 | Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
-<br>
+
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | camLocation | String | 카메라 위치 정보(side(측면), front(정면)) | O |
 | reqTime | long | 요청시간(timestamp 10자리)(초 단위까지) | O |
-<br>
+
+
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | file | Binary | 이미지 파일 | O |
-<br>
+
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생번호) | O |
-<br>
+
 ##### Response body
 
 ``` json
@@ -158,10 +160,10 @@ Content-type : multipart/form-data
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
-### 2\. 음성 감지 요청 API
-<br>
-``` yaml
+
+### 2. 음성 감지 요청 API
+
+```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
@@ -173,15 +175,15 @@ Content-type : multipart/form-data
 | Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
-<br>
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | reqTime | long | 요청시간(timestamp 10자리)(초 단위까지) | O |
-<br>
+
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | file | Binary | 음성 파일<br>(지원 포맷 wav, wave, webm)<br>(권장 16bit, 16000 sampling rate, mono channel) | O |
-<br>
+
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
@@ -210,9 +212,9 @@ Content-type : multipart/form-data
 
 ## NHN Proctor API
 
-### 1\. Proctor 이벤트 수집 API
+### 1. Proctor 이벤트 수집 API
 
-``` yaml
+```
 URL : /nhn-cht-prt/v1.0/proctor/event, /api/v1.0/proctor/event(deprecated)
 METHOD : POST
 X-CD-Client-Type : Proctor
@@ -220,11 +222,11 @@ Content-type : application/json;charset=utf-8
 ```
 
 ##### Request
-<br>
+
 | Header Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-CD-Client-Type | String | 클라이언 타입 'Proctor' 고정 | O |
-<br>
+
 | body Parameter | Type | desc | Required |
 | --- | --- | --- | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
@@ -266,7 +268,7 @@ Content-type : application/json;charset=utf-8
 ```
 
 ##### Response body
-<br>
+
 ``` json
 {
   "header": {
@@ -282,10 +284,10 @@ Content-type : application/json;charset=utf-8
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
-### 2\. Proctor 지표 수집 API
 
-``` yaml
+### 2. Proctor 지표 수집 API
+
+```
 URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
 METHOD : POST
 X-CD-Client-Type : Proctor
@@ -297,7 +299,7 @@ Content-type : application/json;charset=utf-8
 | Header Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-CD-Client-Type | String | 클라이언 타입 'Proctor' 고정 | O |
-<br>
+
 | body Parameter | Type | desc | Required |
 | --- | --- | --- | :---: |
 | <span style="color:#222222">installApp</span> | JSON | 설치 프로세스 수집 항목 | O |
@@ -305,7 +307,7 @@ Content-type : application/json;charset=utf-8
 | <span style="color:#222222">installApp.di</span>splayVersion | String | 버전 정보 | O |
 | <span style="color:#222222">installApp.p</span>ublisher | String | 제조사 이름 | O |
 | extInfo | JSON | <span style="color:#222222">추가 정보</span> | X |
-<br>
+
 샘플
 
 ``` json
@@ -324,7 +326,7 @@ Content-type : application/json;charset=utf-8
  ]
 }
 ```
-<br>
+
 ##### Response body
 
 ``` json
@@ -342,12 +344,12 @@ Content-type : application/json;charset=utf-8
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
+
 ## 사용자 정보 등록 API
 
-### 1\. 가운데 시선 정보 등록 API
+### 1. 가운데 시선 정보 등록 API
 
-``` yaml
+```
 URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
@@ -359,17 +361,17 @@ Content-type : application/json;charset=utf-8
 | Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
-<br>
+
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | file | Binary | 이미지 파일 | O |
-<br>
+
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생번호) | O |
-<br>
+
 ##### Response body
 
 ``` json
@@ -387,12 +389,12 @@ Content-type : application/json;charset=utf-8
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
+
 ## 설정 조회 API
 
-### 1\. 기기제어 설정 조회
+### 1. 기기제어 설정 조회
 
-``` yaml
+```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
 METHOD : GET
 X-CD-Client-Type : Proctor
@@ -406,7 +408,7 @@ Content-type : */*
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-<br>
+
 ##### Response body
 
 ``` json
@@ -436,10 +438,10 @@ Content-type : */*
 | data.blockSwitchTaskYn | String | 작업 전환 차단 여부 |
 | data.blockScreenYn | String | 풀스크린 이탈 방지 여부 |
 | data.blockProgramYn | String | 애플리케이션/프로그램 차단 여부 |
-<br>
-### 2\. 얼굴 감지 설정 조회
 
-``` yaml
+### 2. 얼굴 감지 설정 조회
+
+```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
 METHOD : GET
 X-CD-Client-Type : Proctor
@@ -451,7 +453,7 @@ Content-type : */*
 | Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-<br>
+
 ##### Response body
 
 ``` json
@@ -485,10 +487,10 @@ Content-type : */*
 | data.faceBottomAngle | Integer | 얼굴 각도(하) |
 | data.faceLeftAngle | Integer | 얼굴 각도(좌) |
 | data.faceRightAngle | Integer | 얼굴 각도(하) |
-<br>
-### 3\. 고객 URL 설정 조회
 
-``` yaml
+### 3. 고객 URL 설정 조회
+
+```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
 METHOD : GET
 X-CD-Client-Type : Proctor
@@ -528,11 +530,10 @@ Content-type : */*
 | data.serviceUrl | String | 고객 서비스 URL |
 | data.webAuthUrl | String | 사용자 인증 연동 URL |
 | data.webhookUrl | String | 부정행위 감지 시 발송 URL |
-<br>
-<br>
+
 ## 응답 코드
 
-### 1\. ResultCode
+### 1. ResultCode
 
 | Code | 구분 | 설명 |
 | --- | --- | --- |
@@ -547,22 +548,22 @@ Content-type : */*
 | -50004 | 에러 | 파일 처리 중 오류 발생 |
 | -50005 | 에러 | 첨부파일 필드 누락 |
 | -99999 | 에러 | 서버 오류 |
-<br>
-### 2\. HttpStatusCode
+
+### 2. HttpStatusCode
 
 | Code | 구분 | 코드명 | 설명 |
 | --- | --- | --- | --- |
 | 200 | 정상 | Ok | 정상 |
 | 400 | 에러 | Bad Request | 잘못된 요청인 경우 발생 |
 | 500 | 에러 | Server Error | 서버가 점검 중이거나 장애인 경우 발생 |
-<br>
+
 ## 고객사 설정 URL API
 
-### 1\. WebAuthURL
+### 1. WebAuthURL
 
-\- 사용자 인증을 위하여 고객사의 WebAuthUrl로 인증 요청 **(콘솔 화면에서 WebAuthURL 설정 필수)**
-\- 사용자\(지원자\)의 상태를 주기적으로 체크하여 본인 확인
-<br>
+- 사용자 인증을 위하여 고객사의 WebAuthUrl로 인증 요청 **(콘솔 화면에서 WebAuthURL 설정 필수)**
+- 사용자\(지원자\)의 상태를 주기적으로 체크하여 본인 확인
+
 ```
 URL : {webAuthUrl}
 METHOD : POST
@@ -614,11 +615,11 @@ sample
     "resultMessage": "토큰 만료"
 }
 ```
-<br>
-### 2\. WebHookURL
 
-\- 분석한 이미지 및 음성 파일에서 부정 행위 감시지 치팅 정보를 전달 **(콘솔 화면에서 Webhook URL 설정 필수)**
-<br>
+### 2. WebHookURL
+
+- 분석한 이미지 및 음성 파일에서 부정 행위 감시지 치팅 정보를 전달 **(콘솔 화면에서 Webhook URL 설정 필수)**
+
 ```
 URL : {webhookUrl}
 METHOD : POST
@@ -705,7 +706,7 @@ Content-type : application/json;charset=utf-8
 | cheatConfig.bg.bgDetectionTime | Integer | 백그라운드 변화 탐지 시간(N초)<span style="color:#000000"></span> | X |
 
 요청 샘플(Cheating Detection - 이미지)
-<br>
+
 ``` json
 {
    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
@@ -790,7 +791,7 @@ Content-type : application/json;charset=utf-8
    }
 }
 ```
-<br>
+
 **Request(음성)**
 
 | ResponseBody | Type | desc | Required |
@@ -807,7 +808,7 @@ Content-type : application/json;charset=utf-8
 | cheatData.voice | Long[] | 음성 감지 시간(초) <br>ex) [3,4] > 3,4초에 음성 감지 | X |
 
 ##### 요청 샘플(Cheating Detection - 음성 감지 발생)
-<br>
+
 ``` json
 {
 "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
@@ -823,9 +824,9 @@ Content-type : application/json;charset=utf-8
 }
 }
 ```
-<br>
+
 ##### 요청 샘플(Cheating Detection - 음성 미 발생)
-<br>
+
 ``` json
 {
 "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
@@ -838,7 +839,7 @@ Content-type : application/json;charset=utf-8
 "cheatLevel" : 0
 }
 ```
-<br>
+
 #### **Request(Proctor)**
 
 | ResponseBody | Type | desc | Required |
@@ -883,7 +884,7 @@ Content-type : application/json;charset=utf-8
 }
 }
 ```
-<br>
+
 ResponseBody
 
 | Key | Type | desc |
@@ -899,5 +900,3 @@ sample
     "resultMessage": "Success"
 }
 ```
-<br>
-<br>
