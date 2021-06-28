@@ -4,9 +4,9 @@
 
 ### 1. Token 발급 API
 
-\- 부정 행위 감지 API 요청 시 필요한 Token 발급 API
+- 부정 행위 감지 API 요청 시 필요한 Token 발급 API
 
-``` yaml
+```
 URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
 METHOD : POST
 Content-type : application/x-www-form-urlencoded;charset=utf-8
@@ -18,7 +18,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 | :---: | :---: | --- | :---: |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | expiresIn | Integer | 토큰 유효시간(초) | O |
-<br>
+
 | Query Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
 | userId | String | 사용자 ID (수험생 번호) | O |
@@ -43,7 +43,7 @@ body sample
     }
 }
 ```
-<br>
+
 ##### Response
 
 | Key | Type | desc |
@@ -69,10 +69,10 @@ body sample
     }
 }
 ```
-<br>
+
 ### 2. Token 취소 API
 
-\- 발급 받은 Token을 취소\(강제 만료 시키기 위한\) API
+- 발급 받은 Token을 취소\(강제 만료 시키기 위한\) API
 
 ``` yaml
 URL : /auth/revoke
@@ -86,7 +86,7 @@ Content-type : application/json;charset=utf-8
 | Body Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
 | token | String | 취소할 엑세스 토큰 값 | O |
-<br>
+
 ##### ResponseBody
 
 | Key | Type | desc |
@@ -108,11 +108,11 @@ Content-type : application/json;charset=utf-8
 	}
 }
 ```
-<br>
+
 ## 부정행위 감지 요청 API
 
 ### 1. 행동 감지 요청 API
-<br>
+
 ```
 URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
 METHOD : POST
@@ -160,9 +160,9 @@ Content-type : multipart/form-data
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
+
 ### 2. 음성 감지 요청 API
-<br>
+
 ```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
 METHOD : POST
@@ -268,7 +268,7 @@ Content-type : application/json;charset=utf-8
 ```
 
 ##### Response body
-<br>
+
 ``` json
 {
   "header": {
@@ -284,7 +284,7 @@ Content-type : application/json;charset=utf-8
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
+
 ### 2. Proctor 지표 수집 API
 
 ```
@@ -389,7 +389,7 @@ Content-type : application/json;charset=utf-8
 | header.isSuccess | boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
-<br>
+
 ## 설정 조회 API
 
 ### 1. 기기제어 설정 조회
@@ -615,7 +615,7 @@ sample
     "resultMessage": "토큰 만료"
 }
 ```
-<br>
+
 ### 2. WebHookURL
 
 - 분석한 이미지 및 음성 파일에서 부정 행위 감시지 치팅 정보를 전달 **(콘솔 화면에서 Webhook URL 설정 필수)**
