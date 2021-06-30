@@ -1,5 +1,6 @@
 ### Application Service > Cheating Detection > 개요
 
+
 * NHN Cheating Detection의 AI Proctor는 HTTP REST API로, Application Proctor는 SDK로 제공합니다.
 
 ### <span style="color:#0052cc">주요 기능</span>
