@@ -1,4 +1,4 @@
-### Application Service > Cheating Detection > API 가이드
+## Application Service > Cheating Detection > API 가이드
 
 ## 인증 API
 
