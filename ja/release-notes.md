@@ -1,4 +1,4 @@
-## Security > NHN AppGuard > 릴리스 노트
+## Security > NHN AppGuard > リリースノート
 
 ### 2020.07.01
-* 서비스오픈
+* サービスオープン
