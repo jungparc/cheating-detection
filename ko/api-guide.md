@@ -703,12 +703,12 @@ Content-type : */*
 | -40000 | 에러 | 제어 옵션 미설정 에러 | 요청한 AppKey의 설정 정보가 DB에 존재 하지 않는 경우 발생 |
 | -40002 | 에러 | 시선 등록 실패 | 시선 등록 API 요청 중 오류가 발생 했을 경우 |
 | -40003 | 에러 | 이미지 저장 설정 정보 등록 실패 | OBS 인증 받지 못했을 경우 발생 |
-| -41000 | 에러 | UnauthorizedAppKey : check your appKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 | 
-| -45030 | 에러 | InvalidParameterException | 요청 파라미터가 잘못 경우 | 
+| -41000 | 에러 | UnauthorizedAppKey : check your appKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 |
 | -50000 | 에러 | 맞지 않는 형식의 파일 | 지원하지 않는 파일을 첨부 했을 경우 | 
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
-| -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우 |
+| -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
+| -50008 | 에러 | 요청 값 오류 | 요청 파라미터가 잘못 경우 |
 | -99999 | 에러 | 내부 오류 | 잘못된 요청이거나 예기치 못한 서버 오류가 발생 했을 경우 |
 
 ### HttpStatusCode
@@ -958,7 +958,7 @@ Content-type : application/json;charset=utf-8
             "gazeTopAngle":24,
             "gazeBottomAngle":24,
             "gazeLeftAngle":24,
-            "gazeRightAngle":24
+            "gazeRightAngle":24,
             "regUserGaze": {
                 "numFaces": 0,
                 "facePitch": 0,
@@ -976,7 +976,7 @@ Content-type : application/json;charset=utf-8
             "faceTopAngle":25,
             "faceBottomAngle":25,
             "faceLeftAngle":25,
-            "faceRightAngle":25
+            "faceRightAngle":25,
             "regUserGaze": {
                 "numFaces": 0,
                 "facePitch": 0,

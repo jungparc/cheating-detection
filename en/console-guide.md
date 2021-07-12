@@ -1,58 +1,58 @@
-## Application Service > Cheating Detection > 콘솔 사용 가이드
-## 서비스 신청 방법
-* 서비스 활성 버튼을 클릭하면 위와 같은 화면이 나옵니다.
-* 서비스 활성화 한뒤 각 설정 탭에서 프로젝트를 설정을 할 수 있습니다..
+## Application Service > Cheating Detection > Console User Guide
+## How to sign up for the service
+* The screen above appears when the Enable Service button is clicked
+* The project can be set up on each setting tab after enabling the service.
 
 ## AI Proctor
-### 얼굴인식
-* 얼굴 인식 사용 시, 부정행위 기준을 설정할 수 있습니다.
-* 해당하는 기능을 사용하려면 on/off를 사용해주세요
-* 기본 값이 외에 필요시에 서비스에 맞도록 기준 값을 수정해주시면 반영됩니다.
-![스크린샷 2021-06-28 오후 6 36 04](https://user-images.githubusercontent.com/1445289/123615143-fcc15500-d83f-11eb-9459-df0b1b4681e3.png)
+### Face detection
+* The cheating criteria can be set when using the face detection.
+* Please select on/off to use the features you want.
+* The default value can be modified from the original value if necessary, and the change will be applied upon modification.
+![Screen shot 2021-06-28 오후 6 36 04](https://user-images.githubusercontent.com/1445289/123615143-fcc15500-d83f-11eb-9459-df0b1b4681e3.png)
 
 
 
-### 시선(동공) 추적
-* 시선(동공) 추적 사용 시, 부정행위 기준을 설정할 수 있습니다. 동공의 중심을 기준으로 상/하/좌/우 치우침을 비교하여 부정행위 이벤트를 전달합니다.
-* 해당하는 기능을 사용하려면 on/off를 사용해주세요
-* 기본 값이 외에 필요시에 서비스에 맞도록 기준 값을 수정해주시면 반영됩니다.
-![스크린샷 2021-06-28 오후 6 36 09](https://user-images.githubusercontent.com/1445289/123615152-ff23af00-d83f-11eb-8bf3-605731d934a9.png)
+### Eye (pupil) tracking
+* When using the eye (pupil) tracking feature, you can set the criteria for cheating. A cheat event will be forwarded after detecting the up/down/left/right slant from the center of the eye.
+* Please select on/off to use the features you want.
+* The default value can be modified from the original value if necessary, and the change will be applied upon modification.
+![Screen shot 2021-06-28 오후 6 36 09](https://user-images.githubusercontent.com/1445289/123615152-ff23af00-d83f-11eb-8bf3-605731d934a9.png)
 
 
-### 신체부위 탐지
-* 신체 부위 탐지 사용 시, 부정행위 기준을 설정할 수 있습니다.
-* 해당하는 기능을 사용하려면 on/off를 사용해주세요
-* 기본 값이 외에 필요시에 서비스에 맞도록 기준 값을 수정해주시면 반영됩니다.
-![스크린샷 2021-06-28 오후 6 36 15](https://user-images.githubusercontent.com/1445289/123615192-06e35380-d840-11eb-80d6-c8e3a6fa5b33.png)
+### Body part detection
+* The cheating criteria can be set when using the body part detection.
+* Please select on/off to use the features you want.
+* The default value can be modified from the original value if necessary, and the change will be applied upon modification.
+![Screen shot 2021-06-28 오후 6 36 15](https://user-images.githubusercontent.com/1445289/123615192-06e35380-d840-11eb-80d6-c8e3a6fa5b33.png)
 
 
-### 신체 이외의 변화 감지
-* 신체 이외의 백그라운드 변화 사용 시, 부정행위 기준을 설정할 수 있습니다.
-* 해당하는 기능을 사용하려면 on/off를 사용해주세요
-* 기본 값이 외에 필요시에 서비스에 맞도록 기준 값을 수정해주시면 반영됩니다.
-![스크린샷 2021-06-28 오후 6 36 20](https://user-images.githubusercontent.com/1445289/123615205-0b0f7100-d840-11eb-8e81-fcf702779380.png)
+### Detection of changes other than the body
+* The cheating criteria can be set when using the detection of background changes other than the body.
+* Please select on/off to use the features you want.
+* The default value can be modified from the original value if necessary, and the change will be applied upon modification.
+![Screen shot 2021-06-28 오후 6 36 20](https://user-images.githubusercontent.com/1445289/123615205-0b0f7100-d840-11eb-8e81-fcf702779380.png)
 
 
-### 음성감지
-* 음성 감지 사용 시, 음성 존재 여부를 판단할 수 있습니다.
-* 해당하는 기능을 사용하려면 on/off를 사용해주세요
-* 기본 값이 외에 필요시에 서비스에 맞도록 기준 값을 수정해주시면 반영됩니다.
-![스크린샷 2021-06-28 오후 6 36 24](https://user-images.githubusercontent.com/1445289/123615228-0ea2f800-d840-11eb-8b8b-fdb76a0498dd.png)
+### Audio detection
+* The audio can be detected when using the audio detection.
+* Please select on/off to use the features you want.
+* The default value can be modified from the original value if necessary, and the change will be applied upon modification.
+![Screen shot 2021-06-28 오후 6 36 24](https://user-images.githubusercontent.com/1445289/123615228-0ea2f800-d840-11eb-8b8b-fdb76a0498dd.png)
 
-## 설정
-### 기본설정
-* 서비스의 기본 정보들을 설정해준다
-* 서비스 url
-  * Cheating Detection 서비스에서 이동하는 고객사 서비스 URL입니다.
-  * 해당 정보로 proctor 앱에 링크가 전달됩니다.
+## Settings
+### Basic settings
+* Set the basic information of the service
+* Service URL
+  * The customer service URL to move from the Cheating Detection service.
+  * The link with the relevant information gets delivered to the proctor app.
 
-* Web Auth URL : 사용자 인증을 연동하기 위한 URL입니다.
-* 웹 훅 URL : 부정행위 감지 시, 발송되는 이벤트를 받는 웹 훅입니다.
-![스크린샷 2021-06-28 오후 6 31 04](https://user-images.githubusercontent.com/1445289/123615256-15316f80-d840-11eb-88ce-6bd72803b0cf.png)
+* Web Auth URL : URL to link for user authentication.
+* Web hook URL: The web hook that receives an event when a cheating activity occurs.
+![Screen shot 2021-06-28 오후 6 31 04](https://user-images.githubusercontent.com/1445289/123615256-15316f80-d840-11eb-88ce-6bd72803b0cf.png)
 
 
-### 이미지저장 설정
-* 치팅 디텍션에서 찾아낸 이미지를 저장하기 위한 설정
-* 사전에 Object Storage를 활성화한뒤 설정하도록한다.
-* OBS설정에 아이디와 API암호를 찾아서 해당 페이지에 입력해준다.
-![스크린샷 2021-06-28 오후 6 30 49](https://user-images.githubusercontent.com/1445289/123615309-22e6f500-d840-11eb-83b3-f476f18385f3.png)
+### Image storage setting
+* Setting to store the images discovered through cheating detection
+* Set up after enabling Object Storage in advance.
+* Look up the ID and API key in the OBS setting to enter them on the relevant page.
+![Screen shot 2021-06-28 오후 6 30 49](https://user-images.githubusercontent.com/1445289/123615309-22e6f500-d840-11eb-83b3-f476f18385f3.png)
