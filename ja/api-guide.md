@@ -1,82 +1,59 @@
-## Application Service > Cheating Detection > API 가이드
-- Cheating Detection API를 사용하는 데 필요한 API를 설명합니다.
-## API 공통 정보
+### Application Service > Cheating Detection > APIガイド
 
-###사전준비
-- API 사용을 위해서는 프로젝트 통합 Appkey 또는 서비스 Appkey가 필요합니다.
-- 서비스 Appkey는 콘솔 상단 URL & Appkey 메뉴에서 확인이 가능합니다.
+## 認証API
 
-###요청 공통 정보
-- API를 사용하기 위해서는 보안 키 인증 처리가 필요합니다.
+### 1. トークン(token)発行API
 
-[API 도메인]
-
- | 환경 | 도메인 |
- | :---: | :---: |
- | Real | http://ctd-api.cloud.toast.com |
-
-## 인증 API
-
-### 토큰(token) 발급 API
-
-- 부정행위 감지 API 요청 시 필요한 토큰 발급 API
+- 不正行為検知APIのリクエスト時に必要なトークン発行API
 
 ```
 URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
 METHOD : POST
-Content-type : application/json;charset=utf-8
+Content-type : application/x-www-form-urlencoded;charset=utf-8
 ```
 
-##### 요청
+##### Request
 
-[URL Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Query Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| expiresIn | Integer | 토큰 유효 시간(초) | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| expiresIn | Integer | トークン有効時間(秒) | O |
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Query Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| examNo | String | 시험 번호 | O |
-| deviceType | String | 장비 구분(pc: PC, mo: Mobile ) | O |
-| webAuth | JSON | WebAuth 인증 데이터 | O |
-| webAuth.userId | String | 사용자 ID(수험생 번호) | O |
-| webAuth.token | String | **<span style="color:#e11d21">고객사에서 발급한 WebAuth 인증 토큰** | O |
-| webAuth.via | String | 기타 정보 | X |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| deviceType | String | デバイス区分(pc: PC, mo: Mobile ) | O |
+| webAuth | JSON | WebAuth認証データ | O |
+| webAuth.userId | String | ユーザーID(受験生番号) | O |
+| webAuth.token | String | **<span style="color:#e11d21">顧客が発行したWebAuth認証トークン</span>** | O |
+| webAuth.via | String | その他情報 | X |
 
-[요청 본문 예]
+##### Body sample
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
+    "userId" : "user123",
+    "examNo" : "21342",
+    "deviceType" : "pc",
     "webAuth" : {
         "userId": "user123",
-        "token": "ADs3Fsdfasdfnv23fkja34FX=",
-        "via": ""
+        "token": "asdfasdfnv23fkja..",
+        "via": ""
     }
 }
 ```
 
-##### 응답
+##### Response
 
-[Response Body]
-
-| 이름 | 타입 | 설명 |
+| Key | Type | desc |
 | :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
-| header.resultMessage | String | 요청 결과 메시지 |
-| data.tokenType | String | 토큰 타입, bearer로 고정 |
-| data.accessToken | String | 사용자 엑세스 토큰값 |
-| data.expiresIn | Integer | 엑세스 토큰 만료 시간(초) |
-
-[응답 본문 예]
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード(0：成功、その他：失敗) |
+| header.resultMessage | String | リクエスト結果メッセージ |
+| data.tokenType | String | トークンタイプ、 bearerで固定 |
+| data.accessToken | String | ユーザーアクセストークン値 |
+| data.expiresIn | Integer | アクセストークン満了時間(秒) |
 
 ``` json
 {
@@ -87,137 +64,105 @@ Content-type : application/json;charset=utf-8
 	},
     "data" : {
         "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+        "accessToken" : "r3rdf23f2f234ff234fgf2",
+        "expireIn" : 21600
     }
 }
 ```
 
-### 토큰 취소 API
+### 2. トークンキャンセルAPI
 
-- 발급받은 토큰 취소\(강제 만료를 위한\) API
+- 発行されたトークンのキャンセル\(強制的に無効にするために\) API
 
 ``` yaml
 URL : /auth/revoke
 METHOD : POST
+X-Region-Code : KR1
 Content-type : application/json;charset=utf-8
 ```
 
-##### 요청
+##### Request
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Body Parameter | Type | Desc | Required |
 | :---: | :---: | --- | :---: |
-| token | String | 취소할 액세스 토큰값 | O |
+| token | String | キャンセルするアクセストークン値 | O |
 
-[요청 본문 예]
-``` json
-{
-   "token" : "XDadhaS3dvns34Fdfnf23=="
-}
-```
+##### ResponseBody
 
-##### Response
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
+| Key | Type | desc |
 | :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
-| header.resultMessage | String | 요청 결과 메시지 |
-| data.accessToken | String | 취소한 사용자 엑세스 토큰값 |
-
-[응답 본문 예]
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード(0：成功、それ以外：失敗) |
+| header.resultMessage | String | リクエスト結果メッセージ |
+| data.accessToken | String | キャンセルしたユーザーアクセストークン値 |
 
 ``` JSON
 {
     "header" : {
-    	"isSuccessful" : true,
+    	"successful" : true,
     	"resultCode" : 0,
     	"resultMessage" : "Success"
     },
     "data" : {
-    	"accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    	"accessToken" : "sadhasdvnfdfnf23=="
 	}
 }
 ```
 
-## 부정행위 감지 요청 API
+## 不正行為検知リクエストAPI
 
-### 행동 감지 요청 API
-- 행동 감지 분석을 위한 요청 API
+### 1. 行動検知リクエストAPI
+
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
 METHOD : POST
 X-Auth-Token : Bearer {accessToken}
 Content-type : multipart/form-data
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
 
-[URL Parameter]
 
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| camLocation | String | 카메라 위치 정보(side(측면), front(정면)) | O |
-| reqTime | long | 요청 시간(timestamp 10자리)(초 단위까지) | O |
+| camLocation | String | カメラ位置情報(side(側面)、front(正面)) | O |
+| reqTime | long | リクエスト時間(timestamp 10桁)(秒単位まで) | O |
 
-[Request Body]
 
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 1280 x 720, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 画像ファイル | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| examNo | String | 시험 번호 | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| examNo | String | 試験番号 | O |
+| userId | String | ユーザーID(受験生番号) | O |
 
-[요청 본문 예]
-```
-curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
--F "file=@testImage.jpeg;type=image/jpeg"
-```
-
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   }
 }
 ```
 
-### 음성 감지 요청 API
-- 음성 감지 분석을 위한 요청 API
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
+
+### 2. 音声検知リクエストAPI
+
 ```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
 METHOD : POST
@@ -225,114 +170,89 @@ X-Auth-Token : Bearer {accessToken}
 Content-type : multipart/form-data
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
 
-[URL Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Query Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| reqTime | long | 요청 시간(timestamp 10자리)(초 단위까지) | O |
+| reqTime | long | リクエスト時間(timestamp 10桁)(秒単位まで) | O |
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| file | Binary | 음성 파일<br>(지원 형식 .wav, .wave, .webm)<br>(권장 16bit, 16,000 sampling rate, mono channel) | O |
+| file | Binary | 音声ファイル<br>(サポート形式 .wav, .wave, .webm)<br>(推奨16bit、16,000 sampling rate、mono channel) | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| examNo | String | 시험 번호 | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
-
-[요청 본문 예]
-```
-curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
--F "file=@fileName.wav;type=audio/wav"
-```
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| examNo | String | 試験番号 | O |
+| userId | String | ユーザーID(受験生番号) | O |
 
 ##### Response
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   }
 }
 ```
 
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード(0：成功、それ以外：失敗) |
+| header.resultMessage | String | リクエスト結果メッセージ |
+
 ## NHN Proctor API
 
-### Proctor 이벤트 수집 API
-- Proctor에서 발생하는 이벤트를 수집하는 API
+### 1. Proctorイベント収集API
+
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
+URL : /nhn-cht-prt/v1.0/proctor/event, /api/v1.0/proctor/event(deprecated)
 METHOD : POST
 X-CD-Client-Type : Proctor
 Content-type : application/json;charset=utf-8
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Header Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
+| X-CD-Client-Type | String | クライアントタイプ「Proctor」固定 | O |
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| body Parameter | Type | desc | Required |
 | --- | --- | --- | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| examNo | String | 시험 번호 | O |
-| proctorVersion | String | NHN Proctor 앱 버전 정보 | O |
-| eventTime | Number | 이벤트 발생 시간 | O |
-| deviceID | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
-| sessionID | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
-| platform | String | OS 정보 | O |
-| eventSource | String | 이벤트 소스( 'Proctor' 고정) | O |
-| event | JSON | 이벤트 | O |
-| event.status | String | initialize: 로그인, begintTest: 시험 시작 , endTest: 시험 종료<br><span style="color:#e11d21">\* Window / Mac | O |
-| event.keyboard | String | 작업 전환 시도(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
-| event.mouse | String | 시험 영역 밖, 마우스 이동 감지(시험장 외의 영역으로 이동이 불가능한 상황이지만 예외가 발생한 경우)<br><span style="color:#e11d21">* Window | X |
-| event.detection | String | mouseExit : 시험 화면 밖으로 마우스 이동시 (풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit : 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching : 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
-| event.description | String | 이벤트 부가 설명 <br><span style="color:#e11d21">\* Mac
-| event.additionalEvent | String | 기타 이벤트 정보 | X |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| proctorVersion | String | NHN Proctorアプリバージョン情報 | O |
+| eventTime | Number | イベント発生時間 | O |
+| deviceID | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
+| sessionID | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
+| platform | String | OS情報 | O |
+| eventSource | String | イベントソース( 「P<span style="color:#222222">roctor」固定</span>) | O |
+| event | JSON | イベント | O |
+| event.status | String | initialize：ログイン、 begintTest：試験開始、endTest：試験終了 <br><span style="color:#e11d21">\* Window / Mac</span> | O |
+| event.<span style="color:#222222">keyboard</span> | String | タスクの切り替えを試行(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
+| event.mouse | String | <span style="color:#222222">試験領域外、マウス移動検知(試験場以外の領域に移動ができない状況ですが例外が発生した場合)</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
+| event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | その他イベント情報 | X |
 
-<span style="color:#e11d21">**\* 이벤트 중 하나는 필수**
+<span style="color:#e11d21">**\* イベントのうち1つは必須** </span>
 
-[요청 본문 예]
+サンプル
+
+* 1つのイベントリクエスト
 
 ``` json
 {
     "appKey" : "your_app_key",
     "userId" : "randy",
-    "examNo" : "21342",
+    "examNo" : "21342",
     "proctorVersion" : "1.0.0.1",
     "eventTime" : 1619485194941,
     "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
@@ -345,56 +265,48 @@ Content-type : application/json;charset=utf-8
 }
 ```
 
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   }
 }
 ```
 
-### Proctor 지표 수집 API
-- Proctor에서 응시자의 PC에 설치된 프로그램 정보를 수집하는 API
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
+
+### 2. Proctor指標収集API
+
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
+URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
 METHOD : POST
 X-CD-Client-Type : Proctor
 Content-type : application/json;charset=utf-8
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Header Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
+| X-CD-Client-Type | String | クライアントタイプ「Proctor」固定 | O |
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| body Parameter | Type | desc | Required |
 | --- | --- | --- | :---: |
-| installApp | JSON | 설치 프로세스 수집 항목 | O |
-| installApp.displayName | String | 애플리케이션 이름 | O |
-| installApp.displayVersion | String | 버전 정보 | O |
-| installApp.publisher | String | 제조사 이름 | O |
-| extInfo | JSON | 추가 정보 | X |
+| <span style="color:#222222">installApp</span> | JSON | インストールプロセス収集項目 | O |
+| <span style="color:#222222">installApp.di</span>splayName | String | アプリケーション名 | O |
+| <span style="color:#222222">installApp.di</span>splayVersion | String | バージョン情報 | O |
+| <span style="color:#222222">installApp.p</span>ublisher | String | 製作社名 | O |
+| extInfo | JSON | <span style="color:#222222">追加情報</span> | X |
 
-[요청 본문 예]
+サンプル
 
 ``` json
 {
@@ -413,33 +325,27 @@ Content-type : application/json;charset=utf-8
 }
 ```
 
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   }
 }
 ```
 
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
 
-## 사용자 정보 등록 API
+## ユーザー情報登録API
 
-### 가운데 시선 정보 등록 API
- - 시선 추적 부정행위 감지 시에 사용자(응시자)의 시선 정보를 보정해주기 위한 API
+### 中視線情報登録API
 
 ```
 URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
@@ -448,64 +354,43 @@ X-Auth-Token : Bearer {accessToken}
 Content-type : application/json;charset=utf-8
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Header | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
 | X-Auth-Token | String | AccessToken | O |
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Body Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| file | Binary | 이미지 파일 <br>권장 사항 (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 画像ファイル | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| examNo | String | 시험 번호 | O |
-| userId | String | 사용자 ID(수험생 번호) | O |록
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| examNo | String | 試験番号 | O |
+| userId | String | ユーザーID(受験生番号) | O |
 
-[요청 본문 예]
-```
-curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
--F "file=@testImage.jpeg;type=image/jpeg"
-```
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,답
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   }
 }
 ```
 
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
 
+## 設定照会API
 
-## 설정 조회 API
-
-### 기기제어 설정조회
+### 1. 機器制御設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
@@ -516,58 +401,43 @@ Content-type : */*
 
 #####
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-| data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
-| data.blockMonitorYn | String | 추가 모니터 차단 여부 |
-| data.blockSwitchTaskYn | String | 작업 전환 차단 여부 |
-| data.blockScreenYn | String | 풀 스크린 이탈 방지 여부 |
-| data.blockProgramYn | String | 애플리케이션/프로그램 차단 여부 |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
 	"header":{
-		"isSuccessful":true,
-		"resultCode": 0,
-		"resultMessage": "Success"
+		"successful" : true,
+		"resultCode" : 0,
+		"resultMessage" : "Success"
 	},
-	"data": {
-		"appKey": "bdyfjdff",
-		"resionCode" : "KR1"
-		"blockMonitorYn": "Y",
-		"blockSwitchTaskYn" :"Y",
+	"data" : {
+		"appKey" : "bdyfjdff",
+		"blockMonitorYn" : "Y",
+		"blockSwitchTaskYn" : "Y",
 		"blockScreenYn" : "Y",
-		"blockProgramYn": "Y"
+		"blockProgramYn" : "Y"
 	}
 }
 ```
 
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
+| data.appKey | String | 統合AppkeyまたはサービスAppkey |
+| data.blockMonitorYn | String | 追加モニター遮断設定 |
+| data.blockSwitchTaskYn | String | タスクの切り替え遮断設定 |
+| data.blockScreenYn | String | フルスクリーン離脱防止設定 |
+| data.blockProgramYn | String | アプリケーション/プログラム遮断設定 |
 
-### 얼굴 감지 설정조회
+### 2. 顔検出設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
@@ -576,52 +446,25 @@ X-CD-Client-Type : Proctor
 Content-type : */*
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-| data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
-| data.faceDetectionYn | String | 얼굴 인식 사용 여부 |
-| data.faceDetectionThreshold | Integer | 탐지된 얼굴 수 |
-| data.faceTopAngle | Integer | 얼굴 각도(상) |
-| data.faceBottomAngle | Integer | 얼굴 각도(하) |
-| data.faceLeftAngle | Integer | 얼굴 각도(좌) |
-| data.faceRightAngle | Integer | 얼굴 각도(하) |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
 "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "SUCCESS"
 },
 "data": {
     "appKey" : "bdyfjdff",
-    "regionCode" : "KR1",
     "faceDetectionYn" : "Y",
-    "faceDetectionThreshold" : 1,
+    "faceDetectionCount" : 1,
     "faceTopAngle": 20,
     "faceBottomAngle" : 20,
     "faceLeftAngle" : 20,
@@ -630,8 +473,20 @@ Content-type : */*
 }
 ```
 
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
+| data.appKey | String | 統合AppkeyまたはサービスAppkey |
+| data.faceDetectionYn | String | 顔認識使用設定 |
+| data.faceDetectionCount | Integer | 検知された顔の数 |
+| data.faceTopAngle | Integer | 顔の角度(上) |
+| data.faceBottomAngle | Integer | 顔の角度(下) |
+| data.faceLeftAngle | Integer | 顔の角度(左) |
+| data.faceRightAngle | Integer | 顔の角度(右) |
 
-### 고객 URL 설정조회
+### 3. 顧客URL設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
@@ -640,89 +495,72 @@ X-CD-Client-Type : Proctor
 Content-type : */*
 ```
 
-##### 요청
+##### Request
 
-[Header Parameter]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| Path Parameter | Type | Desc | Required |
 | :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
 
-[Path Variable]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-| data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
-| data.serviceUrl | String | 고객 서비스 URL |
-| data.webAuthUrl | String | 사용자 인증 연동 URL |
-| data.webhookUrl | String | 부정행위 감지 시 발송 URL |
-
-[응답 본문 예]
+##### Response body
 
 ``` json
 {
   "header": {
-    "isSuccessful": true,
+    "successful": true,
     "resultCode": 0,
     "resultMessage": "Success"
   },
   "data": {
     "appKey": "bdyfjdff",
-    "regionCode": "KR1",
-    "serviceUrl": "https://hook.nhnent.com/service",
+    "serviceUrl": "https://hook.nhnent.com/service",
     "webAuthUrl": "https://hook.nhnent.com/redirect",
     "webhookUrl": "https://hook.nhnent.com/webhook"
   }
 }
 ```
 
-## 응답 코드
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
+| data.appKey | String | 統合AppkeyまたはサービスAppkey |
+| data.serviceUrl | String | 顧客サービスURL |
+| data.webAuthUrl | String | ユーザー認証連動URL |
+| data.webhookUrl | String | 不正行為を検知した時の送信URL |
 
-### ResultCode
+## レスポンスコード
 
-| Code | 구분 | 설명 |
+### 1. ResultCode
+
+| Code | 区分 | 説明 |
 | --- | --- | --- |
-| 0 | 성공 | SUCCESS |
-| -20001 | 에러 | 토큰 만료 시 발생 |
-| -20002 | 에러 | 토큰이 유효하지 않은 경우 발생 |
-| -20004 | 에러 | 사용자 인증 실패(시험 종료(이탈), 사용자 인증 데이터 검증 오류) |
-| -20005 | 에러 | 허용되지 않은 사용자 접근 시 발생, 인증 진행 후 요청 |
-| -20005 | 에러 | 요청 토큰 타입 Bearer 확인 |
-| -40000 | 에러 | 해당 옵션 미설정 오류 |
-| -40003 | 에러 | 이미지 저장 정보 등록 실패 |
-| -50000 | 에러 | 잘못된 형식의 파일 |
-| -50001 | 에러 | 파일 누락 |
-| -50002 | 에러 | 파일 사이즈 초과(1GB 초과) |
-| -50004 | 에러 | 파일 처리 중 오류 발생 |
-| -50005 | 에러 | 첨부 파일 필드 누락 |
-| -99999 | 에러 | 서버 오류 |
+| 0 | 成功 | SUCCESS |
+| -20001 | エラー | トークン満了時に発生 |
+| -20002 | エラー | トークンが有効ではない場合に発生 |
+| -40000 | エラー | 該当オプション未設定エラー |
+| -40003 | エラー | 画像保存情報登録失敗 |
+| -50000 | エラー | 無効な形式のファイル |
+| -50001 | エラー | ファイル不足 |
+| -50002 | エラー | ファイルサイズ超過(1GB超過) |
+| -50004 | エラー | ファイルの処理中にエラー発生 |
+| -50005 | エラー | 添付ファイルフィールド不足 |
+| -99999 | エラー | サーバーエラー |
 
-### HttpStatusCode
+### 2. HttpStatusCode
 
-| Code | 구분 | 코드명 | 설명 |
+| Code | 区分 | コード名 | 説明 |
 | --- | --- | --- | --- |
-| 200 | 정상 | Ok | 정상 |
-| 400 | 에러 | Bad Request | 잘못된 요청인 경우 발생 |
-| 500 | 에러 | Server Error | 서버가 점검 중이거나 장애인 경우 발생 |
+| 200 | 正常 | Ok | 正常 |
+| 400 | エラー | Bad Request | 無効なリクエストの場合に発生 |
+| 500 | エラー | Server Error | サーバーがメンテナンス中または障害が発生している時に発生 |
 
-## 고객사 설정 URL API
+## 顧客設定URL API
 
-### WebAuthURL
+### 1. WebAuthURL
 
-- 사용자 인증을 위해 고객사의 WebAuthUrl로 인증 요청**(콘솔에서 WebAuthURL 설정 필수)**
-- 사용자\(지원자\)의 상태를 주기적으로 확인해 본인임을 확인
+- ユーザー認証のために顧客のWebAuthUrlに認証リクエスト**(コンソールでWebAuthURL設定必須)**
+- ユーザー\(志願者\)の状態を定期的に確認し、本人であることを確認
 
 ```
 URL : {webAuthUrl}
@@ -730,40 +568,35 @@ METHOD : POST
 Content-type : application/json;charset=utf-8
 ```
 
-#### 요청
+#### Request
 
-[Request Body]
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| body Parameter | Type | desc | Required |
 | --- | --- | --- | :---: |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| token | String | WebAuth 인증 토큰 | O |
-| via | String | 기타 정보 | X |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화 | X |
+| userId | String | ユーザーID(受験生番号) | O |
+| token | String | WebAuth認証トークン | O |
+| via | String | その他情報 | X |
+| validation | String | 有効性チェック | 0 |
 
-[요청 본문 예]
+sample
 
 ``` json
 {
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
-    "via": "",
+    "via": "",
     "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
-#### 응답
+#### ResponseBody
 
-[Response Body]
-
-| 이름 | 타입 | 설명 |
+| Key | Type | desc |
 | --- | --- | --- |
-| resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
-| resultMessage | String | 인증 결과 메시지 |
+| resultCode | Integer | 認証結果コード(0：成功、それ以外：失敗) |
+| resultMessage | String | 認証結果メッセージ |
 
-[응답 본문 예]
-
-성공
+sample
+成功
 
 ``` json
 {
@@ -772,18 +605,18 @@ Content-type : application/json;charset=utf-8
 }
 ```
 
-실패
+失敗
 
 ``` json
 {
     "resultCode": "40000",
-    "resultMessage": "토큰 만료"
+    "resultMessage": "トークン満了"
 }
 ```
 
-### WebHookURL
+### 2. WebHookURL
 
-- 분석한 이미지 및 음성 파일에서 부정행위 감시 지 치팅 정보 전달**(콘솔에서 Webhook URL 설정 필수)**
+- 分析した画像および音声ファイルから不正行為を検知した時、チート情報を伝達**(コンソールでWebhook URL設定必須)**
 
 ```
 URL : {webhookUrl}
@@ -791,112 +624,94 @@ METHOD : POST
 Content-type : application/json;charset=utf-8
 ```
 
-#### 요청
+**Request(画像)**
 
-[Request Body] GAZE, POSE, BACKGROUND
-
-| 이름 | 타입 | 설명 | 필수 여부 |
+| ResponseBody | Type | desc | Required |
 | --- | --- | --- | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 그룹( GAZE, POSE, BACKGROUND 중 하나 응답 ) | O |
-| cheatLevel | Integer | 부정행위 레벨(0: Normal,1:Attention\_Low, 2: Attention\_Hight, 3: Warning) | O |
-| eventTime | Long | 이벤트 발생 시간(timestamp) | O |
-| fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
-| cheatData | JSON | 부정행위 정보 | O |
-| cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
-| cheatData.cheatInfo.absence | boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
-| cheatData.cheatInfo.thirdPerson | boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.facePoseYawOut | boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.facePosePitchOut | boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeYawOut | boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazePitchOut | boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeScreenOut | boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
-| cheatData.cheatInfo.unstableBackground | boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
-| cheatData.cheatInfo.leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.cheatInfo.rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.gaze | JSON | 시선 추적 정보 | X |
-| cheatData.gaze.numFaces | Integer | 감지된 얼굴 수 | X |
-| cheatData.gaze.facePitch | Integer | 얼굴 상하 각도 | X |
-| cheatData.gaze.faceYaw | Integer | 얼굴 좌우 각도 | X |
-| cheatData.gaze.eyePitch | Integer | 시선 상하 각도 | X |
-| cheatData.gaze.eyeYaw | Integer | 시선 좌우 각도 | X |
-| cheatData.gaze.screenX | float | 시선 X축 위치 | X |
-| cheatData.gaze.screenY | float | 시선 Y축 위치 | X |
-| chaetData.bg[] | List | 배경 변화 정보 | X |
-| chaetData.bg[].isChanged | boolean | 배경 변화 여부 | X |
-| chaetData.bg[].eventTime | Long |발생 시간(timstamp 10자리) |X |
-| chaetData.bg[].data | JSON | 배경 감지 상세 정보 |X |
-| chaetData.bg[].data.bgChangeDetFlag | boolean |배경 변화 여부 감지 결과 |X |
-| chaetData.bg[].data.allocFlag | boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
-| cheatData.pose[] | List | 행동 탐지 정보 |X |
-| cheatData.pose[].leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].eventTime | Long | 이벤트 발생 시간(감지 요청 시간) |X |
-| cheatData.pose[].data | JSON | 행동 탐지 상세 정보 |X |
-| cheatData.pose[].data.numPerson |Integer | 탐지된 사람의 수 |X |
-| cheatData.pose[].data.lHand | JSON | 왼손 좌표 정보 |X |
-| cheatData.pose[].data.lHand.xmin |Integer |왼손 영역의 바운딩 박스(경계 박스) 위쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.ymin |Integer |왼손 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.xmax |Integer |왼손 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.ymax |Integer |왼손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.isDetected |boolean | 왼손 감지 여부 |X |
-| cheatData.pose[].data.rHand | JSON | 오른손 좌표 정보 |X |
-| cheatData.pose[].data.rHand.xmin |Integer |오른손영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.ymin |Integer |오른손영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.xmax |Integer |오른손영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.ymax |Integer |오른손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.isDetected |boolean | 오른손 감지 여부 |X |
-| cheatData.pose[].data.face | JSON | 얼굴 좌표 정보 |X |
-| cheatData.pose[].data.face.xmin |Integer |얼굴 영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.ymin |Integer |얼굴 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.xmax |Integer |얼굴 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.ymax |Integer |얼굴 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.isDetected |boolean | 얼굴 감지 여부 |X |
-| cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.pose.poseEstimationYn | boolean | 행동 탐지 사용 여부 | X |
-| cheatConfig.pose.poseEstimationTime | Integer | 왼손/오른손 좌표 미식별 시간(N초) | X |
-| cheatConfig.gaze.gazeTrackingYn | String | 시선(동공) 추적 사용 여부 | X |
-| cheatConfig.gaze.gazeTopAngle | Integer | 동공 각도(상) | X |
-| cheatConfig.gaze.gazeBottomAngle | Integer | 동공 각도(하) | X |
-| cheatConfig.gaze.gazeLeftAngle | Integer | 동공 각도(좌) | X |
-| cheatConfig.gaze.gazeRightAngle | Integer | 동공 각도(우) | X |
-| cheatConfig.gaze.regUserGaze | JSON | 등록된 시선 정보 | X |
-| cheatConfig.gaze.regUserGaze.numFaces | Integer | 등록된 감지된 얼굴 수 | X |
-| cheatConfig.gaze.regUserGaze.facePitch | Integer | 등록된 얼굴 상하 각도 | X |
-| cheatConfig.gaze.regUserGaze.faceYaw | Integer | 등록된 얼굴 좌우 각도 | X |
-| cheatConfig.gaze.regUserGaze.eyePitch | Integer | 등록된 시선 상하 각도 | X |
-| cheatConfig.gaze.regUserGaze.eyeYaw | Integer | 등록된 시선 좌우 각도 | X |
-| cheatConfig.gaze.regUserGaze.screenX | Integer | 등록된 시선 X 좌표 | X |
-| cheatConfig.gaze.regUserGaze.screenY | Integer | 등록된 시선 Y 좌표 | X |
-| cheatConfig.face.faceDetectionYn | String | 얼굴 인식 사용 여부 | X |
-| cheatConfig.face.faceDetectionThreshold | Integer | 감지 얼굴 수 기준값 | X |
-| cheatConfig.face.faceTopAngle | Integer | 얼굴 각도(상) | X |
-| cheatConfig.face.faceBottomAngle | Integer | 얼굴 각도(하) | X |
-| cheatConfig.face.faceLeftAngle | Integer | 얼굴 각도(좌) | X |
-| cheatConfig.face.faceRightAngle | Integer | 얼굴 각도(우) | X |
-| cheatConfig.face.regUserGaze | JSON | 등록된 시선 정보 | X |
-| cheatConfig.face.regUserGaze.numFaces | Integer | 등록된 감지된 얼굴 수 | X |
-| cheatConfig.face.regUserGaze.facePitch | Integer | 등록된 얼굴 상하 각도 | X |
-| cheatConfig.face.regUserGaze.faceYaw | Integer | 등록된 얼굴 좌우 각도 | X |
-| cheatConfig.face.regUserGaze.eyePitch | Integer | 등록된 시선 상하 각도 | X |
-| cheatConfig.face.regUserGaze.eyeYaw | Integer | 등록된 시선 좌우 각도 | X |
-| cheatConfig.face.regUserGaze.screenX | Integer | 등록된 시선 X 좌표 | X |
-| cheatConfig.face.regUserGaze.screenY | Integer | 등록된 시선 Y 좌표 | X |
-| cheatConfig.bg.bgDetectionYn | String | 신체 이외의 백그라운드 변화 사용 여부 | X |
-| cheatConfig.bg.bgDetectionTime | Integer | 백그라운드 변화 탐지 시간(N초) | X |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화  | X |
+| validation | String | 有効性チェック | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| cheatGroup | String | チートグループ(RPOCTOR, GAZE, POSE, BACKGROUND, AUDIO) | O |
+| cheatLevel | Integer | 不正行為レベル(0: Normal,<span style="color:#000000">1: Attention\_Low, 2: Attention\_Hight, 3: Warning)</span> | O |
+| eventTime | Long | イベント発生時間(timestamp) | O |
+| fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
+| cheatData | JSON | 不正行為情報 | O |
+| cheatData.cheatInfo | JSON | 不正行為判断結果 | O |
+| cheatData.cheatInfo.absence | boolean | 不在かどうか<br />- 視線追跡(顔認識を行うかどうか) <br />- 行動検知(人の数) | X |
+| cheatData.cheatInfo.thirdPerson | boolean | 第三者を識別するかどうか(視線追跡使用時) | X |
+| cheatData.cheatInfo.facePoseYawOut | boolean | 顔上下角度離脱(顔検出使用時) | X |
+| cheatData.cheatInfo.facePosePitchOut | boolean | 顔左右角度離脱(顔検出使用時) | X |
+| cheatData.cheatInfo.eyeGazeYawOut | boolean | 視線上下角度離脱(視線追跡使用時) | X |
+| cheatData.cheatInfo.eyeGazePitchOut | boolean | 視線左右角度離脱(視線追跡使用時) | X |
+| cheatData.cheatInfo.eyeGazeScreenOut | boolean | 視線スクリーン離脱(事前視線登録完了時) | X |
+| cheatData.cheatInfo.unstableBackground | boolean | 背景の変更(身体以外のバックグラウンド変化使用時) | X |
+| <span style="color:#000000">cheatData.cheatInfo.</span><span style="color:#9876aa"><span style="color:#000000">leftHandNotExistence</span></span> | <span style="color:#000000">boolean</span> | 左手識別を行うかどうか(行動検知使用時) | X |
+| <span style="color:#000000">cheatData.cheatInfo.</span><span style="color:#9876aa"><span style="color:#000000">rightHandNotExistence</span></span> | <span style="color:#000000">boolean</span> | 右手識別を行うかどうか(行動検知使用時) | X |
+| cheatData.gaze | JSON | 視線追跡情報 | X |
+| cheatData.gaze.numFaces | Integer | 検知された顔の数 | X |
+| cheatData.gaze.facePitch | Integer | 顔の上下角度 | X |
+| cheatData.gaze.faceYaw | Integer | 顔の左右角度 | X |
+| cheatData.gaze.eyePitch | Integer | 視線の上下角度 | X |
+| cheatData.gaze.eyeYaw | Integer | 視線の左右角度 | X |
+| cheatData.gaze.screenX | float | 視線X軸位置 | X |
+| cheatData.gaze.screenY | float | 視線Y軸位置 | X |
+| [<span style="color:#000000">chaetData.bg</span>](http://chaetData.bg)[] | List | 背景変化情報 | X |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.isChanged</span> | <span style="color:#000000">boolean</span> | <span style="color:#6a8759"><span style="color:#000000">背景変化 </span></span> | <span style="color:#000000">X</span> |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.</span><span style="color:#9876aa"><span style="color:#000000">eventTime</span></span> | <span style="color:#000000">Long</span> | <span style="color:#000000">発生時間(timstamp 10桁)</span> | <span style="color:#000000">X</span> |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.data</span> | JSON | <span style="color:#000000">背景検知詳細情報</span> | <span style="color:#000000">X</span> |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.data.bgChangeDetFlag</span> | <span style="color:#000000">boolean</span> | <span style="color:#000000">背景変化検知結果</span> | <span style="color:#000000">X</span> |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.data.allocFlag</span> | <span style="color:#000000"></span><span style="color:#222222">boolean</span> | 背景画像スペース割り当て(false：背景検知不可) | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.pose[]</span> | List | 行動検知情報 | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">leftHandNotExistence</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | 左手識別を行うかどうか(行動検知使用時) | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">rightHandNotExistence</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | 右手識別を行うかどうか(行動検知使用時) | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">eventTime</span></span><span style="color:#000000"></span> | Long | イベント発生時間(検知リクエスト時間) | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data</span></span><span style="color:#000000"></span> | JSON | 行動検知詳細情報 | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.numPerson</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#6a8759"><span style="color:#000000">検知された人の数</span></span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand</span></span><span style="color:#000000"></span> | JSON | 左手座標情報 | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.xmin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">左手領域のバウンディングボックス(境界ボックス)上部の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.ymin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">左手領域のバウンディングボックス下の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.xmax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">左手領域のバウンディングボックス左の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.ymax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">左手領域のバウンディングボックス右の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.isDetected</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | 左手検知を行うかどうか | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand</span></span><span style="color:#000000"></span> | JSON | 右手座標情報 | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">右手</span> 領域のバウンディングボックス上の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.ymin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">右手</span> 領域のバウンディングボックス下の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">右手</span> 領域のバウンディングボックス左の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.ymax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">右手領域のバウンディングボックス右の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.isDetected</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | 右手検知を行うかどうか | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face</span></span><span style="color:#000000"></span> | JSON | 顔座標情報 | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face.xmin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">顔領域のバウンディングボックス上の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face.ymin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">顔領域のバウンディングボックス下の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face.xmax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">顔領域のバウンディングボックス左の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face.ymax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">顔領域のバウンディングボックス右の頂点の座標情報</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face.isDetected</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | 顔検出を行うかどうか | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatConfig</span> | JSON | 設定情報 | O |
+| <span style="color:#000000">cheatConfig.pose.poseEstimationYn</span> | boolean | 行動検知を行うかどうか | X |
+| <span style="color:#000000">cheatConfig.pose.poseEstimationTime</span> | Integer | 左手/右手座標未識別時間(N秒)<span style="color:#000000"></span> | X |
+| <span style="color:#000000">cheatConfig.gaze.gazeTrackingYn</span> | String | 視線(瞳孔)追跡を行うかどうか<span style="color:#000000"></span> | X |
+| <span style="color:#000000">cheatConfig.gaze.gazeTopAngle</span> | Integer | 瞳孔の角度(上)<span style="color:#000000"></span> | X |
+| cheatConfig.gaze.gazeBottomAngle | Integer | 瞳孔の角度(下)<span style="color:#000000"></span> | X |
+| cheatConfig.gaze.gazeLeftAngle | Integer | 瞳孔の角度(左)<span style="color:#000000"></span> | X |
+| cheatConfig.gaze.gazeRightAngle | Integer | 瞳孔の角度(右)<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceDetectionYn | String | 顔認識を行うかどうか<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceDetectionThreshold | Integer | 検知顔数の基準値<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceTopAngle | Integer | 顔の角度(上)<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceBottomAngle | Integer | 顔の角度(下)<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceLeftAngle | Integer | 顔の角度(左)<span style="color:#000000"></span> | X |
+| cheatConfig.face.faceRightAngle | Integer | 顔の角度(右)<span style="color:#000000"></span> | X |
+| cheatConfig.bg.bgDetectionYn | String | 身体以外のバックグラウンド変化を検知するかどうか<span style="color:#000000"></span> | X |
+| cheatConfig.bg.bgDetectionTime | Integer | バックグラウンド変化検知時間(N秒)<span style="color:#000000"></span> | X |
 
-[요청 본문 예] POSE, GAZE
+リクエストサンプル(Cheating Detection - 画像)
 
 ``` json
 {
    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
    "userId":"usertTest",
-"examNo":"12345",
-   "cheatGroup":"POSE",
+   "examNo":"12345",
+   "cheatGroup":"IMAGE",
    "cheatLevel":0,
    "eventTime": 1621828945,
    "fileUrl":"[https://toast.cloud.com/20210518193737738.jpeg](https://toast.cloud.com/20210518193737738.jpeg))",
@@ -926,7 +741,7 @@ Content-type : application/json;charset=utf-8
 {
    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
    "userId":"userTestId",
-"examNo":"12345",
+   "examNo":"12345",
    "cheatGroup":"IMAGE",
    "cheatLevel":3,
    "eventTime": 1621828940,
@@ -939,6 +754,7 @@ Content-type : application/json;charset=utf-8
          "facePosePitchOut":false,
          "eyeGazeYawOut":false,
          "eyeGazePitchOut":false,
+         "unstableBackground":false
       },
       "gaze":{
          "numFaces":0,
@@ -951,22 +767,16 @@ Content-type : application/json;charset=utf-8
       }
    },
    "cheatConfig":{
+      "bg":{
+         "bgDetectionYn":"Y",
+         "bgDetectionTime":1
+      },
       "gaze":{
          "gazeTrackingYn":"Y",
          "gazeTopAngle":24,
          "gazeBottomAngle":24,
          "gazeLeftAngle":24,
          "gazeRightAngle":24
-         "regUserGaze": {
-         "numFaces": 0,
-         "facePitch": 0,
-         "faceYaw": 0,
-         "faceDistance": 0,
-         "eyePitch": 0,
-         "eyeYaw": 0,
-         "screenX": 0,
-         "screenY": 0
-       }
       },
       "face":{
          "faceDetectionYn":"Y",
@@ -975,125 +785,112 @@ Content-type : application/json;charset=utf-8
          "faceBottomAngle":25,
          "faceLeftAngle":25,
          "faceRightAngle":25
-         "regUserGaze": {
-         "numFaces": 0,
-         "facePitch": 0,
-         "faceYaw": 0,
-         "faceDistance": 0,
-         "eyePitch": 0,
-         "eyeYaw": 0,
-         "screenX": 0,
-         "screenY": 0
-       }
       }
    }
 }
 ```
 
-[Request Body] AUDIO
+**Request(音声)**
 
-| 이름 | 타입 | 설명 | 필수 여부 |
+| ResponseBody | Type | desc | Required |
 | --- | --- | --- | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (AUDIO 고정) | O |
-| eventTime | Long | 이벤트 발생 시간(timestamp) | O |
-| fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
-| cheatLevel | Integer | 음성 감지 여부(0: 미감지, 1: 감지) | O |
-| cheatData | JSON | 감지 정보 | X |
-| cheatData.voice | Long[] | 음성 감지 시간(초)<br>예) [3,4] > 3,4초에 음성 감지 | X |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화  | X |
+| validation | String | 有効性チェック | O |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| cheatGroup | String | チート区分(DEVICE、IMAGE、AUDIO) | O |
+| eventTime | Long | イベント発生時間(timestamp) | O |
+| fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
+| cheatLevel | Integer | 音声検知を行うかどうか(0：未検知、1：検知) | O |
+| cheatData | JSON | 検知情報 | X |
+| cheatData.voice | Long[] | 音声検知時間(秒) <br>例) [3,4] > 3、4秒に音声検知 | X |
 
-[요청 본문 예]
+##### リクエストサンプル(Cheating Detection - 音声検知発生)
 
-음성 감지
 ``` json
 {
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-  "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "examNo": "12345",
-  "cheatGroup": "AUDIO",
-  "senderTime": 1621828948,
-  "fileUrl": "https://toast.cloud.com/20210518193737738.wav",
-  "cheatLevel" : 1,
-  "cheatData" : {
+"validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
+"appKey": "AQJ33tPUaI9Y4lc2IrjX",
+"userId": "usertTest",
+"examNo": "12345",
+"cheatGroup": "AUDIO",
+"senderTime": 1621828948,
+"fileUrl": "https://toast.cloud.com/20210518193737738.wav",
+"cheatLevel" : 1,
+"cheatData" : {
 	"voice": [1,2,3]
-  }
+}
 }
 ```
 
-음성 미감지
+##### リクエストサンプル(Cheating Detection - 音声未発生)
 
 ``` json
 {
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-  "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "examNo":"12345",
-  "cheatGroup":"AUDIO",
-  "senderTime": 1621828948,
-  "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-  "cheatLevel" : 0
+"validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
+"appKey":"AQJ33tPUaI9Y4lc2IrjX",
+"userId": "usertTest",
+"examNo":"12345",
+"cheatGroup":"AUDIO",
+"senderTime": 1621828948,
+"fileUrl":"https://toast.cloud.com/20210518193737738.wav",
+"cheatLevel" : 0
 }
 ```
 
-[Request Body] PROCTOR
+#### **Request(Proctor)**
 
-| 이름 | 타입 | 설명 | 필수 여부 |
+| ResponseBody | Type | desc | Required |
 | --- | --- | --- | :---: |
-| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| userId | String | 사용자 ID(수험생 번호) | O |
-| examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (PROCTOR 고정) | O |
-| platformOs | String | OS 정보 | O |
-| eventTime | Long | 이벤트 발생 시간(timestamp) | O |
-| cheatLevel | Integer | 치트 발생 여부 (1) 고정 | O |
-| cheatData | JSON | 부정행위 정보 | O |
-| cheatData.keyboard | String | 키보드 이벤트 | X |
-| cheatData.mouse | String | 마우스 이벤트 | X |
-| cheatData.additional | String | 기타 이벤트 | X |
-| cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.blockMonitorYn | String | 추가 모니터 차단 여부 | O |
-| cheatConfig.blockSwitchTaskYn | String | 작업 전환 차단 여부 | O |
-| cheatConfig.blockScreenYn | String | 풀 스크린 이탈 방지 여부 | O |
-| cheatConfig.blockProgramYn | String | 애플리케이션/프로그램 차단 여부 | O |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화  | X |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| cheatGroup | String | チート区分(PROCTOR、IMAGE、AUDIO) | O |
+| platformOs | String | <span style="color:#222222">OS情報</span> | O |
+| eventTime | Long | イベント発生時間(timestamp) | O |
+| cheatLevel | Integer | チート発生(1)固定 | O |
+| cheatData | JSON | 不正行為情報 | O |
+| cheatData.keyboard | String | キーボードイベント | X |
+| cheatData.mouse | String | マウスイベント | X |
+| cheatData.additional | String | その他のイベント | X |
+| cheatConfig | JSON | 設定情報 | O |
+| cheatConfig.blockMonitorYn | String | 追加モニター遮断を行うかどうか | O |
+| cheatConfig.blockSwitchTaskYn | String | タスクの切り替えを遮断するかどうか | O |
+| cheatConfig.blockScreenYn | String | フルスクリーン離脱を防止するかどうか | O |
+| cheatConfig.blockProgramYn | String | アプリケーション/プログラムを遮断するかどうか | O |
 
-[요청 본문 예]
+リクエストサンプル(Cheating Detection)
 
 ``` json
 {
-  "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "platformOs" :"Windows10",
-  "examNo":"12345",
-  "cheatGroup": "PROCTOR",
-  "eventTime": 1621828940,
-  "cheatLevel": 1,
-  "cheatData": {
-    "keyboard": "Attempting switch program."
-  },
-  "cheatConfig": {
-    "appKey" : "bdyfjdff",
-    "blockMonitorYn": "Y",
-    "blockSwitchTaskYn":"Y",
-    "blockScreenYn":"Y",
-    "blockProgramYn":"Y"
-  },
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
+"appKey": "AQJ33tPUaI9Y4lc2IrjX",
+"userId": "usertTest",
+"platformOs" :"Windows10",
+"examNo":"12345",
+"cheatGroup": "PROCTOR",
+"eventTime": 1621828940,
+"cheatLevel": 1,
+"cheatData": {
+	"keyboard": "Attempting switch program."
+},
+"cheatConfig": {
+"appKey" : "bdyfjdff",
+"blockMonitorYn": "Y",
+"blockSwitchTaskYn":"Y",
+"blockScreenYn":"Y",
+"blockProgramYn":"Y"
+}
 }
 ```
 
-[Response Body]
+ResponseBody
 
-| 이름 | 타입 | 설명 |
+| Key | Type | desc |
 | --- | --- | --- |
-| resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
-| resultMessage | String | 인증 결과 메시지 |
+| resultCode | Integer | 認証結果コード(0：成功、それ以外：失敗) |
+| resultMessage | String | 認証結果メッセージ |
 
-[응답 본문 예]
+sample
 
 ``` json
 {
