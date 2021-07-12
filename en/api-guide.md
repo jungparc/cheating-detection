@@ -210,10 +210,84 @@ Content-type : multipart/form-data
 
 ## NHN Proctor API
 
+
+### 1. Collect Proctor Event API
+
+```
+URL : /nhn-cht-prt/v1.0/proctor/event
+METHOD : POST
+X-CD-Client-Type : Proctor
+Content-type : application/json;charset=utf-8
+```
+
+##### Request
+
+| Header Parameter | Type | Desc | Required |
+| :---: | :---: | :---: | :---: |
+| X-CD-Client-Type | String | Fix client type to ‘Proctor’ | O |
+
+| body Parameter | Type | desc | Required |
+| --- | --- | --- | :---: |
+| appKey | String | Integrated Appkey or Service Appkey | O |
+| userId | String | User ID (student number) | O |
+| examNo | String | Exam number | O |
+| proctorVersion | String | NHN Proctor App version information | O |
+| eventTime | Number | Event occurrence time | O |
+| deviceID | String | Device identifier in UUID format- issued at the time of app installation | O |
+| sessionID | String | Session ID in UUID format - issued at the time of browser loading | O |
+| platform | String | OS information | O |
+| eventSource | String | Event source( fixed to 'P<span style="color:#222222">roctor' </span>) | O |
+| event | JSON | Event | O |
+| event.status | String | initialize: log in, begintTest: begin test , endTest: endTest <br><span style="color:#e11d21">\* Window / Mac</span> | O |
+| event.<span style="color:#222222">keyboard</span> | String | Attempts to switch programs(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
+| event.mouse | String | <span style="color:#222222">Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
+| event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | Other event information | X |
+
+<span style="color:#e11d21">**\* One of the events is required** </span>
+
+Sample
+
+* Request one event
+
+``` json
+{
+    "appKey" : "your_app_key",
+    "userId" : "randy",
+    "examNo" : "21342",
+    "proctorVersion" : "1.0.0.1",
+    "eventTime" : 1619485194941,
+    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
+    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
+    "platform" : "Windows 10(10.0)",
+    "eventSource" : "Proctor",
+    "event" : {
+	"status" : "initialize"
+    }
+}
+```
+
+##### Response body
+
+``` json
+{
+  "header": {
+    "successful": true,
+    "resultCode": 0,
+    "resultMessage": "Success"
+  }
+}
+```
+
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | Request success |
+| header.resultCode | Integer | Request result code |
+| header.resultMessage | String | Request result message |
+
 ### Collect Proctor Indicator API
 
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
+URL : /nhn-cht-prt/v1.0/proctor/collect
 METHOD : POST
 X-CD-Client-Type : Proctor
 Content-type : application/json;charset=utf-8

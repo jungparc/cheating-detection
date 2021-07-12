@@ -209,11 +209,83 @@ Content-type : multipart/form-data
 | header.resultMessage | String | リクエスト結果メッセージ |
 
 ## NHN Proctor API
+### 1. Proctorイベント収集API
+
+```
+URL : /nhn-cht-prt/v1.0/proctor/event
+METHOD : POST
+X-CD-Client-Type : Proctor
+Content-type : application/json;charset=utf-8
+```
+
+##### Request
+
+| Header Parameter | Type | Desc | Required |
+| :---: | :---: | :---: | :---: |
+| X-CD-Client-Type | String | クライアントタイプ「Proctor」固定 | O |
+
+| body Parameter | Type | desc | Required |
+| --- | --- | --- | :---: |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| userId | String | ユーザーID(受験生番号) | O |
+| examNo | String | 試験番号 | O |
+| proctorVersion | String | NHN Proctorアプリバージョン情報 | O |
+| eventTime | Number | イベント発生時間 | O |
+| deviceID | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
+| sessionID | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
+| platform | String | OS情報 | O |
+| eventSource | String | イベントソース( 「P<span style="color:#222222">roctor」固定</span>) | O |
+| event | JSON | イベント | O |
+| event.status | String | initialize：ログイン、 begintTest：試験開始、endTest：試験終了 <br><span style="color:#e11d21">\* Window / Mac</span> | O |
+| event.<span style="color:#222222">keyboard</span> | String | タスクの切り替えを試行(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
+| event.mouse | String | <span style="color:#222222">試験領域外、マウス移動検知(試験場以外の領域に移動ができない状況ですが例外が発生した場合)</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
+| event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | その他イベント情報 | X |
+
+<span style="color:#e11d21">**\* イベントのうち1つは必須** </span>
+
+サンプル
+
+* 1つのイベントリクエスト
+
+``` json
+{
+    "appKey" : "your_app_key",
+    "userId" : "randy",
+    "examNo" : "21342",
+    "proctorVersion" : "1.0.0.1",
+    "eventTime" : 1619485194941,
+    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
+    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
+    "platform" : "Windows 10(10.0)",
+    "eventSource" : "Proctor",
+    "event" : {
+	"status" : "initialize"
+    }
+}
+```
+
+##### Response body
+
+``` json
+{
+  "header": {
+    "successful": true,
+    "resultCode": 0,
+    "resultMessage": "Success"
+  }
+}
+```
+
+| Key | Type | desc |
+| :---: | --- | --- |
+| header.isSuccess | boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード |
+| header.resultMessage | String | リクエスト結果メッセージ |
 
 ### Proctor指標収集API
 
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
+URL : /nhn-cht-prt/v1.0/proctor/collect
 METHOD : POST
 X-CD-Client-Type : Proctor
 Content-type : application/json;charset=utf-8
