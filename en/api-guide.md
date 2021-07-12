@@ -33,13 +33,13 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
+    "userId" : "user123",
+    "examNo" : "21342",
+    "deviceType" : "pc",
     "webAuth" : {
         "userId": "user123",
-        "token": "asdfasdfnv23fkja..",
-        "via": ""
+        "token": "asdfasdfnv23fkja..",
+        "via": ""
     }
 }
 ```
@@ -237,12 +237,12 @@ Content-type : application/json;charset=utf-8
 | platform | String | OS information | O |
 | eventSource | String | Event source( fixed to 'P<span style="color:#222222">roctor' </span>) | O |
 | event | JSON | Event | O |
-| event.status | String | initialize: log in, begintTest: begin test , endTest: endTest <br><span style="color:#e11d21">\* Window / Mac</span> | O |
+| event.status | String | initialize: log in, begintTest: begin test , endTest: endTest <br><span style="color:#e11d21">\* Window / Mac</span> | O |
 | event.<span style="color:#222222">keyboard</span> | String | Attempts to switch programs(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
-| event.mouse | String | <span style="color:#222222">Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
+| event.mouse | String | <span style="color:#222222">Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
 | event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | Other event information | X |
 
-<span style="color:#e11d21">**\* One of the events is required** </span>
+<span style="color:#e11d21">**\* One of the events is required** </span>
 
 Sample
 
@@ -252,7 +252,7 @@ Sample
 {
     "appKey" : "your_app_key",
     "userId" : "randy",
-    "examNo" : "21342",
+    "examNo" : "21342",
     "proctorVersion" : "1.0.0.1",
     "eventTime" : 1619485194941,
     "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
@@ -412,16 +412,16 @@ Content-type : */*
 ``` json
 {
 	"header":{
-		"successful" : true,
-		"resultCode" : 0,
-		"resultMessage" : "Success"
+		"successful" : true,
+		"resultCode" : 0,
+		"resultMessage" : "Success"
 	},
-	"data" : {
-		"appKey" : "bdyfjdff",
-		"blockMonitorYn" : "Y",
-		"blockSwitchTaskYn" : "Y",
+	"data" : {
+		"appKey" : "bdyfjdff",
+		"blockMonitorYn" : "Y",
+		"blockSwitchTaskYn" : "Y",
 		"blockScreenYn" : "Y",
-		"blockProgramYn" : "Y"
+		"blockProgramYn" : "Y"
 	}
 }
 ```
@@ -512,7 +512,7 @@ Content-type : */*
   },
   "data": {
     "appKey": "bdyfjdff",
-    "serviceUrl": "https://hook.nhnent.com/service",
+    "serviceUrl": "https://hook.nhnent.com/service",
     "webAuthUrl": "https://hook.nhnent.com/redirect",
     "webhookUrl": "https://hook.nhnent.com/webhook"
   }
@@ -583,7 +583,7 @@ sample
 {
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
-    "via": "",
+    "via": "",
     "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
@@ -633,7 +633,7 @@ Content-type : application/json;charset=utf-8
 | userId | String | User ID (student number) | O |
 | examNo | String | Exam number | O |
 | cheatGroup | String | Cheat group(RPOCTOR, GAZE, POSE, BACKGROUND, AUDIO) | O |
-| cheatLevel | Integer | Cheating activity level(0: Normal,<span style="color:#000000">1: Attention\_Low, 2: Attention\_Hight, 3: Warning)</span> | O |
+| cheatLevel | Integer | Cheating activity level(0: Normal,<span style="color:#000000">1: Attention\_Low, 2: Attention\_Hight, 3: Warning)</span> | O |
 | eventTime | Long | Event occurrence time(timestamp) | O |
 | fileUrl | String | Image or audio file storage path | O |
 | cheatData | JSON | Cheating activity information | O |
@@ -657,7 +657,7 @@ Content-type : application/json;charset=utf-8
 | cheatData.gaze.screenX | float | Gaze x-axis position | X |
 | cheatData.gaze.screenY | float | Gaze y-axis position | X |
 | [<span style="color:#000000">chaetData.bg</span>](http://chaetData.bg)[] | List | Background change information | X |
-| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.isChanged</span> | <span style="color:#000000">boolean</span> | <span style="color:#6a8759"><span style="color:#000000">Background change </span></span> | <span style="color:#000000">X</span> |
+| [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.isChanged</span> | <span style="color:#000000">boolean</span> | <span style="color:#6a8759"><span style="color:#000000">Background change </span></span> | <span style="color:#000000">X</span> |
 | [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.</span><span style="color:#9876aa"><span style="color:#000000">eventTime</span></span> | <span style="color:#000000">Long</span> | <span style="color:#000000"><span style="color:#000000">Occurrence time (timestamp 10 digits)</span></span> | <span style="color:#000000">X</span> |
 | [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.data</span> | JSON | <span style="color:#000000">Background detection details</span> | <span style="color:#000000">X</span> |
 | [<span style="color:#000000">chaetData.</span>](http://chaetData.bg)[<span style="color:#000000">bg</span>](http://chaetData.bg)[]<span style="color:#000000">.data.bgChangeDetFlag</span> | <span style="color:#000000">boolean</span> | <span style="color:#000000">Background change detection result </span> | <span style="color:#000000">X</span> |
@@ -675,9 +675,9 @@ Content-type : application/json;charset=utf-8
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.ymax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">Right vertex coordinate of the bounding box of the left-hand area</span> | <span style="color:#000000">X</span> |
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.lHand.isDetected</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | Left hand detection | <span style="color:#000000">X</span> |
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand</span></span><span style="color:#000000"></span> | JSON | Right hand coordinate information | <span style="color:#000000">X</span> |
-| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Top vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
-| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.ymin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Bottom vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
-| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Left vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Top vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.ymin</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Bottom vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
+| <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.xmax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000"><span style="color:#000000">Left vertex coordinate of the bounding box of the right-hand</span> area</span> | <span style="color:#000000">X</span> |
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.ymax</span></span><span style="color:#000000"></span> | <span style="color:#000000">Integer</span> | <span style="color:#000000">Right vertex coordinate of the bounding box of the right-hand area</span> | <span style="color:#000000">X</span> |
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.rHand.isDetected</span></span><span style="color:#000000"></span> | <span style="color:#000000">boolean</span> | Right hand detection | <span style="color:#000000">X</span> |
 | <span style="color:#000000">cheatData.<span style="color:#000000">pose[]</span>.</span><span style="color:#9876aa"><span style="color:#000000">data.face</span></span><span style="color:#000000"></span> | JSON | Face coordinate information | <span style="color:#000000">X</span> |
@@ -710,7 +710,7 @@ Request sample(Cheating Detection - image)
    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
    "userId":"usertTest",
-   "examNo":"12345",
+   "examNo":"12345",
    "cheatGroup":"IMAGE",
    "cheatLevel":0,
    "eventTime": 1621828945,
@@ -741,7 +741,7 @@ Request sample(Cheating Detection - image)
 {
    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
    "userId":"userTestId",
-   "examNo":"12345",
+   "examNo":"12345",
    "cheatGroup":"IMAGE",
    "cheatLevel":3,
    "eventTime": 1621828940,
@@ -803,7 +803,7 @@ Request sample(Cheating Detection - image)
 | fileUrl | String | Image or audio file storage path | O |
 | cheatLevel | Integer | Audio detection (0 : undetected, 1 : detected) | O |
 | cheatData | JSON | Detection information | X |
-| cheatData.voice | Long[] | Audio detection time (sec) <br>ex) [3,4] > audio detection at 3 and 4 sec | X |
+| cheatData.voice | Long[] | Audio detection time (sec) <br>ex) [3,4] > audio detection at 3 and 4 sec | X |
 
 ##### Requested sample(Cheating Detection - audio detection occurrence)
 
