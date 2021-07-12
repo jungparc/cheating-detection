@@ -209,7 +209,7 @@ Content-type : multipart/form-data
 | header.resultMessage | String | リクエスト結果メッセージ |
 
 ## NHN Proctor API
-### 1. Proctorイベント収集API
+### Proctorイベント収集API
 
 ```
 URL : /nhn-cht-prt/v1.0/proctor/event

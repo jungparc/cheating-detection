@@ -211,7 +211,7 @@ Content-type : multipart/form-data
 ## NHN Proctor API
 
 
-### 1. Collect Proctor Event API
+### Collect Proctor Event API
 
 ```
 URL : /nhn-cht-prt/v1.0/proctor/event
