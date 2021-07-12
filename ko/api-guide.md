@@ -2,17 +2,17 @@
 - Cheating Detection API를 사용하는 데 필요한 API를 설명합니다.
 ## API 공통 정보
 
-###사전준비
-- API 사용을 위해서는 프로젝트 통합 Appkey 또는 서비스 Appkey가 필요합니다.
+### 사전준비
+- API 사용을 위해서는 프로젝트 통합 Appkey 또는 서비스 Appkey가 필요합니다. 
 - 서비스 Appkey는 콘솔 상단 URL & Appkey 메뉴에서 확인이 가능합니다.
 
-###요청 공통 정보
+### 요청 공통 정보
 - API를 사용하기 위해서는 보안 키 인증 처리가 필요합니다.
 
 [API 도메인]
 
- | 환경 | 도메인 |
- | :---: | :---: |
+ | 환경 | 도메인 | 
+ | --- | --- | 
  | Real | http://ctd-api.cloud.toast.com |
 
 ## 인증 API
@@ -32,14 +32,14 @@ Content-type : application/json;charset=utf-8
 [URL Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | --- | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | expiresIn | Integer | 토큰 유효 시간(초) | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | --- | :---: |
+| --- | --- | --- | --- |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
 | deviceType | String | 장비 구분(pc: PC, mo: Mobile ) | O |
@@ -68,8 +68,8 @@ Content-type : application/json;charset=utf-8
 [Response Body]
 
 | 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.tokenType | String | 토큰 타입, bearer로 고정 |
@@ -81,10 +81,10 @@ Content-type : application/json;charset=utf-8
 ``` json
 {
     "header" : {
-    	"isSuccessful" : true,
-    	"resultCode" : 0,
-    	"resultMessage" : "Success"
-	},
+        "isSuccessful" : true,
+        "resultCode" : 0,
+        "resultMessage" : "Success"
+    },
     "data" : {
         "tokenType" : "bearer",
         "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
@@ -108,13 +108,13 @@ Content-type : application/json;charset=utf-8
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | --- | :---: |
+| --- | --- | --- | --- |
 | token | String | 취소할 액세스 토큰값 | O |
 
 [요청 본문 예]
 ``` json
 {
-   "token" : "XDadhaS3dvns34Fdfnf23=="
+   "token" : "XDadhaS3dvns34Fdfnf23=="  
 }
 ```
 
@@ -122,9 +122,9 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.accessToken | String | 취소한 사용자 엑세스 토큰값 |
@@ -134,13 +134,13 @@ Content-type : application/json;charset=utf-8
 ``` JSON
 {
     "header" : {
-    	"isSuccessful" : true,
-    	"resultCode" : 0,
-    	"resultMessage" : "Success"
+        "isSuccessful" : true,
+        "resultCode" : 0,
+        "resultMessage" : "Success"
     },
     "data" : {
-    	"accessToken" : "XDadhaS3dvns34Fdfnf23=="
-	}
+        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    }
 }
 ```
 
@@ -160,60 +160,31 @@ Content-type : multipart/form-data
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-Auth-Token | String | AccessToken | O |
 
 [URL Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | camLocation | String | 카메라 위치 정보(side(측면), front(정면)) | O |
 | reqTime | long | 요청 시간(timestamp 10자리)(초 단위까지) | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 1280 x 720, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 
 [요청 본문 예]
-```
-curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
--F "file=@testImage.jpeg;type=image/jpeg"
-```
-
-
-##### 응답
-
-[Response Body]
-
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드 |
-| header.resultMessage | String | 요청 결과 메시지 |
-
-[응답 본문 예]
-
-``` json
-{
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
-}
 ```
 curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}" 
 -H "accept: application/json;charset=UTF-8" 
@@ -222,8 +193,27 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
-### 음성 감지 요청 API
-- 음성 감지 분석을 위한 요청 API
+
+##### 응답
+
+[Response Body]
+
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
+| header.resultCode | Integer | 요청 결과 코드 |
+| header.resultMessage | String | 요청 결과 메시지 |
+
+[응답 본문 예]
+
+``` json
+{
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
+}
 ```
 
 ### 음성 감지 요청 API
@@ -240,35 +230,35 @@ Content-type : multipart/form-data
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-Auth-Token | String | AccessToken | O |
 
 [URL Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | reqTime | long | 요청 시간(timestamp 10자리)(초 단위까지) | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | file | Binary | 음성 파일<br>(지원 형식 .wav, .wave, .webm)<br>(권장 16bit, 16,000 sampling rate, mono channel) | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 
 [요청 본문 예]
 ```
-curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
+curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
 -F "file=@fileName.wav;type=audio/wav"
 ```
 
@@ -276,9 +266,9 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -286,11 +276,11 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 
 ``` json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
 }
 ```
 
@@ -310,13 +300,13 @@ Content-type : application/json;charset=utf-8
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
@@ -359,9 +349,9 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -369,11 +359,11 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
 }
 ```
 
@@ -391,13 +381,13 @@ Content-type : application/json;charset=utf-8
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | installApp | JSON | 설치 프로세스 수집 항목 | O |
 | installApp.displayName | String | 애플리케이션 이름 | O |
 | installApp.displayVersion | String | 버전 정보 | O |
@@ -406,20 +396,18 @@ Content-type : application/json;charset=utf-8
 
 [요청 본문 예]
 
-[요청 본문 예]
-
 ``` json
 {
     "installApp" : [
- 	    {
+        {
             "displayName" : "DropBox",
-		    "displayVersion" : "3.18.1",
-		    "publisher" : "Dropbox, Inc."
+            "displayVersion" : "3.18.1",
+            "publisher" : "Dropbox, Inc."
         },
         {
-    	    "displayName" : "Google Chrome",
-		    "displayVersion" : "40.9.2623.111",
-		    "publisher" : "Google, Inc."
+            "displayName" : "Google Chrome",
+            "displayVersion" : "40.9.2623.111",
+            "publisher" : "Google, Inc."
         }
      ]
 }
@@ -429,9 +417,9 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -439,11 +427,11 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
 }
 ```
 
@@ -465,29 +453,29 @@ Content-type : application/json;charset=utf-8
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-Auth-Token | String | AccessToken | O |
 
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | file | Binary | 이미지 파일 <br>권장 사항 (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
 | userId | String | 사용자 ID(수험생 번호) | O |록
 
 [요청 본문 예]
 ```
-curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze"
--H "accept: application/json;charset=UTF-8"
--H "X-Auth-Token: Bearer {accessToken}"
--H "Content-Type: multipart/form-data"
+curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -495,9 +483,9 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -505,11 +493,11 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 ``` json
 {
-  "header": {
-    "isSuccessful": true,답
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    }
 }
 ```
 
@@ -533,22 +521,22 @@ Content-type : */*
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 
 ##### 응답
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -562,19 +550,19 @@ Content-type : */*
 
 ``` json
 {
-	"header":{
-		"isSuccessful":true,
-		"resultCode": 0,
-		"resultMessage": "Success"
-	},
-	"data": {
-		"appKey": "bdyfjdff",
-		"resionCode" : "KR1"
-		"blockMonitorYn": "Y",
-		"blockSwitchTaskYn" :"Y",
-		"blockScreenYn" : "Y",
-		"blockProgramYn": "Y"
-	}
+    "header":{
+        "isSuccessful":true,
+        "resultCode": 0,
+        "resultMessage": "Success"
+    },
+    "data": {
+        "appKey": "bdyfjdff",
+        "resionCode" : "KR1"
+        "blockMonitorYn": "Y",
+        "blockSwitchTaskYn" :"Y",
+        "blockScreenYn" : "Y",
+        "blockProgramYn": "Y"
+    }
 }
 ```
 
@@ -593,22 +581,22 @@ Content-type : */*
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 
 ##### 응답
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -621,29 +609,6 @@ Content-type : */*
 | data.faceRightAngle | Integer | 얼굴 각도(하) |
 
 [응답 본문 예]
-
-``` json
-{
-"header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-},
-"data": {
-    "appKey" : "bdyfjdff",
-    "regionCode" : "KR1",
-    "faceDetectionYn" : "Y",
-    "faceDetectionThreshold" : 1,
-    "faceTopAngle": 20,
-    "faceBottomAngle" : 20,
-    "faceLeftAngle" : 20,
-    "faceRightAngle" : 20
-}
-}
-```
-
-
-### 고객 URL 설정조회
 
 ``` json
 {
@@ -680,22 +645,22 @@ Content-type : */*
 [Header Parameter]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | X-CD-Client-Type | String | 클라이언트 타입 'Proctor' 고정 | O |
 
 [Path Variable]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| :---: | :---: | :---: | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 
 ##### 응답
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
-| :---: | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| 이름 | 타입 | 설명 | 
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -727,22 +692,24 @@ Content-type : */*
 
 ### ResultCode
 
-| Code | 구분 | 설명 |
-| --- | --- | --- |
-| 0 | 성공 | SUCCESS |
-| -20001 | 에러 | 토큰 만료 시 발생 |
-| -20002 | 에러 | 토큰이 유효하지 않은 경우 발생 |
-| -20004 | 에러 | 사용자 인증 실패(시험 종료(이탈), 사용자 인증 데이터 검증 오류) |
-| -20005 | 에러 | 허용되지 않은 사용자 접근 시 발생, 인증 진행 후 요청 |
-| -20005 | 에러 | 요청 토큰 타입 Bearer 확인 |
-| -40000 | 에러 | 해당 옵션 미설정 오류 |
-| -40003 | 에러 | 이미지 저장 정보 등록 실패 |
-| -50000 | 에러 | 잘못된 형식의 파일 |
-| -50001 | 에러 | 파일 누락 |
-| -50002 | 에러 | 파일 사이즈 초과(1GB 초과) |
-| -50004 | 에러 | 파일 처리 중 오류 발생 |
-| -50005 | 에러 | 첨부 파일 필드 누락 |
-| -99999 | 에러 | 서버 오류 |
+| 코드 | 구분 | 메시지 | 설명 |
+| --- | --- | --- |--- |
+| 0 | 성공 | SUCCESS | 정상 처리 |
+| -20001 | 에러 | 토큰 만료 | 토큰이 만료시간 초과 또는 취소 요청된 토큰으로 요청 시 |  
+| -20002 | 에러 | 유효하지 않는 토큰 | 유효하지 않은 토큰으료 요청 시 | 
+| -20004 | 에러 | WebAuth 인증 실패 | WebAuth 인증 실패 시  |
+| -20005 | 에러 | 인증 되지 않은 사용자 접근 오류 | X-Auth-Token 필드 누락으로 인증 처리 불가 | 
+| -20006 | 에러 | AccessToken 타입 오류 | X-Auth-Token 헤더 Bearer 누락 시 발생 | 
+| -40000 | 에러 | 제어 옵션 미설정 에러 | 요청한 AppKey의 설정 정보가 DB에 존재 하지 않는 경우 발생 |
+| -40002 | 에러 | 시선 등록 실패 | 시선 등록 API 요청 중 오류가 발생 했을 경우 |
+| -40003 | 에러 | 이미지 저장 설정 정보 등록 실패 | OBS 인증 받지 못했을 경우 발생 |
+| -41000 | 에러 | UnauthorizedAppKey : check your appKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 |
+| -50000 | 에러 | 맞지 않는 형식의 파일 | 지원하지 않는 파일을 첨부 했을 경우 | 
+| -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
+| -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
+| -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
+| -50008 | 에러 | 요청 값 오류 | 요청 파라미터가 잘못된 경우 |
+| -99999 | 에러 | 내부 오류 | 잘못된 요청이거나 예기치 못한 서버 오류가 발생 했을 경우 |
 
 ### HttpStatusCode
 
@@ -770,7 +737,7 @@ Content-type : application/json;charset=utf-8
 [Request Body]
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | token | String | WebAuth 인증 토큰 | O |
 | via | String | 기타 정보 | X |
@@ -791,7 +758,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
+| 이름 | 타입 | 설명 | 
 | --- | --- | --- |
 | resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
 | resultMessage | String | 인증 결과 메시지 |
@@ -831,7 +798,7 @@ Content-type : application/json;charset=utf-8
 [Request Body] GAZE, POSE, BACKGROUND
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
@@ -841,16 +808,16 @@ Content-type : application/json;charset=utf-8
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
-| cheatData.cheatInfo.absence | boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
-| cheatData.cheatInfo.thirdPerson | boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.facePoseYawOut | boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.facePosePitchOut | boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeYawOut | boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazePitchOut | boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeScreenOut | boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
-| cheatData.cheatInfo.unstableBackground | boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
-| cheatData.cheatInfo.leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.cheatInfo.rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
+| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.facePoseYawOut | Boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
+| cheatData.cheatInfo.facePosePitchOut | Boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
+| cheatData.cheatInfo.eyeGazeYawOut | Boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.eyeGazePitchOut | Boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.eyeGazeScreenOut | Boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
+| cheatData.cheatInfo.unstableBackground | Boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
+| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
 | cheatData.gaze | JSON | 시선 추적 정보 | X |
 | cheatData.gaze.numFaces | Integer | 감지된 얼굴 수 | X |
 | cheatData.gaze.facePitch | Integer | 얼굴 상하 각도 | X |
@@ -860,14 +827,14 @@ Content-type : application/json;charset=utf-8
 | cheatData.gaze.screenX | float | 시선 X축 위치 | X |
 | cheatData.gaze.screenY | float | 시선 Y축 위치 | X |
 | chaetData.bg[] | List | 배경 변화 정보 | X |
-| chaetData.bg[].isChanged | boolean | 배경 변화 여부 | X |
+| chaetData.bg[].isChanged | Boolean | 배경 변화 여부 | X |
 | chaetData.bg[].eventTime | Long |발생 시간(timstamp 10자리) |X |
 | chaetData.bg[].data | JSON | 배경 감지 상세 정보 |X |
-| chaetData.bg[].data.bgChangeDetFlag | boolean |배경 변화 여부 감지 결과 |X |
-| chaetData.bg[].data.allocFlag | boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
+| chaetData.bg[].data.bgChangeDetFlag | Boolean |배경 변화 여부 감지 결과 |X |
+| chaetData.bg[].data.allocFlag | Boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
 | cheatData.pose[] | List | 행동 탐지 정보 |X |
-| cheatData.pose[].leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
 | cheatData.pose[].eventTime | Long | 이벤트 발생 시간(감지 요청 시간) |X |
 | cheatData.pose[].data | JSON | 행동 탐지 상세 정보 |X |
 | cheatData.pose[].data.numPerson |Integer | 탐지된 사람의 수 |X |
@@ -876,21 +843,21 @@ Content-type : application/json;charset=utf-8
 | cheatData.pose[].data.lHand.ymin |Integer |왼손 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.lHand.xmax |Integer |왼손 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.lHand.ymax |Integer |왼손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.isDetected |boolean | 왼손 감지 여부 |X |
+| cheatData.pose[].data.lHand.isDetected |Boolean | 왼손 감지 여부 |X |
 | cheatData.pose[].data.rHand | JSON | 오른손 좌표 정보 |X |
 | cheatData.pose[].data.rHand.xmin |Integer |오른손영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.ymin |Integer |오른손영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.xmax |Integer |오른손영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.ymax |Integer |오른손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.isDetected |boolean | 오른손 감지 여부 |X |
+| cheatData.pose[].data.rHand.isDetected |Boolean | 오른손 감지 여부 |X |
 | cheatData.pose[].data.face | JSON | 얼굴 좌표 정보 |X |
 | cheatData.pose[].data.face.xmin |Integer |얼굴 영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.ymin |Integer |얼굴 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.xmax |Integer |얼굴 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.ymax |Integer |얼굴 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.isDetected |boolean | 얼굴 감지 여부 |X |
+| cheatData.pose[].data.face.isDetected |Boolean | 얼굴 감지 여부 |X |
 | cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.pose.poseEstimationYn | boolean | 행동 탐지 사용 여부 | X |
+| cheatConfig.pose.poseEstimationYn | Boolean | 행동 탐지 사용 여부 | X |
 | cheatConfig.pose.poseEstimationTime | Integer | 왼손/오른손 좌표 미식별 시간(N초) | X |
 | cheatConfig.gaze.gazeTrackingYn | String | 시선(동공) 추적 사용 여부 | X |
 | cheatConfig.gaze.gazeTopAngle | Integer | 동공 각도(상) | X |
@@ -927,108 +894,109 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-   "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-   "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-   "userId":"usertTest",
-"examNo":"12345",
-   "cheatGroup":"POSE",
-   "cheatLevel":0,
-   "eventTime": 1621828945,
-   "fileUrl":"[https://toast.cloud.com/20210518193737738.jpeg](https://toast.cloud.com/20210518193737738.jpeg))",
-   "cheatData":{
-      "cheatInfo":{
-         "absence":false,
-         "thirdPerson":false,
-         "unstableBackground":false,
-         "leftHandNotExistence":false,
-         "rightHandNotExistence":false
-      }
-   },
-   "cheatConfig":{
-      "bg":{
-         "bgDetectionYn":"Y",
-         "bgDetectionTime":20
-      },
-      "pose":{
-         "poseEstimationYn":"Y",
-         "poseEstimationTime":20
-      }
-   }
+    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
+    "userId":"usertTest",
+    "examNo":"12345",
+    "cheatGroup":"POSE",
+    "cheatLevel":0,
+    "eventTime": 1621828945,
+    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/test/front/20210707123901682.jpg",
+    "cheatData":{
+        "cheatInfo":{
+            "absence":false,
+            "thirdPerson":false,
+            "unstableBackground":false,
+            "leftHandNotExistence":false,
+            "rightHandNotExistence":false
+        }
+    },
+    "cheatConfig":{
+        "bg":{
+            "bgDetectionYn":"Y",
+            "bgDetectionTime":20
+        },
+        "pose":{
+            "poseEstimationYn":"Y",
+            "poseEstimationTime":20
+        }
+    },
+    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
 ``` Json
 {
-   "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-   "userId":"userTestId",
-"examNo":"12345",
-   "cheatGroup":"IMAGE",
-   "cheatLevel":3,
-   "eventTime": 1621828940,
-   "fileUrl":"[https://toast.cloud.com/20210518185420495.png](https://toast.cloud.com/20210518185420495.png)",
-   "cheatData":{
-      "cheatInfo":{
-         "absence":true,
-         "thirdPerson":false,
-         "facePoseYawOut":false,
-         "facePosePitchOut":false,
-         "eyeGazeYawOut":false,
-         "eyeGazePitchOut":false,
-      },
-      "gaze":{
-         "numFaces":0,
-         "facePitch":0,
-         "faceYaw":0,
-         "eyePitch":0,
-         "eyeYaw":0,
-         "screenX":0.0,
-         "screenY":0.0
-      }
-   },
-   "cheatConfig":{
-      "gaze":{
-         "gazeTrackingYn":"Y",
-         "gazeTopAngle":24,
-         "gazeBottomAngle":24,
-         "gazeLeftAngle":24,
-         "gazeRightAngle":24
-         "regUserGaze": {
-         "numFaces": 0,
-         "facePitch": 0,
-         "faceYaw": 0,
-         "faceDistance": 0,
-         "eyePitch": 0,
-         "eyeYaw": 0,
-         "screenX": 0,
-         "screenY": 0
-       }
-      },
-      "face":{
-         "faceDetectionYn":"Y",
-         "faceDetectionThreshold":1,
-         "faceTopAngle":25,
-         "faceBottomAngle":25,
-         "faceLeftAngle":25,
-         "faceRightAngle":25
-         "regUserGaze": {
-         "numFaces": 0,
-         "facePitch": 0,
-         "faceYaw": 0,
-         "faceDistance": 0,
-         "eyePitch": 0,
-         "eyeYaw": 0,
-         "screenX": 0,
-         "screenY": 0
-       }
-      }
-   }
+    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
+    "userId":"userTestId",
+    "examNo":"12345",
+    "cheatGroup":"IMAGE",
+    "cheatLevel":3,
+    "eventTime": 1621828940,
+    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
+    "cheatData":{
+        "cheatInfo":{
+            "absence":true,
+            "thirdPerson":false,
+            "facePoseYawOut":false,
+            "facePosePitchOut":false,
+            "eyeGazeYawOut":false,
+            "eyeGazePitchOut":false,
+        },
+        "gaze":{
+        "numFaces":0,
+        "facePitch":0,
+        "faceYaw":0,
+        "eyePitch":0,
+        "eyeYaw":0,
+        "screenX":0.0,
+        "screenY":0.0
+        }
+    },
+    "cheatConfig":{
+        "gaze":{
+            "gazeTrackingYn":"Y",
+            "gazeTopAngle":24,
+            "gazeBottomAngle":24,
+            "gazeLeftAngle":24,
+            "gazeRightAngle":24,
+            "regUserGaze": {
+                "numFaces": 0,
+                "facePitch": 0,
+                "faceYaw": 0,
+                "faceDistance": 0,
+                "eyePitch": 0,
+                "eyeYaw": 0,
+                "screenX": 0,
+                "screenY": 0
+            }
+        },
+        "face":{
+            "faceDetectionYn":"Y",
+            "faceDetectionThreshold":1,
+            "faceTopAngle":25,
+            "faceBottomAngle":25,
+            "faceLeftAngle":25,
+            "faceRightAngle":25,
+            "regUserGaze": {
+                "numFaces": 0,
+                "facePitch": 0,
+                "faceYaw": 0,
+                "faceDistance": 0,
+                "eyePitch": 0,
+                "eyeYaw": 0,
+                "screenX": 0,
+                "screenY": 0
+            }
+        }
+    },
+    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
 [Request Body] AUDIO
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
@@ -1045,17 +1013,17 @@ Content-type : application/json;charset=utf-8
 음성 감지
 ``` json
 {
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-  "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "examNo": "12345",
-  "cheatGroup": "AUDIO",
-  "senderTime": 1621828948,
-  "fileUrl": "https://toast.cloud.com/20210518193737738.wav",
-  "cheatLevel" : 1,
-  "cheatData" : {
-	"voice": [1,2,3]
-  }
+    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "userId": "usertTest",
+    "examNo": "12345",
+    "cheatGroup": "AUDIO",
+    "senderTime": 1621828948,
+    "fileUrl": "https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/AUDIO/demoWebTest/test/20210707123916831.webm",
+    "cheatLevel" : 1,
+    "cheatData" : {
+        "voice": [1,2,3]
+    },
+    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
 }
 ```
 
@@ -1063,21 +1031,21 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-  "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "examNo":"12345",
-  "cheatGroup":"AUDIO",
-  "senderTime": 1621828948,
-  "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-  "cheatLevel" : 0
+    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
+    "userId": "usertTest",
+    "examNo":"12345",
+    "cheatGroup":"AUDIO",
+    "senderTime": 1621828948,
+    "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
+    "cheatLevel" : 0,
+    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
 [Request Body] PROCTOR
 
 | 이름 | 타입 | 설명 | 필수 여부 |
-| --- | --- | --- | :---: |
+| --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
@@ -1100,30 +1068,30 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-  "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-  "userId": "usertTest",
-  "platformOs" :"Windows10",
-  "examNo":"12345",
-  "cheatGroup": "PROCTOR",
-  "eventTime": 1621828940,
-  "cheatLevel": 1,
-  "cheatData": {
-    "keyboard": "Attempting switch program."
-  },
-  "cheatConfig": {
-    "appKey" : "bdyfjdff",
-    "blockMonitorYn": "Y",
-    "blockSwitchTaskYn":"Y",
-    "blockScreenYn":"Y",
-    "blockProgramYn":"Y"
-  },
-  "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
+    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "userId": "usertTest",
+    "platformOs" :"Windows10",
+    "examNo":"12345",
+    "cheatGroup": "PROCTOR",
+    "eventTime": 1621828940,
+    "cheatLevel": 1,
+    "cheatData": {
+        "keyboard": "Attempting switch program."
+    },
+    "cheatConfig": {
+        "appKey" : "bdyfjdff",
+        "blockMonitorYn": "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn":"Y",
+        "blockProgramYn":"Y"
+    },
+    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
 [Response Body]
 
-| 이름 | 타입 | 설명 |
+| 이름 | 타입 | 설명 | 
 | --- | --- | --- |
 | resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
 | resultMessage | String | 인증 결과 메시지 |
@@ -1136,3 +1104,4 @@ Content-type : application/json;charset=utf-8
     "resultMessage": "Success"
 }
 ```
+

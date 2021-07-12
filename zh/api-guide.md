@@ -2,7 +2,7 @@
 
 ## Authenticate API
 
-### 1. Issue Token API
+### Issue Token API
 
 - Issue Token API required to request Cheat Detection API
 
@@ -70,7 +70,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 }
 ```
 
-### 2. Cancel Token API
+### Cancel Token API
 
 - API to cancel \(force expire\) an issued token
 
@@ -111,7 +111,7 @@ Content-type : application/json;charset=utf-8
 
 ## Request Cheat Detection API
 
-### 1. Request Motion Detection API
+### Request Motion Detection API
 
 ```
 URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
@@ -161,7 +161,7 @@ Content-type : multipart/form-data
 | header.resultCode | Integer | Request result code |
 | header.resultMessage | String | Request result message |
 
-### 2. Request Voice Detection API
+### Request Voice Detection API
 
 ```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
@@ -210,80 +210,7 @@ Content-type : multipart/form-data
 
 ## NHN Proctor API
 
-### 1. Collect Proctor Event API
-
-```
-URL : /nhn-cht-prt/v1.0/proctor/event, /api/v1.0/proctor/event(deprecated)
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
-```
-
-##### Request
-
-| Header Parameter | Type | Desc | Required |
-| :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | Fix client type to ‘Proctor’ | O |
-
-| body Parameter | Type | desc | Required |
-| --- | --- | --- | :---: |
-| appKey | String | Integrated Appkey or Service Appkey | O |
-| userId | String | User ID (student number) | O |
-| examNo | String | Exam number | O |
-| proctorVersion | String | NHN Proctor App version information | O |
-| eventTime | Number | Event occurrence time | O |
-| deviceID | String | Device identifier in UUID format- issued at the time of app installation | O |
-| sessionID | String | Session ID in UUID format - issued at the time of browser loading | O |
-| platform | String | OS information | O |
-| eventSource | String | Event source( fixed to 'P<span style="color:#222222">roctor' </span>) | O |
-| event | JSON | Event | O |
-| event.status | String | initialize: log in, begintTest: begin test , endTest: endTest <br><span style="color:#e11d21">\* Window / Mac</span> | O |
-| event.<span style="color:#222222">keyboard</span> | String | Attempts to switch programs(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
-| event.mouse | String | <span style="color:#222222">Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
-| event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | Other event information | X |
-
-<span style="color:#e11d21">**\* One of the events is required** </span>
-
-Sample
-
-* Request one event
-
-``` json
-{
-    "appKey" : "your_app_key",
-    "userId" : "randy",
-    "examNo" : "21342",
-    "proctorVersion" : "1.0.0.1",
-    "eventTime" : 1619485194941,
-    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
-    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
-    "platform" : "Windows 10(10.0)",
-    "eventSource" : "Proctor",
-    "event" : {
-	"status" : "initialize"
-    }
-}
-```
-
-##### Response body
-
-``` json
-{
-  "header": {
-    "successful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
-}
-```
-
-| Key | Type | desc |
-| :---: | --- | --- |
-| header.isSuccess | boolean | Request success |
-| header.resultCode | Integer | Request result code |
-| header.resultMessage | String | Request result message |
-
-### 2. Collect Proctor Indicator API
+### Collect Proctor Indicator API
 
 ```
 URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
@@ -390,7 +317,7 @@ Content-type : application/json;charset=utf-8
 
 ## View Settings API
 
-### 1. View device control settings
+### View device control settings
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
@@ -437,7 +364,7 @@ Content-type : */*
 | data.blockScreenYn | String | Prevention of exiting full screen |
 | data.blockProgramYn | String | Application/program blocked or not |
 
-### 2. View face detection settings
+### View face detection settings
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
@@ -486,7 +413,7 @@ Content-type : */*
 | data.faceLeftAngle | Integer | Face angle (left) |
 | data.faceRightAngle | Integer | Face angle (bottom) |
 
-### 3. View customer URL settings
+### View customer URL settings
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
@@ -531,7 +458,7 @@ Content-type : */*
 
 ## Response code
 
-### 1. ResultCode
+### ResultCode
 
 | Code | Classification | Description |
 | --- | --- | --- |
@@ -547,7 +474,7 @@ Content-type : */*
 | -50005 | Error | File attachment field missed |
 | -99999 | Error | Server error |
 
-### 2. HttpStatusCode
+### HttpStatusCode
 
 | Code | Classification | Code name | Description |
 | --- | --- | --- | --- |
@@ -557,7 +484,7 @@ Content-type : */*
 
 ## Client Setup URL API
 
-### 1. WebAuthURL
+### WebAuthURL
 
 - Request authentication with the customer’s WebAuthUrl for user authentication **(WebAuthURL setting required for the console screen)**
 - Check user \(applicant\) status periodically to verify the user's identity
@@ -614,7 +541,7 @@ Failure
 }
 ```
 
-### 2. WebHookURL
+### WebHookURL
 
 - Deliver cheating information from the analyzed image and audio files **(Webhook URL setting required for the console screen)**
 
