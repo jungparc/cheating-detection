@@ -2,7 +2,7 @@
 
 ## 認証API
 
-### 1. トークン(token)発行API
+### トークン(token)発行API
 
 - 不正行為検知APIのリクエスト時に必要なトークン発行API
 
@@ -70,7 +70,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 }
 ```
 
-### 2. トークンキャンセルAPI
+### トークンキャンセルAPI
 
 - 発行されたトークンのキャンセル\(強制的に無効にするために\) API
 
@@ -111,7 +111,7 @@ Content-type : application/json;charset=utf-8
 
 ## 不正行為検知リクエストAPI
 
-### 1. 行動検知リクエストAPI
+### 行動検知リクエストAPI
 
 ```
 URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?location={location}&reqTime={reqTime}
@@ -161,7 +161,7 @@ Content-type : multipart/form-data
 | header.resultCode | Integer | リクエスト結果コード |
 | header.resultMessage | String | リクエスト結果メッセージ |
 
-### 2. 音声検知リクエストAPI
+### 音声検知リクエストAPI
 
 ```
 URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
@@ -210,80 +210,7 @@ Content-type : multipart/form-data
 
 ## NHN Proctor API
 
-### 1. Proctorイベント収集API
-
-```
-URL : /nhn-cht-prt/v1.0/proctor/event, /api/v1.0/proctor/event(deprecated)
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
-```
-
-##### Request
-
-| Header Parameter | Type | Desc | Required |
-| :---: | :---: | :---: | :---: |
-| X-CD-Client-Type | String | クライアントタイプ「Proctor」固定 | O |
-
-| body Parameter | Type | desc | Required |
-| --- | --- | --- | :---: |
-| appKey | String | 統合AppkeyまたはサービスAppkey | O |
-| userId | String | ユーザーID(受験生番号) | O |
-| examNo | String | 試験番号 | O |
-| proctorVersion | String | NHN Proctorアプリバージョン情報 | O |
-| eventTime | Number | イベント発生時間 | O |
-| deviceID | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
-| sessionID | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
-| platform | String | OS情報 | O |
-| eventSource | String | イベントソース( 「P<span style="color:#222222">roctor」固定</span>) | O |
-| event | JSON | イベント | O |
-| event.status | String | initialize：ログイン、 begintTest：試験開始、endTest：試験終了 <br><span style="color:#e11d21">\* Window / Mac</span> | O |
-| event.<span style="color:#222222">keyboard</span> | String | タスクの切り替えを試行(<span style="color:#222222">Attempting switch program.)</span><br><span style="color:#222222"><span style="color:#e11d21">\* Window</span></span> | X |
-| event.mouse | String | <span style="color:#222222">試験領域外、マウス移動検知(試験場以外の領域に移動ができない状況ですが例外が発生した場合)</span><br><span style="color:#222222"><span style="color:#e11d21">\* </span><span style="color:#222222"><span style="color:#e11d21">Window </span></span></span> | X |
-| event.<span style="color:#9876aa"><span style="color:#000000">additionalEvent</span></span> | String | その他イベント情報 | X |
-
-<span style="color:#e11d21">**\* イベントのうち1つは必須** </span>
-
-サンプル
-
-* 1つのイベントリクエスト
-
-``` json
-{
-    "appKey" : "your_app_key",
-    "userId" : "randy",
-    "examNo" : "21342",
-    "proctorVersion" : "1.0.0.1",
-    "eventTime" : 1619485194941,
-    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
-    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
-    "platform" : "Windows 10(10.0)",
-    "eventSource" : "Proctor",
-    "event" : {
-	"status" : "initialize"
-    }
-}
-```
-
-##### Response body
-
-``` json
-{
-  "header": {
-    "successful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-  }
-}
-```
-
-| Key | Type | desc |
-| :---: | --- | --- |
-| header.isSuccess | boolean | リクエスト成否 |
-| header.resultCode | Integer | リクエスト結果コード |
-| header.resultMessage | String | リクエスト結果メッセージ |
-
-### 2. Proctor指標収集API
+### Proctor指標収集API
 
 ```
 URL : /nhn-cht-prt/v1.0/proctor/collect, /api/v1.0/proctor/collect(deprecated)
@@ -390,7 +317,7 @@ Content-type : application/json;charset=utf-8
 
 ## 設定照会API
 
-### 1. 機器制御設定照会
+### 機器制御設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
@@ -437,7 +364,7 @@ Content-type : */*
 | data.blockScreenYn | String | フルスクリーン離脱防止設定 |
 | data.blockProgramYn | String | アプリケーション/プログラム遮断設定 |
 
-### 2. 顔検出設定照会
+### 顔検出設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
@@ -486,7 +413,7 @@ Content-type : */*
 | data.faceLeftAngle | Integer | 顔の角度(左) |
 | data.faceRightAngle | Integer | 顔の角度(右) |
 
-### 3. 顧客URL設定照会
+### 顧客URL設定照会
 
 ```
 URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
@@ -531,7 +458,7 @@ Content-type : */*
 
 ## レスポンスコード
 
-### 1. ResultCode
+### ResultCode
 
 | Code | 区分 | 説明 |
 | --- | --- | --- |
@@ -547,7 +474,7 @@ Content-type : */*
 | -50005 | エラー | 添付ファイルフィールド不足 |
 | -99999 | エラー | サーバーエラー |
 
-### 2. HttpStatusCode
+### HttpStatusCode
 
 | Code | 区分 | コード名 | 説明 |
 | --- | --- | --- | --- |
@@ -557,7 +484,7 @@ Content-type : */*
 
 ## 顧客設定URL API
 
-### 1. WebAuthURL
+### WebAuthURL
 
 - ユーザー認証のために顧客のWebAuthUrlに認証リクエスト**(コンソールでWebAuthURL設定必須)**
 - ユーザー\(志願者\)の状態を定期的に確認し、本人であることを確認
@@ -614,7 +541,7 @@ sample
 }
 ```
 
-### 2. WebHookURL
+### WebHookURL
 
 - 分析した画像および音声ファイルから不正行為を検知した時、チート情報を伝達**(コンソールでWebhook URL設定必須)**
 
