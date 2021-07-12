@@ -69,7 +69,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.tokenType | String | 토큰 타입, bearer로 고정 |
@@ -124,7 +124,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.accessToken | String | 취소한 사용자 엑세스 토큰값 |
@@ -200,7 +200,7 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -268,7 +268,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -311,7 +311,7 @@ Content-type : application/json;charset=utf-8
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
 | proctorVersion | String | NHN Proctor 앱 버전 정보 | O |
-| eventTime | Number | 이벤트 발생 시간 | O |
+| eventTime | Long | 이벤트 발생 시간 | O |
 | deviceID | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
 | sessionID | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
 | platform | String | OS 정보 | O |
@@ -351,7 +351,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -419,7 +419,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -485,7 +485,7 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 
@@ -536,7 +536,7 @@ Content-type : */*
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -596,7 +596,7 @@ Content-type : */*
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -660,7 +660,7 @@ Content-type : */*
 
 | 이름 | 타입 | 설명 | 
 | --- | --- | --- |
-| header.isSuccessful | boolean | 요청 성공 여부 |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
@@ -708,7 +708,7 @@ Content-type : */*
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
 | -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
-| -50008 | 에러 | 요청 값 오류 | 요청 파라미터가 잘못 경우 |
+| -50008 | 에러 | 요청 값 오류 | 요청 파라미터가 잘못된 경우 |
 | -99999 | 에러 | 내부 오류 | 잘못된 요청이거나 예기치 못한 서버 오류가 발생 했을 경우 |
 
 ### HttpStatusCode
@@ -808,16 +808,16 @@ Content-type : application/json;charset=utf-8
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
-| cheatData.cheatInfo.absence | boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
-| cheatData.cheatInfo.thirdPerson | boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.facePoseYawOut | boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.facePosePitchOut | boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeYawOut | boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazePitchOut | boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeScreenOut | boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
-| cheatData.cheatInfo.unstableBackground | boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
-| cheatData.cheatInfo.leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.cheatInfo.rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
+| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.facePoseYawOut | Boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
+| cheatData.cheatInfo.facePosePitchOut | Boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
+| cheatData.cheatInfo.eyeGazeYawOut | Boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.eyeGazePitchOut | Boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.eyeGazeScreenOut | Boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
+| cheatData.cheatInfo.unstableBackground | Boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
+| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
 | cheatData.gaze | JSON | 시선 추적 정보 | X |
 | cheatData.gaze.numFaces | Integer | 감지된 얼굴 수 | X |
 | cheatData.gaze.facePitch | Integer | 얼굴 상하 각도 | X |
@@ -827,14 +827,14 @@ Content-type : application/json;charset=utf-8
 | cheatData.gaze.screenX | float | 시선 X축 위치 | X |
 | cheatData.gaze.screenY | float | 시선 Y축 위치 | X |
 | chaetData.bg[] | List | 배경 변화 정보 | X |
-| chaetData.bg[].isChanged | boolean | 배경 변화 여부 | X |
+| chaetData.bg[].isChanged | Boolean | 배경 변화 여부 | X |
 | chaetData.bg[].eventTime | Long |발생 시간(timstamp 10자리) |X |
 | chaetData.bg[].data | JSON | 배경 감지 상세 정보 |X |
-| chaetData.bg[].data.bgChangeDetFlag | boolean |배경 변화 여부 감지 결과 |X |
-| chaetData.bg[].data.allocFlag | boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
+| chaetData.bg[].data.bgChangeDetFlag | Boolean |배경 변화 여부 감지 결과 |X |
+| chaetData.bg[].data.allocFlag | Boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
 | cheatData.pose[] | List | 행동 탐지 정보 |X |
-| cheatData.pose[].leftHandNotExistence |boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].rightHandNotExistence |boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
 | cheatData.pose[].eventTime | Long | 이벤트 발생 시간(감지 요청 시간) |X |
 | cheatData.pose[].data | JSON | 행동 탐지 상세 정보 |X |
 | cheatData.pose[].data.numPerson |Integer | 탐지된 사람의 수 |X |
@@ -843,21 +843,21 @@ Content-type : application/json;charset=utf-8
 | cheatData.pose[].data.lHand.ymin |Integer |왼손 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.lHand.xmax |Integer |왼손 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.lHand.ymax |Integer |왼손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.lHand.isDetected |boolean | 왼손 감지 여부 |X |
+| cheatData.pose[].data.lHand.isDetected |Boolean | 왼손 감지 여부 |X |
 | cheatData.pose[].data.rHand | JSON | 오른손 좌표 정보 |X |
 | cheatData.pose[].data.rHand.xmin |Integer |오른손영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.ymin |Integer |오른손영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.xmax |Integer |오른손영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.rHand.ymax |Integer |오른손 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.rHand.isDetected |boolean | 오른손 감지 여부 |X |
+| cheatData.pose[].data.rHand.isDetected |Boolean | 오른손 감지 여부 |X |
 | cheatData.pose[].data.face | JSON | 얼굴 좌표 정보 |X |
 | cheatData.pose[].data.face.xmin |Integer |얼굴 영역의 바운딩 박스 위쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.ymin |Integer |얼굴 영역의 바운딩 박스 아래쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.xmax |Integer |얼굴 영역의 바운딩 박스 왼쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.ymax |Integer |얼굴 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
-| cheatData.pose[].data.face.isDetected |boolean | 얼굴 감지 여부 |X |
+| cheatData.pose[].data.face.isDetected |Boolean | 얼굴 감지 여부 |X |
 | cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.pose.poseEstimationYn | boolean | 행동 탐지 사용 여부 | X |
+| cheatConfig.pose.poseEstimationYn | Boolean | 행동 탐지 사용 여부 | X |
 | cheatConfig.pose.poseEstimationTime | Integer | 왼손/오른손 좌표 미식별 시간(N초) | X |
 | cheatConfig.gaze.gazeTrackingYn | String | 시선(동공) 추적 사용 여부 | X |
 | cheatConfig.gaze.gazeTopAngle | Integer | 동공 각도(상) | X |
