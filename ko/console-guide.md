@@ -57,7 +57,7 @@
 
 ## 설정
 ### 기본설정
-* 서비스의 기본 정보들을 설정해준다
+* 서비스의 기본 정보들을 설정해줍니다.
 * 서비스 url
   * Cheating Detection 서비스에서 이동하는 고객사 서비스 URL입니다.
   * 해당 정보로 proctor 앱에 링크가 전달됩니다.
@@ -68,6 +68,6 @@
 
 ### 이미지저장 설정
 * Cheating Detection에서 찾아낸 이미지를 저장하기 위한 설정
-* 사전에 Object Storage를 활성화한뒤 설정하도록한다.
-* Object Storage설정에 아이디와 API암호를 찾아서 해당 페이지에 입력해준다.
+* 사전에 Object Storage를 활성화한뒤 설정하도록 합니다.
+* Object Storage설정에 아이디와 API암호를 찾아서 해당 페이지에 입력해 줍니다. 
 ![스크린샷 2021-06-28 오후 6 30 49](https://user-images.githubusercontent.com/1445289/123615309-22e6f500-d840-11eb-83b3-f476f18385f3.png)
