@@ -929,7 +929,7 @@ Content-type : application/json;charset=utf-8
     "appKey":"AQJ33tPUaI9Y4lc2IrjX",
     "userId":"userTestId",
     "examNo":"12345",
-    "cheatGroup":"IMAGE",
+    "cheatGroup":"GAZE",
     "cheatLevel":3,
     "eventTime": 1621828940,
     "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
