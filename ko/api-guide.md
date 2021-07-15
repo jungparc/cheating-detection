@@ -17,9 +17,9 @@
 
 ## 인증 API
 
-### 토큰(token) 발급 API
+### 접근 토큰(token) 발급 API
 
-- 부정행위 감지 API 요청 시 필요한 토큰 발급 API
+- 부정행위 감지 API 요청 시 필요한 접근 토큰 발급 API
 
 ```
 URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
@@ -73,8 +73,8 @@ Content-type : application/json;charset=utf-8
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.tokenType | String | 토큰 타입, bearer로 고정 |
-| data.accessToken | String | 사용자 엑세스 토큰값 |
-| data.expiresIn | Integer | 엑세스 토큰 만료 시간(초) |
+| data.accessToken | String | 사용자 접근 토큰 |
+| data.expiresIn | Integer | 접근 토큰 만료 시간(초) |
 
 [응답 본문 예]
 
@@ -93,9 +93,9 @@ Content-type : application/json;charset=utf-8
 }
 ```
 
-### 토큰 취소 API
+### 접근 토큰 취소 API
 
-- 발급받은 토큰 취소\(강제 만료를 위한\) API
+- 발급받은 접근 토큰 취소\(강제 만료를 위한\) API
 
 ``` yaml
 URL : /auth/revoke
@@ -109,16 +109,16 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| token | String | 취소할 액세스 토큰값 | O |
+| accessToken | String | 취소할 접근 토큰 | O |
 
 [요청 본문 예]
 ``` json
 {
-   "token" : "XDadhaS3dvns34Fdfnf23=="  
+   "accessToken" : "XDadhaS3dvns34Fdfnf23=="  
 }
 ```
 
-##### Response
+##### 응답
 
 [Response Body]
 
@@ -127,7 +127,7 @@ Content-type : application/json;charset=utf-8
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
-| data.accessToken | String | 취소한 사용자 엑세스 토큰값 |
+| data.accessToken | String | 취소한 사용자 접근 토큰 |
 
 [응답 본문 예]
 
@@ -262,7 +262,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 -F "file=@fileName.wav;type=audio/wav"
 ```
 
-##### Response
+##### 응답
 
 [Response Body]
 
@@ -695,20 +695,24 @@ Content-type : */*
 | 코드 | 구분 | 메시지 | 설명 |
 | --- | --- | --- |--- |
 | 0 | 성공 | SUCCESS | 정상 처리 |
-| -20001 | 에러 | 토큰 만료 | 토큰이 만료시간 초과 또는 취소 요청된 토큰으로 요청 시 |  
-| -20002 | 에러 | 유효하지 않는 토큰 | 유효하지 않은 토큰으료 요청 시 | 
-| -20004 | 에러 | WebAuth 인증 실패 | WebAuth 인증 실패 시  |
+| -20001 | 에러 | 접근 토큰 만료 | 접근 토큰이 만료시간 초과 또는 취소 요청된 토큰으로 요청 시 |  
+| -20002 | 에러 | 유효하지 않는 접근 토큰 | 유효하지 않은 접근 토큰으료 요청 시 | 
+| -20003 | 에러 | WebAuthUrl 통신 불가 오류 | WebAuthUrl로 통신 불가(접근 불가)한 경우에 발생 | 
+| -20004 | 에러 | WebAuth 인증 실패 | WebAuth 인증 실패 시 |
 | -20005 | 에러 | 인증 되지 않은 사용자 접근 오류 | X-Auth-Token 필드 누락으로 인증 처리 불가 | 
-| -20006 | 에러 | AccessToken 타입 오류 | X-Auth-Token 헤더 Bearer 누락 시 발생 | 
+| -20006 | 에러 | 접근 토큰 타입 오류 | X-Auth-Token 헤더 Bearer 누락 시 발생 | 
 | -40000 | 에러 | 제어 옵션 미설정 에러 | 요청한 AppKey의 설정 정보가 DB에 존재 하지 않는 경우 발생 |
 | -40002 | 에러 | 시선 등록 실패 | 시선 등록 API 요청 중 오류가 발생 했을 경우 |
 | -40003 | 에러 | 이미지 저장 설정 정보 등록 실패 | OBS 인증 받지 못했을 경우 발생 |
-| -41000 | 에러 | UnauthorizedAppKey : check your appKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 |
+| -41000 | 에러 | 인증되지 않은 AppKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 |
 | -50000 | 에러 | 맞지 않는 형식의 파일 | 지원하지 않는 파일을 첨부 했을 경우 | 
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
 | -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
-| -50008 | 에러 | 요청 값 오류 | 요청 파라미터가 잘못된 경우 |
+| -50008 | 에러 | 요청 값 오류 [{message}] | 요청 파라미터가 잘못된 경우 (메시지에 파라미터 정보 포함) |
+| -50009 | 에러 | 지원되지 않는 Content-Type | 요청 Content-Type 이 지원되지 않는 경우 |
+| -50010 | 에러 | 지원되지 않는 HttpMethod | 요청 Method 가 지원 되지 않은 경우 |
+| -50011 | 에러 | 파일 사이즈 0 또는 파일 식별이 불가 | 첨부 파일이 정상적으로 업로드 되지 않았거나 오류가 있는 경우 |
 | -99999 | 에러 | 내부 오류 | 잘못된 요청이거나 예기치 못한 서버 오류가 발생 했을 경우 |
 
 ### HttpStatusCode
