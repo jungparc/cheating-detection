@@ -2,6 +2,7 @@
 ## How to sign up for the service
 * The screen above appears when the Enable Service button is clicked
 * The project can be set up on each setting tab after enabling the service.
+![Screen shot 2021-07-12 오후 1 48 04](https://user-images.githubusercontent.com/1445289/125233164-fe4b4c80-e318-11eb-8f39-dd962cf24880.png)
 
 ## AI Proctor
 ### Face detection
