@@ -799,14 +799,14 @@ Content-type : application/json;charset=utf-8
 
 #### 요청
 
-[Request Body] GAZE, POSE, BACKGROUND
+[Request Body] GAZE, POSE, BACKGROUND, AUDIO
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 그룹( GAZE, POSE, BACKGROUND 중 하나 응답 ) | O |
+| cheatGroup | String | 치트 그룹( GAZE, POSE, BACKGROUND AUDIO 중 하나 응답 ) | O |
 | cheatLevel | Integer | 부정행위 레벨(0: Normal,1:Attention\_Low, 2: Attention\_Hight, 3: Warning) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |

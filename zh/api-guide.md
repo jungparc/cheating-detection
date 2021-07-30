@@ -800,14 +800,14 @@ Content-type : application/json;charset=utf-8
 
 #### Request
 
-[Request Body] GAZE, POSE, BACKGROUND
+[Request Body] GAZE, POSE, BACKGROUND, AUDIO
 
 | Name                                      | Type    | Description                                                         | Necessity |
 | ----------------------------------------- | ------- | ------------------------------------------------------------ | --------- |
 | appKey                                    | String  | Integrated Appkey or Service Appkey                               | O         |
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
-| cheatGroup                                | String  | Cheat group( Respond as one of GAZE, POSE, or BACKGROUND )             | O         |
+| cheatGroup                                | String  | Cheat group( Respond as one of GAZE, POSE, or BACKGROUND, AUDIO )             | O         |
 | cheatLevel                                | Integer | Cheating activity level (0 : Normal,1 : Attention\_Low, 2 : Attention\_High, 3 : Warning) | O         |
 | eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
