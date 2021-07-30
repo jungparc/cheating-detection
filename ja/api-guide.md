@@ -799,14 +799,14 @@ Content-type : application/json;charset=utf-8
 
 #### リクエスト
 
-[Request Body] GAZE, POSE, BACKGROUND
+[Request Body] GAZE, POSE, BACKGROUND, AUDIO
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| cheatGroup | String | チートグループ( GAZE、POSE、BACKGROUNDのいずれかをレスポンス) | O |
+| cheatGroup | String | チートグループ( GAZE、POSE、BACKGROUND,AUDIOのいずれかをレスポンス) | O |
 | cheatLevel | Integer | 不正行為レベル(0：Normal、1：Attention\_Low、2：Attention\_Hight、3：Warning) | O |
 | eventTime | Long | イベント発生時間(timestamp) | O |
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
