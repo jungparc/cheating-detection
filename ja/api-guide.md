@@ -312,8 +312,8 @@ Content-type : application/json;charset=utf-8
 | examNo | String | 試験番号 | O |
 | proctorVersion | String | NHN Proctorアプリバージョン情報 | O |
 | eventTime | Long | イベント発生時間 | O |
-| deviceID | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
-| sessionID | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
+| deviceId | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
+| sessionId | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
 | platform | String | OS情報 | O |
 | eventSource | String | イベントソース( 「Proctor」固定) | O |
 | event | JSON | イベント | O |

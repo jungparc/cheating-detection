@@ -313,8 +313,8 @@ Content-type : application/json;charset=utf-8
 | examNo         | String | Exam number                                                    | O         |
 | proctorVersion | String | NHN Proctor App version information                                     | O         |
 | eventTime      | Long   | Event occurrence time                                             | O         |
-| deviceID       | String | Device identifier in UUID form -  Issued when installing the app                | O         |
-| sessionID      | String | Session ID in UUID form - Issued when loading the browser                  | O         |
+| deviceId       | String | Device identifier in UUID form -  Issued when installing the app                | O         |
+| sessionId      | String | Session ID in UUID form - Issued when loading the browser                  | O         |
 | platform       | String | OS information                                                      | O         |
 | eventSource    | String | Event source (fixed to 'Proctor')                                 | O         |
 | event          | JSON   | Event                                                       | O         |
