@@ -3,7 +3,7 @@
 ## API共通情報
 
 ### 事前準備
-- APIを使用するにはプロジェクト統合AppkeyまたはサービスAppkeyが必要です。 
+- APIを使用するにはプロジェクト統合AppkeyまたはサービスAppkeyが必要です。
 - サービスAppkeyはコンソール上部のURL & Appkeyメニューで確認できます。
 
 ### リクエスト共通情報
@@ -11,8 +11,8 @@
 
 [APIドメイン]
 
- | 環境 | ドメイン | 
- | --- | --- | 
+ | 環境 | ドメイン |
+ | --- | --- |
  | Real | http://ctd-api.cloud.toast.com |
 
 ## 認証API
@@ -114,7 +114,7 @@ Content-type : application/json;charset=utf-8
 [リクエスト本文例]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="  
+   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -122,7 +122,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード(0：成功、その他：失敗) |
@@ -186,10 +186,10 @@ Content-type : multipart/form-data
 
 [リクエスト本文例]
 ```
-curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -198,7 +198,7 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -255,10 +255,10 @@ Content-type : multipart/form-data
 
 [リクエスト本文例]
 ```
-curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@fileName.wav;type=audio/wav"
 ```
 
@@ -266,7 +266,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード(0：成功、それ以外：失敗) |
@@ -330,18 +330,18 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "appKey" : "your_app_key",
-    "userId" : "randy",
-    "examNo" : "21342",
-    "proctorVersion" : "1.0.0.1",
-    "eventTime" : 1619485194941,
-    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
-    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
-    "platform" : "Windows 10(10.0)",
-    "eventSource" : "Proctor",
-    "event" : {
-        "status" : "initialize"
-    }
+	"appKey": "your_app_key",
+	"userId": "randy",
+	"examNo": "21342",
+	"proctorVersion": "1.0.0.1",
+	"eventTime": 1619485194941,
+	"deviceId": "9faed1a8-964f-4097-a420-c9d9f38ab693",
+	"sessionId": "1a8aad31-cc10-49bc-848d-a02e05075bbd",
+	"platform": "Windows 10(10.0)",
+	"eventSource": "Proctor",
+	"event": {
+		"status": "initialize"
+	}
 }
 ```
 
@@ -349,7 +349,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -389,7 +389,7 @@ Content-type : application/json;charset=utf-8
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
 | installApp | JSON | インストールプロセス収集項目 | O |
-| installApp.displayName | String | アプリケーション名 | O |
+| installApp.displayApp | String | アプリケーション名 | O |
 | installApp.displayVersion | String | バージョン情報 | O |
 | installApp.publisher | String | 開発会社名 | O |
 | extInfo | JSON | 追加情報 | X |
@@ -400,12 +400,12 @@ Content-type : application/json;charset=utf-8
 {
     "installApp" : [
         {
-            "displayName" : "DropBox",
+            "displayApp" : "DropBox",
             "displayVersion" : "3.18.1",
             "publisher" : "Dropbox, Inc."
         },
         {
-            "displayName" : "Google Chrome",
+            "displayApp" : "Google Chrome",
             "displayVersion" : "40.9.2623.111",
             "publisher" : "Google, Inc."
         }
@@ -417,7 +417,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -472,10 +472,10 @@ Content-type : application/json;charset=utf-8
 
 [リクエスト本文例]
 ```
-curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -483,7 +483,7 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -534,7 +534,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -594,7 +594,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -658,7 +658,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | リクエスト成否 |
 | header.resultCode | Integer | リクエスト結果コード |
@@ -695,17 +695,17 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 | コード | 区分 | メッセージ | 説明 |
 | --- | --- | --- |--- |
 | 0 | 成功 | SUCCESS | 正常処理 |
-| -20001 | エラー | アクセストークン期限切れ | アクセストークンが有効期限切れ、またはキャンセルリクエストされたトークンでリクエストした時 |  
-| -20002 | エラー | 有効ではないアクセストークン | 有効ではないアクセストークンでリクエストした時 | 
-| -20003 | エラー | WebAuthUrl通信不可エラー | WebAuthUrlで通信できない(アクセス不可)の場合に発生 | 
+| -20001 | エラー | アクセストークン期限切れ | アクセストークンが有効期限切れ、またはキャンセルリクエストされたトークンでリクエストした時 |
+| -20002 | エラー | 有効ではないアクセストークン | 有効ではないアクセストークンでリクエストした時 |
+| -20003 | エラー | WebAuthUrl通信不可エラー | WebAuthUrlで通信できない(アクセス不可)の場合に発生 |
 | -20004 | エラー | WebAuth認証失敗 | WebAuth認証に失敗した時 |
-| -20005 | エラー | 認証されていないユーザーアクセスエラー | X-Auth-Tokenフィールドがないため認証処理不可 | 
-| -20006 | エラー | アクセストークンタイプエラー | X-Auth-TokenヘッダBearerがない時に発生 | 
+| -20005 | エラー | 認証されていないユーザーアクセスエラー | X-Auth-Tokenフィールドがないため認証処理不可 |
+| -20006 | エラー | アクセストークンタイプエラー | X-Auth-TokenヘッダBearerがない時に発生 |
 | -40000 | エラー | 制御オプション未設定エラー | リクエストしたAppKeyの設定情報がDBに存在しない場合に発生 |
 | -40002 | エラー | 視線登録失敗 | 視線登録APIリクエスト中にエラーが発生した場合 |
 | -40003 | エラー | 画像保存設定情報の登録失敗 | OBS認証を受けられなかった場合に発生 |
 | -41000 | エラー | 認証されていないAppKey | 存在しないアプリケーションキーまたは有効になっていない場合に発生 |
-| -50000 | エラー | 形式が合っていないファイル | サポートしていないファイルを添付した場合 | 
+| -50000 | エラー | 形式が合っていないファイル | サポートしていないファイルを添付した場合 |
 | -50001 | エラー | リクエストファイルがない | ファイルが添付されていない場合 |
 | -50002 | エラー | ファイルサイズ超過 | 添付ファイルが1Gを超えている場合に発生 |
 | -50005 | エラー | 添付フィールド抜けエラー | 添付ファイルフィールドがForm Dataにない場合
@@ -721,7 +721,7 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 | --- | --- | --- | --- |
 | 200 | 正常 | Ok | 正常 |
 | 404 | エラー | Not Found | 存在しないURLを呼び出した時に発生 |
-| 500 | エラー | Server Error | サーバーがメンテナンス中または障害が発生している場合に発生 | 
+| 500 | エラー | Server Error | サーバーがメンテナンス中または障害が発生している場合に発生 |
 
 ## 顧客設定URL API
 
@@ -762,7 +762,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | resultCode | Integer | 認証結果コード(0：成功、それ以外：失敗) |
 | resultMessage | String | 認証結果メッセージ |
@@ -1095,7 +1095,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 名前 | タイプ | 説明 | 
+| 名前 | タイプ | 説明 |
 | --- | --- | --- |
 | resultCode | Integer | 認証結果コード(0：成功、それ以外：失敗) |
 | resultMessage | String | 認証結果メッセージ |
