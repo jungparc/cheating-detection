@@ -55,5 +55,10 @@
 ### Image storage setting
 * Setting to store the images discovered through cheating detection
 * Set up after enabling Object Storage in advance.
-* Look up the ID and API key in the OBS setting to enter them on the relevant page.
-![Screen shot 2021-06-28 오후 6 30 49](https://user-images.githubusercontent.com/1445289/123615309-22e6f500-d840-11eb-83b3-f476f18385f3.png)
+![Screen shot 2021-06-28 오후 6 30 49](https://static.toastoven.net/prod_cheating_detection/chd_imgsave.png)
+* The following describes how to save/download logs using [NHN Cloud Object Storage](/Storage/Object%20Storage/en/Overview/)
+   * **Access key** and **Secret key** can be verified with **Register and View EC2 Credential** using [AWS S3 API](/Storage/Object%20Storage/en/s3-api-guide/#_1).
+   * **Bucket name** is the name of the object storage container where logs will be saved.
+   * **Endpoint** and **Region** are information that manages the object storage where logs will be saved. For more information, see [Amazon S3 Compatibility API Guide - AWS SDK](/Storage/Object%20Storage/en/s3-api-guide#aws-sdk)
+   * Once setup is complete, images will begin to be saved in the object storage.
+   * After three or more failed upload attempts, the saved authentication information will be disabled. The details will be sent to the email address registered in the **Receive Result** (email) field.
