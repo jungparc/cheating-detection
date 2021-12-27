@@ -3,7 +3,7 @@
 ## API 공통 정보
 
 ### 사전준비
-- API 사용을 위해서는 프로젝트 통합 Appkey 또는 서비스 Appkey가 필요합니다. 
+- API 사용을 위해서는 프로젝트 통합 Appkey 또는 서비스 Appkey가 필요합니다.
 - 서비스 Appkey는 콘솔 상단 URL & Appkey 메뉴에서 확인이 가능합니다.
 
 ### 요청 공통 정보
@@ -11,8 +11,8 @@
 
 [API 도메인]
 
- | 환경 | 도메인 | 
- | --- | --- | 
+ | 환경 | 도메인 |
+ | --- | --- |
  | Real | http://ctd-api.cloud.toast.com |
 
 ## 인증 API
@@ -114,7 +114,7 @@ Content-type : application/json;charset=utf-8
 [요청 본문 예]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="  
+   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -122,7 +122,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
@@ -186,10 +186,10 @@ Content-type : multipart/form-data
 
 [요청 본문 예]
 ```
-curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -198,7 +198,7 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -255,10 +255,10 @@ Content-type : multipart/form-data
 
 [요청 본문 예]
 ```
-curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@fileName.wav;type=audio/wav"
 ```
 
@@ -266,7 +266,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
@@ -312,8 +312,8 @@ Content-type : application/json;charset=utf-8
 | examNo | String | 시험 번호 | O |
 | proctorVersion | String | NHN Proctor 앱 버전 정보 | O |
 | eventTime | Long | 이벤트 발생 시간 | O |
-| deviceID | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
-| sessionID | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
+| deviceId | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
+| sessionId | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
 | platform | String | OS 정보 | O |
 | eventSource | String | 이벤트 소스( 'Proctor' 고정) | O |
 | event | JSON | 이벤트 | O |
@@ -330,18 +330,18 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "appKey" : "your_app_key",
-    "userId" : "randy",
-    "examNo" : "21342",
-    "proctorVersion" : "1.0.0.1",
-    "eventTime" : 1619485194941,
-    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
-    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
-    "platform" : "Windows 10(10.0)",
-    "eventSource" : "Proctor",
-    "event" : {
-        "status" : "initialize"
-    }
+	"appKey": "your_app_key",
+	"userId": "randy",
+	"examNo": "21342",
+	"proctorVersion": "1.0.0.1",
+	"eventTime": 1619485194941,
+	"deviceId": "9faed1a8-964f-4097-a420-c9d9f38ab693",
+	"sessionId": "1a8aad31-cc10-49bc-848d-a02e05075bbd",
+	"platform": "Windows 10(10.0)",
+	"eventSource": "Proctor",
+	"event": {
+		"status": "initialize"
+	}
 }
 ```
 
@@ -349,7 +349,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -389,7 +389,7 @@ Content-type : application/json;charset=utf-8
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
 | installApp | JSON | 설치 프로세스 수집 항목 | O |
-| installApp.displayName | String | 애플리케이션 이름 | O |
+| installApp.displayApp | String | 애플리케이션 이름 | O |
 | installApp.displayVersion | String | 버전 정보 | O |
 | installApp.publisher | String | 제조사 이름 | O |
 | extInfo | JSON | 추가 정보 | X |
@@ -400,12 +400,12 @@ Content-type : application/json;charset=utf-8
 {
     "installApp" : [
         {
-            "displayName" : "DropBox",
+            "displayApp" : "DropBox",
             "displayVersion" : "3.18.1",
             "publisher" : "Dropbox, Inc."
         },
         {
-            "displayName" : "Google Chrome",
+            "displayApp" : "Google Chrome",
             "displayVersion" : "40.9.2623.111",
             "publisher" : "Google, Inc."
         }
@@ -417,7 +417,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -472,10 +472,10 @@ Content-type : application/json;charset=utf-8
 
 [요청 본문 예]
 ```
-curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -483,7 +483,7 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -534,7 +534,7 @@ Content-type : */*
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -594,7 +594,7 @@ Content-type : */*
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -658,7 +658,7 @@ Content-type : */*
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드 |
@@ -695,17 +695,17 @@ Content-type : */*
 | 코드 | 구분 | 메시지 | 설명 |
 | --- | --- | --- |--- |
 | 0 | 성공 | SUCCESS | 정상 처리 |
-| -20001 | 에러 | 접근 토큰 만료 | 접근 토큰이 만료시간 초과 또는 취소 요청된 토큰으로 요청 시 |  
-| -20002 | 에러 | 유효하지 않는 접근 토큰 | 유효하지 않은 접근 토큰으료 요청 시 | 
-| -20003 | 에러 | WebAuthUrl 통신 불가 오류 | WebAuthUrl로 통신 불가(접근 불가)한 경우에 발생 | 
+| -20001 | 에러 | 접근 토큰 만료 | 접근 토큰이 만료시간 초과 또는 취소 요청된 토큰으로 요청 시 |
+| -20002 | 에러 | 유효하지 않는 접근 토큰 | 유효하지 않은 접근 토큰으료 요청 시 |
+| -20003 | 에러 | WebAuthUrl 통신 불가 오류 | WebAuthUrl로 통신 불가(접근 불가)한 경우에 발생 |
 | -20004 | 에러 | WebAuth 인증 실패 | WebAuth 인증 실패 시 |
-| -20005 | 에러 | 인증 되지 않은 사용자 접근 오류 | X-Auth-Token 필드 누락으로 인증 처리 불가 | 
-| -20006 | 에러 | 접근 토큰 타입 오류 | X-Auth-Token 헤더 Bearer 누락 시 발생 | 
+| -20005 | 에러 | 인증 되지 않은 사용자 접근 오류 | X-Auth-Token 필드 누락으로 인증 처리 불가 |
+| -20006 | 에러 | 접근 토큰 타입 오류 | X-Auth-Token 헤더 Bearer 누락 시 발생 |
 | -40000 | 에러 | 제어 옵션 미설정 에러 | 요청한 AppKey의 설정 정보가 DB에 존재 하지 않는 경우 발생 |
 | -40002 | 에러 | 시선 등록 실패 | 시선 등록 API 요청 중 오류가 발생 했을 경우 |
 | -40003 | 에러 | 이미지 저장 설정 정보 등록 실패 | OBS 인증 받지 못했을 경우 발생 |
 | -41000 | 에러 | 인증되지 않은 AppKey | 존재하지 않는 앱키거나 활성화 되지 않은 경우 발생 |
-| -50000 | 에러 | 맞지 않는 형식의 파일 | 지원하지 않는 파일을 첨부 했을 경우 | 
+| -50000 | 에러 | 맞지 않는 형식의 파일 | 지원하지 않는 파일을 첨부 했을 경우 |
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
 | -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
@@ -721,7 +721,7 @@ Content-type : */*
 | --- | --- | --- | --- |
 | 200 | 정상 | Ok | 정상 |
 | 404 | 에러 | Not Found | 존재하지 않는 URL 호출 시 발생 |
-| 500 | 에러 | Server Error | 서버가 점검 중이거나 장애인 경우 발생 | 
+| 500 | 에러 | Server Error | 서버가 점검 중이거나 장애인 경우 발생 |
 
 ## 고객사 설정 URL API
 
@@ -762,7 +762,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
 | resultMessage | String | 인증 결과 메시지 |
@@ -1095,7 +1095,7 @@ Content-type : application/json;charset=utf-8
 
 [Response Body]
 
-| 이름 | 타입 | 설명 | 
+| 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | resultCode | Integer | 인증 결과 코드(0: 성공, 이외: 실패) |
 | resultMessage | String | 인증 결과 메시지 |
@@ -1108,4 +1108,3 @@ Content-type : application/json;charset=utf-8
     "resultMessage": "Success"
 }
 ```
-

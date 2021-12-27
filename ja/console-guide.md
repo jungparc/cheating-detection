@@ -56,5 +56,10 @@
 ### 画像保存設定
 * チートディテクションで見つけた画像を保存するための設定
 * 事前にObject Storageを有効にした後に設定するようにする。
-* OBS設定でIDとAPIパスワードを探して該当ページに入力する。
-![スクリーンショット2021-06-28午後6 30 49](https://user-images.githubusercontent.com/1445289/123615309-22e6f500-d840-11eb-83b3-f476f18385f3.png)
+![スクリーンショット2021-06-28午後6 30 49](https://static.toastoven.net/prod_cheating_detection/chd_imgsave.png)
+* 以下では[NHN Cloud Object Storage](/Storage/Object%20Storage/ja/Overview/)を利用したログ保存/ダウンロード方法を説明します。
+   * **アクセスキー**、**シークレットキー**は[AWS S3 API](/Storage/Object%20Storage/ja/s3-api-guide/#_1)を利用した**EC2資格証明登録および照会**で確認できます。
+   * **バケット名**はログが保存されるObject Storageコンテナの名前です。
+   * **エンドポイント**、**リージョン**はログを保存するObject Storageを管理する情報で、[Amazon S3互換APIガイド - AWS SDK](/Storage/Object%20Storage/ja/s3-api-guide#aws-sdk)で確認できます。
+   * 設定が完了すると、設定したObject Storageに画像が保存されます。
+   * 3回以上アップロードに失敗すると、保存された認証情報が無効になります。**結果受信**(メール)に登録されたメールへ内容が配信されます

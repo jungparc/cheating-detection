@@ -4,7 +4,7 @@
 ## Common API Information
 
 ### Advance Preparation
-- To use APIs, an integrated project Appkey or service Appkey is required. 
+- To use APIs, an integrated project Appkey or service Appkey is required.
 - The service Appkey is located in the URL & Appkey menu on the top of the console.
 
 ### Common Request Information
@@ -115,7 +115,7 @@ Content-type : application/json;charset=utf-8
 [request body example]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="  
+   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -187,10 +187,10 @@ Content-type : multipart/form-data
 
 [request body example]
 ```
-curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -256,10 +256,10 @@ Content-type : multipart/form-data
 
 [request body example]
 ```
-curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{userId}?reqTime={reqTime}"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@fileName.wav;type=audio/wav"
 ```
 
@@ -313,8 +313,8 @@ Content-type : application/json;charset=utf-8
 | examNo         | String | Exam number                                                    | O         |
 | proctorVersion | String | NHN Proctor App version information                                     | O         |
 | eventTime      | Long   | Event occurrence time                                             | O         |
-| deviceID       | String | Device identifier in UUID form -  Issued when installing the app                | O         |
-| sessionID      | String | Session ID in UUID form - Issued when loading the browser                  | O         |
+| deviceId       | String | Device identifier in UUID form -  Issued when installing the app                | O         |
+| sessionId      | String | Session ID in UUID form - Issued when loading the browser                  | O         |
 | platform       | String | OS information                                                      | O         |
 | eventSource    | String | Event source (fixed to 'Proctor')                                 | O         |
 | event          | JSON   | Event                                                       | O         |
@@ -331,18 +331,18 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "appKey" : "your_app_key",
-    "userId" : "randy",
-    "examNo" : "21342",
-    "proctorVersion" : "1.0.0.1",
-    "eventTime" : 1619485194941,
-    "deviceID" : "9faed1a8-964f-4097-a420-c9d9f38ab693",
-    "sessionID" : "1a8aad31-cc10-49bc-848d-a02e05075bbd",
-    "platform" : "Windows 10(10.0)",
-    "eventSource" : "Proctor",
-    "event" : {
-        "status" : "initialize"
-    }
+	"appKey": "your_app_key",
+	"userId": "randy",
+	"examNo": "21342",
+	"proctorVersion": "1.0.0.1",
+	"eventTime": 1619485194941,
+	"deviceId": "9faed1a8-964f-4097-a420-c9d9f38ab693",
+	"sessionId": "1a8aad31-cc10-49bc-848d-a02e05075bbd",
+	"platform": "Windows 10(10.0)",
+	"eventSource": "Proctor",
+	"event": {
+		"status": "initialize"
+	}
 }
 ```
 
@@ -390,7 +390,7 @@ Content-type : application/json;charset=utf-8
 | Name                      | Type   | Description                    | Necessity |
 | ------------------------- | ------ | ----------------------- | --------- |
 | installApp                | JSON   | Collected items for installation process | O         |
-| installApp.displayName    | String | Application name       | O         |
+| installApp.displayApp    | String | Application name       | O         |
 | installApp.displayVersion | String | Version information               | O         |
 | installApp.publisher      | String | Manufacturer name             | O         |
 | extInfo                   | JSON   | Additional information               | X         |
@@ -401,12 +401,12 @@ Content-type : application/json;charset=utf-8
 {
     "installApp" : [
         {
-            "displayName" : "DropBox",
+            "displayApp" : "DropBox",
             "displayVersion" : "3.18.1",
             "publisher" : "Dropbox, Inc."
         },
         {
-            "displayName" : "Google Chrome",
+            "displayApp" : "Google Chrome",
             "displayVersion" : "40.9.2623.111",
             "publisher" : "Google, Inc."
         }
@@ -473,10 +473,10 @@ Content-type : application/json;charset=utf-8
 
 [request body example]
 ```
-curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze" 
--H "accept: application/json;charset=UTF-8" 
--H "X-Auth-Token: Bearer {accessToken}" 
--H "Content-Type: multipart/form-data" 
+curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze"
+-H "accept: application/json;charset=UTF-8"
+-H "X-Auth-Token: Bearer {accessToken}"
+-H "Content-Type: multipart/form-data"
 -F "file=@testImage.jpeg;type=image/jpeg"
 ```
 
@@ -813,7 +813,7 @@ Content-type : application/json;charset=utf-8
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
 | cheatData.cheatInfo                       | JSON    | Cheating judgment result                                           | O         |
-| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person) 
+| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person)
 X | X         |
 | cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
 | cheatData.cheatInfo.facePoseYawOut        | Boolean | Face up/down angle departure (if face detection is in use)                  | X         |
