@@ -34,7 +34,7 @@ Content-type : application/json;charset=utf-8
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
-| expiresIn | Integer | トークン有効時間(秒) | O |
+| expiresIn | Integer | トークン有効時間(秒) <br> 0 < expiresIn <= 7200 | O |
 
 [Request Body]
 
