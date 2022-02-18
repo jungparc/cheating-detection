@@ -34,7 +34,7 @@ Content-type : application/json;charset=utf-8
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
-| expiresIn | Integer | 토큰 유효 시간(초) | O |
+| expiresIn | Integer | 토큰 유효 시간(초) <br> 0 < expiresIn <= 7200 | O |
 
 [Request Body]
 
