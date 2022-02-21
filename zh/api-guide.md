@@ -35,7 +35,7 @@ Content-type : application/json;charset=utf-8
 | Name      | Type    | Description                           | Necessity |
 | --------- | ------- | ------------------------------ | --------- |
 | appKey    | String  | Integrated Appkey or Service Appkey | O         |
-| expiresIn | Integer | Token Time Limit ((sec))             | O         |
+| expiresIn | Integer | Token Time Limit ((sec))   <br> 0 < expiresIn <= 7200          | O         |
 
 [Request Body]
 

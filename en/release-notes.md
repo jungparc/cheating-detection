@@ -1,5 +1,6 @@
 ## Application Service > Cheating Detection > Release Notes
-
+### February 22, 2022
+* Improved the logic for face recognition cheating detection
 ### December 28, 2021
 #### Feature Updates
 * [Console] Settings > Image Storage Setting
