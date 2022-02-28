@@ -1,5 +1,7 @@
 ## Application Service > Cheating Detection > リリースノート
 
+### 2022.02.22
+* 顔認識不正行為の検出ロジックを改善
 ### 2021.12.28
 #### 機能変更/改善
 * [Console]設定 > イメージ保存設定
