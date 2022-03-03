@@ -807,7 +807,7 @@ Content-type : application/json;charset=utf-8
 | appKey                                    | String  | Integrated Appkey or Service Appkey                               | O         |
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
-| cheatGroup                                | String  | Cheat group( Respond as one of GAZE, POSE, or BACKGROUND, AUDIO )             | O         |
+| cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE, AUDIO )             | O         |
 | cheatLevel                                | Integer | Cheating activity level (0 : Normal,1 : Attention\_Low, 2 : Attention\_High, 3 : Warning) | O         |
 | eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
@@ -816,8 +816,6 @@ Content-type : application/json;charset=utf-8
 | cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person)
 X | X         |
 | cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
-| cheatData.cheatInfo.facePoseYawOut        | Boolean | Face up/down angle departure (if face detection is in use)                  | X         |
-| cheatData.cheatInfo.facePosePitchOut      | Boolean | Face left/right angle departure (if face detection is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazeYawOut         | Boolean | Gaze up/down angle departure (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazePitchOut       | Boolean | Gaze left/right angledeparture (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazeScreenOut      | Boolean | Gaze screen departure (if previous gaze registration is complete)                | X         |
@@ -943,8 +941,6 @@ X | X         |
         "cheatInfo":{
             "absence":true,
             "thirdPerson":false,
-            "facePoseYawOut":false,
-            "facePosePitchOut":false,
             "eyeGazeYawOut":false,
             "eyeGazePitchOut":false,
         },
