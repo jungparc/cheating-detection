@@ -806,7 +806,7 @@ Content-type : application/json;charset=utf-8
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| cheatGroup | String | チートグループ( GAZE、POSE、BACKGROUND,AUDIOのいずれかをレスポンス) | O |
+| cheatGroup | String | チートグループ( FRONT, SIDE, AUDIOのいずれかをレスポンス) | O |
 | cheatLevel | Integer | 不正行為レベル(0：Normal、1：Attention\_Low、2：Attention\_Hight、3：Warning) | O |
 | eventTime | Long | イベント発生時間(timestamp) | O |
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
@@ -814,8 +814,6 @@ Content-type : application/json;charset=utf-8
 | cheatData.cheatInfo | JSON | 不正行為判断結果 | O |
 | cheatData.cheatInfo.absence | boolean | 不在かどうか<br />- 視線追跡(顔認識を行うかどうか) <br />- 行動検知(人の数) | X |
 | cheatData.cheatInfo.thirdPerson | boolean | 第三者を識別するかどうか(視線追跡使用時) | X |
-| cheatData.cheatInfo.facePoseYawOut | boolean | 顔上下角度離脱有無(顔検出使用時) | X |
-| cheatData.cheatInfo.facePosePitchOut | boolean | 顔左右角度離脱有無(顔検出使用時) | X |
 | cheatData.cheatInfo.eyeGazeYawOut | boolean | 視線上下角度離脱有無(視線追跡使用時) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 視線左右角度離脱有無(視線追跡使用時) | X |
 | cheatData.cheatInfo.eyeGazeScreenOut | boolean | 視線スクリーン離脱有無(事前視線登録完了時) | X |
@@ -941,8 +939,6 @@ Content-type : application/json;charset=utf-8
         "cheatInfo":{
             "absence":true,
             "thirdPerson":false,
-            "facePoseYawOut":false,
-            "facePosePitchOut":false,
             "eyeGazeYawOut":false,
             "eyeGazePitchOut":false,
         },
