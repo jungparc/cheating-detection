@@ -806,7 +806,7 @@ Content-type : application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 그룹( GAZE, POSE, BACKGROUND AUDIO 중 하나 응답 ) | O |
+| cheatGroup | String | 치트 그룹( FRONT, SIDE, AUDIO 중 하나 응답 ) | O |
 | cheatLevel | Integer | 부정행위 레벨(0: Normal,1:Attention\_Low, 2: Attention\_Hight, 3: Warning) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
@@ -814,8 +814,6 @@ Content-type : application/json;charset=utf-8
 | cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
 | cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
 | cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.facePoseYawOut | Boolean | 얼굴 상하 각도 이탈 여부(얼굴 감지 사용 시) | X |
-| cheatData.cheatInfo.facePosePitchOut | Boolean | 얼굴 좌우 각도 이탈 여부(얼굴 감지 사용 시) | X |
 | cheatData.cheatInfo.eyeGazeYawOut | Boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
 | cheatData.cheatInfo.eyeGazeScreenOut | Boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
@@ -941,8 +939,6 @@ Content-type : application/json;charset=utf-8
         "cheatInfo":{
             "absence":true,
             "thirdPerson":false,
-            "facePoseYawOut":false,
-            "facePosePitchOut":false,
             "eyeGazeYawOut":false,
             "eyeGazePitchOut":false,
         },
