@@ -1,56 +1,57 @@
-## Application Service > Cheating Detection > 개요
+## Application Service > Cheating Detection > Overview
 
 
-AI Proctor(얼굴 인식, 신체 이외의 백그라운드 변화, 신체 부위 탐지, 음성 감지, 시선 추적)와 Application Proctor(추가 모니터 차단, 전체 화면 이탈 방지, 작업 전환 차단, 애플리케이션/프로그램 차단)를 사용해 이상 행동을 감지하고 제어할 수 있습니다.
+AI Proctor (face recognition, detection of background changes other than the body, body part detection, audio detection, eye tracking) and Application Proctor (blocking of additional monitors, full screen exit prevention, blocking of task switching, blocking of application/program) can be used to detect and control abnormal behaviors.
 
-## <span style="color:#0052cc">주요 기능</span>
+## <span style="color:#0052cc">Key Features</span>
 
-Cheating Detection은 다음과 같은 기능을 제공합니다.
+Cheating Detection provides the following:
 
 ### **AI Proctor API**
-고객사가 전송한 이미지를 고객의 Object Storage에 저정하고, API를 통해 부정행위 탐지 기준에 따라 부정행위 이벤트를 전송합니다.
+Stores the images sent by the client in the Object Storage of the client, and send cheating events through the API based on the cheating detection criteria.
 
-* 얼굴 인식 – 얼굴의 수, 얼굴 각도(상/하, 좌/우)
-* 음성 감지 – 음성 감지 여부
-* 시선(동공) 추적 – 시선(동공) 각고(상/하, 좌/우)
-* 신체 부위 탐지 – 신체(오른손, 왼손) 좌표의 미식별 시간
-* 신체 이외의 변화 감지 - 신체 이외의 백그라운드 변화 탐지 시간
+* Face recognition – number of faces, face angle (upper/lower, left/right)
+* Audio detection – Determines whether to use audio detection
+* Eye (pupil) tracking – eye (pupil) angle (upper/lower, left/right)
+* Body part detection – Duration of not identifying body (right hand, left hand) coordinates
+* Detection of changes other than the body -  detection time of background changes other than the body
 
 ### **Application Proctor SDK**
-고객사의 시스템에 Application Proctor SDK를 연동하여, 고객사의 시스템에서 사용자를 제어하도록 구현할 수 있습니다.
+Can be implemented to integrate the Application Proctor SDK to the client’s system in order to control the users on the client's system.
 
-* 추가 모니터 차단 – 사용자의 환경에서 추가 모니터를 감지하면, 두 번째 연결된 모니터는 블랙 아웃 처리
-* 전체 화면 이탈 방지 – NHN Proctor 앱을 사용하는 동안, 사용자의 브라우저는 전체 화면으로 제어
-* 작업 전환 차단 – 사용자의 PC에서 다른 브라우저나 응용 프로그램으로 전환되지 않도록 작업 전환을 차단
-* 애플리케이션/프로그램 차단 – 사용자의 PC에서 실행되는 애플리케이션이나 프로그램 제어
+* Additional monitor blocking – when additional monitors are detected in the user's environment, the second connected monitor is blacked out
+* Full screen departure prevention – while using the NHN Proctor app, the user's browser is controlled as a full screen
+* Task switching block – blocks task switching in order to prevent switching to other browsers or applications on the user's PC
+* Application/program block – controls applications or programs running on the user’s PC
 
-## <span style="color:#0052cc">서비스 대상</span>
+## <span style="color:#0052cc">Service target</span>
 
-* 온라인 시험 서비스를 구현하는 경우
-* 실시간 화상의 온라인 감독이 필요한 경우
-* 사용자 PC의 프로그램, 애플리케이션 사용을 제어하고 싶은 경우
-* 재택근무 모니터링이 필요한 경우
-* 중요한 정보를 다루는 업무를 모니터링해야 하는 경우
+* In case a user wishes to implement an online testing service
+* In case a user needs online supervision for real-time videos
+* In case a user wishes to control the use of programs or applications of the user’s PC
+* In case a user needs to monitor those working from home
+* In case a user needs to monitor tasks dealing with important information
 
-## <span style="color:#0052cc">서비스 이용 유의 사항</span>
+## <span style="color:#0052cc">Service use precautions</span>
 
-* AI Proctor 이용 방법
-AI Proctor를 이용하기 위해서는 고객의 Object Storage에 이용자 이미지 등의 저장이 필요합니다.
-본 서비스 사용으로 인해 Object Storage에 저장되는 이용자의 개인정보 및 민감정보는 개인정보보호법에 따라 암호화 저장되어야 합니다.
-(별도 암호화 저장 필요)
+* How to use AI Proctor
+In order to use AI Proctor, storing data such as user images in the client’s Object Storage is necessary.
+The user’s personal and sensitive data stored in Object Storage from the use of this service must be stored encrypted according to the Personal Information Protection Act.
+(Separately encrypted storage required)
 
-## <span style="color:#0052cc">개인정보 처리에 대한 안내</span>
+## <span style="color:#0052cc">Personal data processing guide</span>
 
-* AI Proctor를 이용하는 과정에서 고객은 이용자의 개인정보를 수집할 수 있습니다. 따라서 본 서비스를 이용하는 고객은 개인정보보호법에 따라 이용자에게 법적 고지사항을 알리고 동의를 받아야 합니다.
-또한, 이 과정에서 고객과 NHN 간 개인정보 처리에 관한 업무 위수탁 관계가 발생할 수 있습니다. 위탁자의 지위에 있는 고객은 수탁사인 NHN과 별도 서면에 의한 위탁 계약을 체결할 수 있으며 고객이 운영하는 개인정보처리방침에 아래 내용을 참고하여 고지할 수 있습니다.
+* While using the AI Proctor, the client may collect personal information from users. Therefore, the customer of this service must inform a legal notice to their users as per the Personal Information Protection Act and acquire their consent regarding the matter.
+Also during this process, work consignment relation regarding the processing of personal information may arise between the customer and NHN. The customer who assumes the position of consignor may enter into a consignment contract with the consignee, NHN, separately in writing, and post a privacy policy notice by referencing the following:
 
-* 수탁 업체: 엔에이치엔㈜
-* 위탁 업무의 내용: Cheating Detection 서비스 제공 업무
+* Consignee: NHN Cloud
+* Consignment description: providing Cheating Detection service
 
 
-## <span style="color:#0052cc">온라인 행태정보 수집에 대한 안내</span>
+## <span style="color:#0052cc">Guide to collection of behavioral information online</span>
 
-*	Cheating Detection 서비스를 이용하는 과정에서 NHN은 최종 사용자의 온라인 행태 정보를 맞춤형 서비스 제공 목적으로 수집하고 있습니다. 따라서 본 서비스를 이용하는 고객은 관련 규제에 따라 최종사용자에게 아래와 같은 내용을 개인정보처리방침 등에 고지하여야 하며 미 준수로 인한 책임은 고객에게 있습니다
-*	회사는 아래의 광고 사업자가 온라인 이용자 행태 정보를 수집하고 이용자 대상 맞춤형 서비스 제공 목적으로 이용할 수 있도록 허용하고 있습니다.
-  *	가. 광고 사업자 : 엔에이치엔(주)
-  *	나. 수집 방법 : 서비스 이용 시 설치되는 프로그램을 통하여 수집
+*	In the process of using the Cheating Detection service, NHN collects end users’ behavioral information online to provide customized services. Therefore, the client who use this service must notify end users of the following in the privacy policy, etc. in accordance with the relevant regulations, and the client is responsible for non-compliance of its users.
+* The company allows the following advertising companies to collect user behavior information online and use it to provide customized services to users.
+
+  *	A. Advertising company: NHN Cloud
+  *	B. Collection method: collected through the program installed that is required to use the service
