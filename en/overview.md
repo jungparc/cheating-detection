@@ -44,7 +44,7 @@ The user’s personal and sensitive data stored in Object Storage from the use o
 * While using the AI Proctor, the client may collect personal information from users. Therefore, the customer of this service must inform a legal notice to their users as per the Personal Information Protection Act and acquire their consent regarding the matter.
 Also during this process, work consignment relation regarding the processing of personal information may arise between the customer and NHN. The customer who assumes the position of consignor may enter into a consignment contract with the consignee, NHN, separately in writing, and post a privacy policy notice by referencing the following:
 
-* Consignee: NHN
+* Consignee: NHN Cloud
 * Consignment description: providing Cheating Detection service
 
 
@@ -53,5 +53,5 @@ Also during this process, work consignment relation regarding the processing of 
 *	In the process of using the Cheating Detection service, NHN collects end users’ behavioral information online to provide customized services. Therefore, the client who use this service must notify end users of the following in the privacy policy, etc. in accordance with the relevant regulations, and the client is responsible for non-compliance of its users.
 * The company allows the following advertising companies to collect user behavior information online and use it to provide customized services to users.
 
-  *	A. Advertising company: NHN
+  *	A. Advertising company: NHN Cloud
   *	B. Collection method: collected through the program installed that is required to use the service
