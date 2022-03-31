@@ -1,4 +1,7 @@
 ## Application Service > Cheating Detection > 릴리스 노트
+### 2022.04.26
+#### 기능 추가
+* Cheating Detection 서비스 유료화
 ### 2022.02.22
 #### 기능 변경/개선
 * 얼굴 인식 부정행위 감지 로직 개선
