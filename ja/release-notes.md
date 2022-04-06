@@ -1,5 +1,8 @@
 ## Application Service > Cheating Detection > リリースノート
 
+### 2022. 04. 26.
+#### 機能追加
+* Cheating Detectionサービス有料化
 ### 2022.02.22
 #### 機能変更/改善
 * 顔認識不正行為の検出ロジックを改善
