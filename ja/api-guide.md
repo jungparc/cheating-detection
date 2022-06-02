@@ -13,7 +13,7 @@
 
  | 環境 | ドメイン |
  | --- | --- |
- | Real | http://ctd-api.cloud.toast.com |
+ | Real | https://kr1-cheating-detection.api.nhncloudservice.com |
 
 ## 認証API
 
