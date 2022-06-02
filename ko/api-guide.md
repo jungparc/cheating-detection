@@ -13,7 +13,7 @@
 
  | 환경 | 도메인 |
  | --- | --- |
- | Real | http://ctd-api.cloud.toast.com |
+ | Real | https://kr1-cheating-detection.api.nhncloudservice.com |
 
 ## 인증 API
 
@@ -606,7 +606,7 @@ Content-type : */*
 | data.faceTopAngle | Integer | 얼굴 각도(상) |
 | data.faceBottomAngle | Integer | 얼굴 각도(하) |
 | data.faceLeftAngle | Integer | 얼굴 각도(좌) |
-| data.faceRightAngle | Integer | 얼굴 각도(하) |
+| data.faceRightAngle | Integer | 얼굴 각도(우) |
 
 [응답 본문 예]
 
