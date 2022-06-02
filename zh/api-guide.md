@@ -14,7 +14,7 @@
 
 | Environment | Domain                         |
 | ---- | ------------------------------ |
-| Real | http://ctd-api.cloud.toast.com |
+| Real | https://kr1-cheating-detection.api.nhncloudservice.com |
 
 ## Authenticate API
 
