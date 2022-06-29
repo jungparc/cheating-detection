@@ -1,5 +1,7 @@
 ## Application Service > Cheating Detection > リリースノート
-
+### 2022. 06. 30.
+#### 機能改善/変更
+* APIエンドポイントのドメイン名が`ctd-api.cloud.toast.com`から`kr1-cheating-detection.api.nhncloudservice.com`に変更
 ### 2022. 04. 26.
 #### 機能追加
 * Cheating Detectionサービス有料化
