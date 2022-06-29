@@ -1,4 +1,7 @@
 ## Application Service > Cheating Detection > 릴리스 노트
+### 2022. 06. 30.
+#### 기능 개선/변경
+* API 엔드포인트의 도메인 이름이 `ctd-api.cloud.toast.com`에서 `kr1-cheating-detection.api.nhncloudservice.com`로 변경
 ### 2022. 04. 26.
 #### 기능 추가
 * Cheating Detection 서비스 유료화
