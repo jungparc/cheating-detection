@@ -436,7 +436,7 @@ Content-type : application/json;charset=utf-8
 ```
 
 
-## 사용자 정보 등록 API
+## 사용자 정보 등록 및 카메라 검증 API
 
 ### 가운데 시선 정보 등록 API
  - 시선 추적 부정행위 감지 시에 사용자(응시자)의 시선 정보를 보정해주기 위한 API
@@ -498,6 +498,105 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
         "resultCode": 0,
         "resultMessage": "Success"
     }
+}
+```
+
+### 측면 카메라 사전 검증 API
+
+* 측면카메라의 사전 점검을 위해 검증하는 API
+
+``` yaml
+URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD : POST
+X-Auth-Token : Bearer {accessToken}
+Content-type : application/json;charset=utf-8
+```
+
+##### 요청
+
+[Header Parameter]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| X-Auth-Token | String | AccessToken | O |
+
+[Request Body]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| file | Binary | 이미지 파일<br>권장 사항 (Size : 640 x 360, 확장자 : jpg, jpeg) | O |
+
+[Path Variable]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
+| examNo | String | 시험 번호 | O |
+| userId | String | 사용자 ID(수험생 번호) | O |
+
+[요청 본문 예]
+
+```
+curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
+-F "file=@testImage.jpeg;type=image/jpeg"
+```
+
+##### 응답
+
+[Response Body]
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
+| header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
+| header.resultMessage | String | 요청 결과 메시지 |
+| data.status | Boolean | 카메라 사전 검증결과 ( true : 정상, false : 이상 발견) |
+| data.thirdPerson | Boolean | 제3자 존재 여부 ( true : 제3자 식별, false: 미식별 ) |
+| data.absence | Boolean | 수험생 부재 여부 (true : 수험생 부재 중, false : 수험생 식별) |
+| data.leftHandExistence | Boolean | 왼손 식별 여부 (true : 식별, false : 미식별) |
+| data.rightHandExistence | Boolean | 오른손 식별 여부 (true : 식별, false : 미식별 ) |
+| data.faceExistence | Boolean | 얼굴 식별 여부 (true : 식별, false : 미식별) |
+
+[응답 본문 예] - 정상 확인 시
+
+``` json
+{
+"header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "Success"
+},
+"data": {
+    "status" : true,
+    "thirdPerson": false,
+    "absence": false,
+    "leftHandExistence": true,
+    "rightHandExistence": true,
+    "faceExistence" : true
+}
+}
+```
+
+[응답 본문 예] - 부재 시
+
+``` json
+{
+"header": {
+"isSuccessful": true,
+"resultCode": 0,
+"resultMessage": "Success"
+},
+"data": {
+"status" : false,
+"thirdPerson": false,
+"absence": true,
+"leftHandExistence": false,
+"rightHandExistence": false,
+"faceExistence" : false
+}
 }
 ```
 
