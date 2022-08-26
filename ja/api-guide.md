@@ -799,14 +799,14 @@ Content-type : application/json;charset=utf-8
 
 #### リクエスト
 
-[Request Body] GAZE, POSE, BACKGROUND, AUDIO
+[Request Body] FRONT, SIDE
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| cheatGroup | String | チートグループ( FRONT, SIDE, AUDIOのいずれかをレスポンス) | O |
+| cheatGroup | String | チートグループ( FRONT, SIDEのいずれかをレスポンス) | O |
 | cheatLevel | Integer | 不正行為レベル(0：Normal、1：Attention\_Low、2：Attention\_Hight、3：Warning) | O |
 | eventTime | Long | イベント発生時間(timestamp) | O |
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
@@ -816,7 +816,6 @@ Content-type : application/json;charset=utf-8
 | cheatData.cheatInfo.thirdPerson | boolean | 第三者を識別するかどうか(視線追跡使用時) | X |
 | cheatData.cheatInfo.eyeGazeYawOut | boolean | 視線上下角度離脱有無(視線追跡使用時) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 視線左右角度離脱有無(視線追跡使用時) | X |
-| cheatData.cheatInfo.eyeGazeScreenOut | boolean | 視線スクリーン離脱有無(事前視線登録完了時) | X |
 | cheatData.cheatInfo.unstableBackground | boolean | 背景の変更有無(身体以外のバックグラウンド変化使用時) | X |
 | cheatData.cheatInfo.leftHandNotExistence |Boolean | 左手識別有無(行動検知使用時) | X |
 | cheatData.cheatInfo.rightHandNotExistence |Boolean | 右手識別を行うかどうか(行動検知使用時) | X |
@@ -826,8 +825,6 @@ Content-type : application/json;charset=utf-8
 | cheatData.gaze.faceYaw | Integer | 顔の左右角度 | X |
 | cheatData.gaze.eyePitch | Integer | 視線の上下角度 | X |
 | cheatData.gaze.eyeYaw | Integer | 視線の左右角度 | X |
-| cheatData.gaze.screenX | float | 視線X軸位置 | X |
-| cheatData.gaze.screenY | float | 視線Y軸位置 | X |
 | chaetData.bg[] | List | 背景変化情報 | X |
 | chaetData.bg[].isChanged | Boolean | 背景変化有無 | X |
 | chaetData.bg[].eventTime | Long |発生時間(timstamp 10桁) |X |
@@ -872,124 +869,248 @@ Content-type : application/json;charset=utf-8
 | cheatConfig.gaze.regUserGaze.faceYaw | Integer | 登録された顔の左右角度 | X |
 | cheatConfig.gaze.regUserGaze.eyePitch | Integer | 登録された視線上下角度 | X |
 | cheatConfig.gaze.regUserGaze.eyeYaw | Integer | 登録された視線の左右角度 | X |
-| cheatConfig.gaze.regUserGaze.screenX | Integer | 登録された視線のX座標 | X |
-| cheatConfig.gaze.regUserGaze.screenY | Integer | 登録された視線のY座標 | X |
 | cheatConfig.face.faceDetectionYn | String | 顔認識使用有無 | X |
 | cheatConfig.face.faceDetectionThreshold | Integer | 検出顔数の基準値 | X |
 | cheatConfig.face.faceTopAngle | Integer | 顔の角度(上) | X |
 | cheatConfig.face.faceBottomAngle | Integer | 顔の角度(下) | X |
 | cheatConfig.face.faceLeftAngle | Integer | 顔の角度(左) | X |
 | cheatConfig.face.faceRightAngle | Integer | 顔の角度(右) | X |
-| cheatConfig.face.regUserGaze | JSON | 登録された視線情報 | X |
-| cheatConfig.face.regUserGaze.numFaces | Integer | 登録された検出された顔の数 | X |
-| cheatConfig.face.regUserGaze.facePitch | Integer | 登録された顔の上下角度 | X |
-| cheatConfig.face.regUserGaze.faceYaw | Integer | 登録された顔の左右角度 | X |
-| cheatConfig.face.regUserGaze.eyePitch | Integer | 登録された視線の上下角度 | X |
-| cheatConfig.face.regUserGaze.eyeYaw | Integer | 登録された視線の左右角度 | X |
-| cheatConfig.face.regUserGaze.screenX | Integer | 登録された視線のX座標 | X |
-| cheatConfig.face.regUserGaze.screenY | Integer | 登録された視線のY座標 | X |
 | cheatConfig.bg.bgDetectionYn | String | 身体以外のバックグラウンド変化使用有無 | X |
 | cheatConfig.bg.bgDetectionTime | Integer | バックグラウンド変化検知時間(N秒) | X |
-| validation | String | 有効性チェック <br> *ユーザーIP、引き込み時間ts(Unix 13 digit Timestamp)値をAES256暗号化した情報 <br> 例) {"ip":"127.0.0.1", "ts": 1621840609833} JSONテキストをAES256暗号化 | X |
 
-[リクエスト本文例] POSE, GAZE
+
+[リクエスト本文例] FRONT, SIDE
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"usertTest",
-    "examNo":"12345",
-    "cheatGroup":"POSE",
-    "cheatLevel":0,
-    "eventTime": 1621828945,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/test/front/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":false,
-            "thirdPerson":false,
-            "unstableBackground":false,
-            "leftHandNotExistence":false,
-            "rightHandNotExistence":false
-        }
-    },
-    "cheatConfig":{
-        "bg":{
-            "bgDetectionYn":"Y",
-            "bgDetectionTime":20
-        },
-        "pose":{
-            "poseEstimationYn":"Y",
-            "poseEstimationTime":20
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "FRONT",
+	"camLocation": "front",
+	"cheatLevel": 2,
+	"eventTime": 1661483728,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/FRONT/20220826121531000_1e7e9ade-42aa-48bc-899d-a0d54450913d.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"faceYawOut": true,
+			"facePitchOut": false,
+			"eyeGazeYawOut": false,
+			"eyeGazePitchOut": false,
+			"unstableBackground": true,
+			"exceedThreshold": false,
+			"registeredGaze": true
+		},
+		"gaze": {
+			"numFaces": 1,
+			"facePitch": 0,
+			"faceYaw": 26,
+			"faceDistance": 144,
+			"eyePitch": -5,
+			"eyeYaw": -7
+		},
+		"face": {
+			"numFaces": 1,
+			"facePitch": -8.174861,
+			"faceYaw": 24.84945
+		},
+		"bg": [{
+			"eventTime": 1661483728,
+			"data": {
+				"bgChangeDetFlag": true,
+				"allocFlag": true
+			}
+		}],
+		"levels": {
+			"gaze": 0,
+			"bg": 1,
+			"face": 2
+		}
+	},
+	"cheatConfig": {
+		"bg": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"bgDetectionYn": "Y",
+			"bgDetectionTime": 10
+		},
+		"gaze": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"gazeTrackingYn": "Y",
+			"gazeTopAngle": 5,
+			"gazeBottomAngle": 15,
+			"gazeLeftAngle": 10,
+			"gazeRightAngle": 10,
+			"regUserGaze": {
+				"numFaces": 0,
+				"facePitch": 0,
+				"faceYaw": 0,
+				"faceDistance": 0,
+				"eyePitch": 0,
+				"eyeYaw": 0
+			}
+		},
+		"face": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"faceDetectionYn": "Y",
+			"faceDetectionThreshold": 1,
+			"faceTopAngle": 20,
+			"faceBottomAngle": 20,
+			"faceLeftAngle": 20,
+			"faceRightAngle": 20
+		}
+	}
 }
 ```
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"userTestId",
-    "examNo":"12345",
-    "cheatGroup":"GAZE",
-    "cheatLevel":3,
-    "eventTime": 1621828940,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":true,
-            "thirdPerson":false,
-            "eyeGazeYawOut":false,
-            "eyeGazePitchOut":false,
-        },
-        "gaze":{
-        "numFaces":0,
-        "facePitch":0,
-        "faceYaw":0,
-        "eyePitch":0,
-        "eyeYaw":0,
-        "screenX":0.0,
-        "screenY":0.0
-        }
-    },
-    "cheatConfig":{
-        "gaze":{
-            "gazeTrackingYn":"Y",
-            "gazeTopAngle":24,
-            "gazeBottomAngle":24,
-            "gazeLeftAngle":24,
-            "gazeRightAngle":24,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        },
-        "face":{
-            "faceDetectionYn":"Y",
-            "faceDetectionThreshold":1,
-            "faceTopAngle":25,
-            "faceBottomAngle":25,
-            "faceLeftAngle":25,
-            "faceRightAngle":25,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "SIDE",
+	"camLocation": "side",
+	"cheatLevel": 3,
+	"eventTime": 1661484082,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/SIDE/20220826122123710_863921e0-aa46-4401-80de-65e3d8a2bf0e.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"thirdPerson": false,
+			"leftHandNotExistence": true,
+			"rightHandNotExistence": true,
+			"exceedThreshold": true,
+			"preCheckSideCam": false
+		},
+		"pose": [{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484081
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 335,
+						"ymin": 238,
+						"xmax": 452,
+						"ymax": 358,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484074
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 332,
+						"ymin": 251,
+						"xmax": 449,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484082
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 375,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484076
+			}
+		]
+	},
+	"cheatConfig": {
+		"pose": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"poseEstimationYn": "Y",
+			"poseEstimationTime": 30
+		}
+	}
 }
 ```
 
@@ -1006,39 +1127,26 @@ Content-type : application/json;charset=utf-8
 | cheatLevel | Integer | 音声検出を行うかどうか(0：未検知、1：検知) | O |
 | cheatData | JSON | 検出情報 | X |
 | cheatData.voice | Long[] | 音声検出時間(秒)<br>例) [3,4] > 3、4秒に音声検出 | X |
-| validation | String | 有効性チェック <br> *ユーザーIP、引き込み時間ts(Unix 13 digit Timestamp)値をAES256暗号化した情報 <br> 例) {"ip":"127.0.0.1", "ts": 1621840609833} JSONテキストをAES256暗号化 | X |
+
 
 [リクエスト本文例]
 
 音声検知
-``` json
-{
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo": "12345",
-    "cheatGroup": "AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl": "https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/AUDIO/demoWebTest/test/20210707123916831.webm",
-    "cheatLevel" : 1,
-    "cheatData" : {
-        "voice": [1,2,3]
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-}
-```
-
-音声未検出
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo":"12345",
-    "cheatGroup":"AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-    "cheatLevel" : 0,
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "AUDIO",
+	"cheatLevel": 1,
+	"eventTime": 1661489862,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/AUDIO/demoWebTest/test/20220826135742960_4d99727c-af6a-4fb5-900e-507460587284.webm",
+	"cheatData": {
+		"voice": [
+			2
+		]
+	}
 }
 ```
 

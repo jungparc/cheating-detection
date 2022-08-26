@@ -800,25 +800,23 @@ Content-type : application/json;charset=utf-8
 
 #### Request
 
-[Request Body] GAZE, POSE, BACKGROUND, AUDIO
+[Request Body] FRONT, SIDE
 
 | Name                                      | Type    | Description                                                         | Necessity |
 | ----------------------------------------- | ------- | ------------------------------------------------------------ | --------- |
 | appKey                                    | String  | Integrated Appkey or Service Appkey                               | O         |
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
-| cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE, AUDIO )             | O         |
+| cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE )             | O         |
 | cheatLevel                                | Integer | Cheating activity level (0 : Normal,1 : Attention\_Low, 2 : Attention\_High, 3 : Warning) | O         |
 | eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
 | cheatData.cheatInfo                       | JSON    | Cheating judgment result                                           | O         |
-| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person)
-X | X         |
+| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person) | X         |
 | cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
 | cheatData.cheatInfo.eyeGazeYawOut         | Boolean | Gaze up/down angle departure (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazePitchOut       | Boolean | Gaze left/right angledeparture (if gaze tracking is in use)                  | X         |
-| cheatData.cheatInfo.eyeGazeScreenOut      | Boolean | Gaze screen departure (if previous gaze registration is complete)                | X         |
 | cheatData.cheatInfo.unstableBackground    | Boolean | Background change (if the detection of background change other than the body is in use)            | X         |
 | cheatData.cheatInfo.leftHandNotExistence  | Boolean | Left hand detection (if motion detection is in use)                            | X         |
 | cheatData.cheatInfo.rightHandNotExistence | Boolean | Right hand detection (if motion detection is in use)                          | X         |
@@ -828,8 +826,6 @@ X | X         |
 | cheatData.gaze.faceYaw                    | Integer | Face left/right angle                                               | X         |
 | cheatData.gaze.eyePitch                   | Integer | Gaze up/down angle                                               | X         |
 | cheatData.gaze.eyeYaw                     | Integer | Gaze left/right angle                                               | X         |
-| cheatData.gaze.screenX                    | float   | Gaze X-axis location                                                | X         |
-| cheatData.gaze.screenY                    | float   | Gaze Y-axis location                                                | X         |
 | chaetData.bg[]                            | List    | Background change information                                               | X         |
 | chaetData.bg[].isChanged                  | Boolean | Background change                                               | X         |
 | chaetData.bg[].eventTime                  | Long    | Occurrence time (timestamp 10 digits)                                   | X         |
@@ -873,125 +869,248 @@ X | X         |
 | cheatConfig.gaze.regUserGaze.facePitch    | Integer | Up/down angle of registered face                                        | X         |
 | cheatConfig.gaze.regUserGaze.faceYaw      | Integer | Left/right angle of registered face                                        | X         |
 | cheatConfig.gaze.regUserGaze.eyePitch     | Integer | Up/down angle of registered gaze                                         | X         |
-| cheatConfig.gaze.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         |
-| cheatConfig.gaze.regUserGaze.screenX      | Integer | X-coordinate of registered gaze                                           | X         |
-| cheatConfig.gaze.regUserGaze.screenY      | Integer | Y-coordinate of registered gaze                                           | X         |
+| cheatConfig.gaze.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         
 | cheatConfig.face.faceDetectionYn          | String  | Whether to use face recognition                                          | X         |
 | cheatConfig.face.faceDetectionThreshold   | Integer | Reference value for number of faces detected                                          | X         |
 | cheatConfig.face.faceTopAngle             | Integer | Face angle (top)                                                | X         |
 | cheatConfig.face.faceBottomAngle          | Integer | Face angle (bottom)                                                | X         |
 | cheatConfig.face.faceLeftAngle            | Integer | Face angle (left)                                                | X         |
 | cheatConfig.face.faceRightAngle           | Integer | Face angle(right)                                                | X         |
-| cheatConfig.face.regUserGaze              | JSON    | Registered gaze information                                             | X         |
-| cheatConfig.face.regUserGaze.numFaces     | Integer | Number of registered faces detected                                        | X         |
-| cheatConfig.face.regUserGaze.facePitch    | Integer | Up/down angle of registered face                                        | X         |
-| cheatConfig.face.regUserGaze.faceYaw      | Integer | Left/right angle of registered face                                        | X         |
-| cheatConfig.face.regUserGaze.eyePitch     | Integer | Up/down angle of registered gaze                                         | X         |
-| cheatConfig.face.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         |
-| cheatConfig.face.regUserGaze.screenX      | Integer | X-coordinate of registered gaze                                           | X         |
-| cheatConfig.face.regUserGaze.screenY      | Integer | Y-coordinate of registered gaze                                           | X         |
 | cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of background change other than the body is used                        | X         |
 | cheatConfig.bg.bgDetectionTime            | Integer | Background change detection time (N sec)                               | X         |
-| validation                                | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
-[Request body example] POSE, GAZE
+[Request body example] FRONT, SIDE
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"usertTest",
-    "examNo":"12345",
-    "cheatGroup":"POSE",
-    "cheatLevel":0,
-    "eventTime": 1621828945,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/test/front/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":false,
-            "thirdPerson":false,
-            "unstableBackground":false,
-            "leftHandNotExistence":false,
-            "rightHandNotExistence":false
-        }
-    },
-    "cheatConfig":{
-        "bg":{
-            "bgDetectionYn":"Y",
-            "bgDetectionTime":20
-        },
-        "pose":{
-            "poseEstimationYn":"Y",
-            "poseEstimationTime":20
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "FRONT",
+	"camLocation": "front",
+	"cheatLevel": 2,
+	"eventTime": 1661483728,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/FRONT/20220826121531000_1e7e9ade-42aa-48bc-899d-a0d54450913d.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"faceYawOut": true,
+			"facePitchOut": false,
+			"eyeGazeYawOut": false,
+			"eyeGazePitchOut": false,
+			"unstableBackground": true,
+			"exceedThreshold": false,
+			"registeredGaze": true
+		},
+		"gaze": {
+			"numFaces": 1,
+			"facePitch": 0,
+			"faceYaw": 26,
+			"faceDistance": 144,
+			"eyePitch": -5,
+			"eyeYaw": -7
+		},
+		"face": {
+			"numFaces": 1,
+			"facePitch": -8.174861,
+			"faceYaw": 24.84945
+		},
+		"bg": [{
+			"eventTime": 1661483728,
+			"data": {
+				"bgChangeDetFlag": true,
+				"allocFlag": true
+			}
+		}],
+		"levels": {
+			"gaze": 0,
+			"bg": 1,
+			"face": 2
+		}
+	},
+	"cheatConfig": {
+		"bg": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"bgDetectionYn": "Y",
+			"bgDetectionTime": 10
+		},
+		"gaze": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"gazeTrackingYn": "Y",
+			"gazeTopAngle": 5,
+			"gazeBottomAngle": 15,
+			"gazeLeftAngle": 10,
+			"gazeRightAngle": 10,
+			"regUserGaze": {
+				"numFaces": 0,
+				"facePitch": 0,
+				"faceYaw": 0,
+				"faceDistance": 0,
+				"eyePitch": 0,
+				"eyeYaw": 0
+			}
+		},
+		"face": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"faceDetectionYn": "Y",
+			"faceDetectionThreshold": 1,
+			"faceTopAngle": 20,
+			"faceBottomAngle": 20,
+			"faceLeftAngle": 20,
+			"faceRightAngle": 20
+		}
+	}
 }
 ```
 
-``` Json
+``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"userTestId",
-    "examNo":"12345",
-    "cheatGroup":"GAZE",
-    "cheatLevel":3,
-    "eventTime": 1621828940,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":true,
-            "thirdPerson":false,
-            "eyeGazeYawOut":false,
-            "eyeGazePitchOut":false,
-        },
-        "gaze":{
-        "numFaces":0,
-        "facePitch":0,
-        "faceYaw":0,
-        "eyePitch":0,
-        "eyeYaw":0,
-        "screenX":0.0,
-        "screenY":0.0
-        }
-    },
-    "cheatConfig":{
-        "gaze":{
-            "gazeTrackingYn":"Y",
-            "gazeTopAngle":24,
-            "gazeBottomAngle":24,
-            "gazeLeftAngle":24,
-            "gazeRightAngle":24,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        },
-        "face":{
-            "faceDetectionYn":"Y",
-            "faceDetectionThreshold":1,
-            "faceTopAngle":25,
-            "faceBottomAngle":25,
-            "faceLeftAngle":25,
-            "faceRightAngle":25,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "SIDE",
+	"camLocation": "side",
+	"cheatLevel": 3,
+	"eventTime": 1661484082,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/SIDE/20220826122123710_863921e0-aa46-4401-80de-65e3d8a2bf0e.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"thirdPerson": false,
+			"leftHandNotExistence": true,
+			"rightHandNotExistence": true,
+			"exceedThreshold": true,
+			"preCheckSideCam": false
+		},
+		"pose": [{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484081
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 335,
+						"ymin": 238,
+						"xmax": 452,
+						"ymax": 358,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484074
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 332,
+						"ymin": 251,
+						"xmax": 449,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484082
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 375,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484076
+			}
+		]
+	},
+	"cheatConfig": {
+		"pose": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"poseEstimationYn": "Y",
+			"poseEstimationTime": 30
+		}
+	}
 }
 ```
 
@@ -1008,39 +1127,24 @@ X | X         |
 | cheatLevel      | Integer | Audio detection (0 : undetected, 1 : detected)                           | O         |
 | cheatData       | JSON    | Detection information                                                    | X         |
 | cheatData.voice | Long[]  | Audio detection time (sec )<br> ex ) [3,4] > audio detection at 3 and 4 sec          | X         |
-| validation      | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
 [request body example]
 
 Voice detection
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo": "12345",
-    "cheatGroup": "AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl": "https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/AUDIO/demoWebTest/test/20210707123916831.webm",
-    "cheatLevel" : 1,
-    "cheatData" : {
-        "voice": [1,2,3]
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-}
-```
-
-Voice not detected
-
-``` json
-{
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo":"12345",
-    "cheatGroup":"AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-    "cheatLevel" : 0,
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "AUDIO",
+	"cheatLevel": 1,
+	"eventTime": 1661489862,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/AUDIO/demoWebTest/test/20220826135742960_4d99727c-af6a-4fb5-900e-507460587284.webm",
+	"cheatData": {
+		"voice": [
+			2
+		]
+	}
 }
 ```
 
