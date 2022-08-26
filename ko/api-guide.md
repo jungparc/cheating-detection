@@ -564,19 +564,19 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 
 ``` json
 {
-"header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "Success"
-},
-"data": {
-    "status" : true,
-    "thirdPerson": false,
-    "absence": false,
-    "leftHandExistence": true,
-    "rightHandExistence": true,
-    "faceExistence" : true
-}
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": true,
+		"thirdPerson": false,
+		"absence": false,
+		"leftHandExistence": true,
+		"rightHandExistence": true,
+		"faceExistence": true
+	}
 }
 ```
 
@@ -584,19 +584,19 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 
 ``` json
 {
-"header": {
-"isSuccessful": true,
-"resultCode": 0,
-"resultMessage": "Success"
-},
-"data": {
-"status" : false,
-"thirdPerson": false,
-"absence": true,
-"leftHandExistence": false,
-"rightHandExistence": false,
-"faceExistence" : false
-}
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": false,
+		"thirdPerson": false,
+		"absence": true,
+		"leftHandExistence": false,
+		"rightHandExistence": false,
+		"faceExistence": false
+	}
 }
 ```
 
@@ -909,13 +909,15 @@ Content-type : application/json;charset=utf-8
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
-| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
-| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 정면 탐지(얼굴 인식 사용 시) <br />- 측면 탐지(사람 수) | X |
+| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부<br />- 정면 탐지(얼굴 인식 사용 시) <br />- 측면 탐지(사람 수) | X |
+| cheatData.cheatInfo.faceYawOut | Boolean | 얼굴 상하 각도 이탈 여부(얼굴 인식 사용 시) | X |
+| cheatData.cheatInfo.facePitchOut | Boolean | 얼굴 좌우 각도 이탈 여부(얼굴 인식 사용 시) | X |
 | cheatData.cheatInfo.eyeGazeYawOut | Boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
 | cheatData.cheatInfo.unstableBackground | Boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
-| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(신체 부위 탐지 사용 시) | X |
+| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(신체 부위 탐지 사용 시) | X |
 | cheatData.gaze | JSON | 시선 추적 정보 | X |
 | cheatData.gaze.numFaces | Integer | 감지된 얼굴 수 | X |
 | cheatData.gaze.facePitch | Integer | 얼굴 상하 각도 | X |
@@ -929,8 +931,8 @@ Content-type : application/json;charset=utf-8
 | chaetData.bg[].data.bgChangeDetFlag | Boolean |배경 변화 여부 감지 결과 |X |
 | chaetData.bg[].data.allocFlag | Boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
 | cheatData.pose[] | List | 행동 탐지 정보 |X |
-| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(신체 부위 탐지 사용 시) |X |
+| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(신체 부위 탐지 사용 시) |X |
 | cheatData.pose[].eventTime | Long | 이벤트 발생 시간(감지 요청 시간) |X |
 | cheatData.pose[].data | JSON | 행동 탐지 상세 정보 |X |
 | cheatData.pose[].data.numPerson |Integer | 탐지된 사람의 수 |X |
@@ -953,7 +955,7 @@ Content-type : application/json;charset=utf-8
 | cheatData.pose[].data.face.ymax |Integer |얼굴 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.isDetected |Boolean | 얼굴 감지 여부 |X |
 | cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.pose.poseEstimationYn | Boolean | 행동 탐지 사용 여부 | X |
+| cheatConfig.pose.poseEstimationYn | Boolean | 신체 부위 탐지 사용 여부 | X |
 | cheatConfig.pose.poseEstimationTime | Integer | 왼손/오른손 좌표 미식별 시간(N초) | X |
 | cheatConfig.gaze.gazeTrackingYn | String | 시선(동공) 추적 사용 여부 | X |
 | cheatConfig.gaze.gazeTopAngle | Integer | 동공 각도(상) | X |
@@ -972,7 +974,7 @@ Content-type : application/json;charset=utf-8
 | cheatConfig.face.faceBottomAngle | Integer | 얼굴 각도(하) | X |
 | cheatConfig.face.faceLeftAngle | Integer | 얼굴 각도(좌) | X |
 | cheatConfig.face.faceRightAngle | Integer | 얼굴 각도(우) | X |
-| cheatConfig.bg.bgDetectionYn | String | 신체 이외의 백그라운드 변화 사용 여부 | X |
+| cheatConfig.bg.bgDetectionYn | String | 신체 이외의 변화 사용 여부 | X |
 | cheatConfig.bg.bgDetectionTime | Integer | 백그라운드 변화 탐지 시간(N초) | X |
 
 [요청 본문 예] FRONT, SIDE
