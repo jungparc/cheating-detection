@@ -1273,7 +1273,7 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "appKey": "testAppKey",
     "userId": "usertTest",
     "platformOs" :"Windows10",
     "examNo":"12345",
