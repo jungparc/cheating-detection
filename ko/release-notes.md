@@ -1,6 +1,9 @@
 ## Application Service > Cheating Detection > 릴리스 노트
+### 2022. 09. 27.
+#### 기능 변경/개선
+* 신체 부위 탐지 부정행위 감지 로직 개선
 ### 2022. 06. 30.
-#### 기능 개선/변경
+#### 기능 변경/개선
 * API 엔드포인트의 도메인 이름이 `ctd-api.cloud.toast.com`에서 `kr1-cheating-detection.api.nhncloudservice.com`로 변경
 ### 2022. 04. 26.
 #### 기능 추가
