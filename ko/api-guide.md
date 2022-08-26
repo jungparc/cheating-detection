@@ -174,7 +174,7 @@ Content-type : multipart/form-data
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 1280 x 720, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 640 x 360, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
 
 [Path Variable]
 

@@ -174,7 +174,7 @@ Content-type : multipart/form-data
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
-| file | Binary | 画像ファイル <br>画像推奨事項 <br> side (Size：1280 x 720、拡張子：jpg, jpeg) <br>front (Size：640 x 480、拡張子：jpg, jpeg) | O |
+| file | Binary | 画像ファイル <br>画像推奨事項 <br> side (Size：640 x 360、拡張子：jpg, jpeg) <br>front (Size：640 x 480、拡張子：jpg, jpeg) | O |
 
 [Path Variable]
 

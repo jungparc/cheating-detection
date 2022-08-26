@@ -175,7 +175,7 @@ Content-type : multipart/form-data
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Image recommendation<br> side (Size : 1280 x 720, extension : jpg, jpeg) <br>front (Size : 640 x 480, extension : jpg, jpeg) | O         |
+| file | Binary | Image file <br>Image recommendation<br> side (Size : 640 x 360, extension : jpg, jpeg) <br>front (Size : 640 x 480, extension : jpg, jpeg) | O         |
 
 [Path Variable]
 
