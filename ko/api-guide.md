@@ -22,9 +22,9 @@
 - 부정행위 감지 API 요청 시 필요한 접근 토큰 발급 API
 
 ```
-URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/token?appKey={appkey}&expiresIn={expiresIn}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -42,7 +42,7 @@ Content-type : application/json;charset=utf-8
 | --- | --- | --- | --- |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| deviceType | String | 장비 구분(pc: PC, mo: Mobile ) | O |
+| deviceType | String | 장비 구분(pc: PC, mo: Mobile) | O |
 | webAuth | JSON | WebAuth 인증 데이터 | O |
 | webAuth.userId | String | 사용자 ID(수험생 번호) | O |
 | webAuth.token | String | **<span style="color:#e11d21">고객사에서 발급한 WebAuth 인증 토큰** | O |
@@ -52,10 +52,10 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
-    "webAuth" : {
+    "userId": "user123",
+    "examNo": "21342",
+    "deviceType": "pc",
+    "webAuth": {
         "userId": "user123",
         "token": "ADs3Fsdfasdfnv23fkja34FX=",
         "via": ""
@@ -80,15 +80,15 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+    "data": {
+        "tokenType": "bearer",
+        "accessToken": "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
+        "expireIn": 600
     }
 }
 ```
@@ -98,9 +98,9 @@ Content-type : application/json;charset=utf-8
 - 발급받은 접근 토큰 취소\(강제 만료를 위한\) API
 
 ``` yaml
-URL : /auth/revoke
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/revoke
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -114,7 +114,7 @@ Content-type : application/json;charset=utf-8
 [요청 본문 예]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+   "accessToken": "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -133,13 +133,13 @@ Content-type : application/json;charset=utf-8
 
 ``` JSON
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    "data": {
+        "accessToken": "XDadhaS3dvns34Fdfnf23=="
     }
 }
 ```
@@ -149,10 +149,10 @@ Content-type : application/json;charset=utf-8
 ### 행동 감지 요청 API
 - 행동 감지 분석을 위한 요청 API
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### 요청
@@ -174,7 +174,7 @@ Content-type : multipart/form-data
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 1280 x 720, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side(Size: 640 x 360, 확장자: .jpg, .jpeg) <br>front(Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
 
 [Path Variable]
 
@@ -219,10 +219,10 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### 음성 감지 요청 API
 - 음성 감지 분석을 위한 요청 API
 ```
-URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### 요청
@@ -269,7 +269,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
+| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 
 [응답 본문 예]
@@ -289,10 +289,10 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 ### Proctor 이벤트 수집 API
 - Proctor에서 발생하는 이벤트를 수집하는 API
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/event
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -315,12 +315,12 @@ Content-type : application/json;charset=utf-8
 | deviceId | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
 | sessionId | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
 | platform | String | OS 정보 | O |
-| eventSource | String | 이벤트 소스( 'Proctor' 고정) | O |
+| eventSource | String | 이벤트 소스('Proctor' 고정) | O |
 | event | JSON | 이벤트 | O |
 | event.status | String | initialize: 로그인, begintTest: 시험 시작 , endTest: 시험 종료<br><span style="color:#e11d21">\* Window / Mac | O |
 | event.keyboard | String | 작업 전환 시도(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
 | event.mouse | String | 시험 영역 밖, 마우스 이동 감지(시험장 외의 영역으로 이동이 불가능한 상황이지만 예외가 발생한 경우)<br><span style="color:#e11d21">* Window | X |
-| event.detection | String | mouseExit : 시험 화면 밖으로 마우스 이동시 (풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit : 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching : 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동시(풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | 이벤트 부가 설명 <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | 기타 이벤트 정보 | X |
 
@@ -370,10 +370,10 @@ Content-type : application/json;charset=utf-8
 ### Proctor 지표 수집 API
 - Proctor에서 응시자의 PC에 설치된 프로그램 정보를 수집하는 API
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/collect
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -398,16 +398,16 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "installApp" : [
+    "installApp": [
         {
-            "displayApp" : "DropBox",
-            "displayVersion" : "3.18.1",
-            "publisher" : "Dropbox, Inc."
+            "displayApp": "DropBox",
+            "displayVersion": "3.18.1",
+            "publisher": "Dropbox, Inc."
         },
         {
-            "displayApp" : "Google Chrome",
-            "displayVersion" : "40.9.2623.111",
-            "publisher" : "Google, Inc."
+            "displayApp": "Google Chrome",
+            "displayVersion": "40.9.2623.111",
+            "publisher": "Google, Inc."
         }
      ]
 }
@@ -436,16 +436,16 @@ Content-type : application/json;charset=utf-8
 ```
 
 
-## 사용자 정보 등록 API
+## 사용자 정보 등록 및 카메라 검증 API
 
 ### 가운데 시선 정보 등록 API
  - 시선 추적 부정행위 감지 시에 사용자(응시자)의 시선 정보를 보정해주기 위한 API
 
 ```
-URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -460,7 +460,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>권장 사항 (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일 <br>권장 사항(Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
 
 [Path Variable]
 
@@ -501,6 +501,105 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 }
 ```
 
+### 측면 카메라 사전 검증 API
+
+* 측면 카메라의 사전 점검을 위해 검증하는 API
+
+``` yaml
+URL: /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
+```
+
+##### 요청
+
+[Header Parameter]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| X-Auth-Token | String | AccessToken | O |
+
+[Request Body]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| file | Binary | 이미지 파일<br>권장 사항(Size: 640 x 360, 확장자: .jpg, .jpeg) | O |
+
+[Path Variable]
+
+| 이름 | 타입 | 설명 | 필수 여부 |
+| --- | --- | --- | --- |
+| appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
+| examNo | String | 시험 번호 | O |
+| userId | String | 사용자 ID(수험생 번호) | O |
+
+[요청 본문 예]
+
+```
+curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
+-F "file=@testImage.jpeg;type=image/jpeg"
+```
+
+##### 응답
+
+[Response Body]
+
+| 이름 | 타입 | 설명 |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | 요청 성공 여부 |
+| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
+| header.resultMessage | String | 요청 결과 메시지 |
+| data.status | Boolean | 카메라 사전 검증 결과(true: 정상, false: 이상 발견) |
+| data.thirdPerson | Boolean | 제3자 존재 여부(true: 제3자 식별, false: 미식별) |
+| data.absence | Boolean | 수험생 부재 여부(true: 수험생 부재 중, false: 수험생 식별) |
+| data.leftHandExistence | Boolean | 왼손 식별 여부(true: 식별, false: 미식별) |
+| data.rightHandExistence | Boolean | 오른손 식별 여부(true: 식별, false: 미식별) |
+| data.faceExistence | Boolean | 얼굴 식별 여부(true: 식별, false: 미식별) |
+
+[응답 본문 예] - 정상 확인 시
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": true,
+		"thirdPerson": false,
+		"absence": false,
+		"leftHandExistence": true,
+		"rightHandExistence": true,
+		"faceExistence": true
+	}
+}
+```
+
+[응답 본문 예] - 부재 시
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": false,
+		"thirdPerson": false,
+		"absence": true,
+		"leftHandExistence": false,
+		"rightHandExistence": false,
+		"faceExistence": false
+	}
+}
+```
+
 
 
 ## 설정 조회 API
@@ -508,10 +607,10 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### 기기제어 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 #####
@@ -557,10 +656,10 @@ Content-type : */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode" : "KR1"
+        "resionCode": "KR1",
         "blockMonitorYn": "Y",
-        "blockSwitchTaskYn" :"Y",
-        "blockScreenYn" : "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn": "Y",
         "blockProgramYn": "Y"
     }
 }
@@ -570,10 +669,10 @@ Content-type : */*
 ### 얼굴 감지 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### 요청
@@ -618,14 +717,14 @@ Content-type : */*
         "resultMessage": "SUCCESS"
     },
     "data": {
-        "appKey" : "bdyfjdff",
-        "regionCode" : "KR1",
-        "faceDetectionYn" : "Y",
-        "faceDetectionThreshold" : 1,
+        "appKey": "bdyfjdff",
+        "regionCode": "KR1",
+        "faceDetectionYn": "Y",
+        "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
-        "faceBottomAngle" : 20,
-        "faceLeftAngle" : 20,
-        "faceRightAngle" : 20
+        "faceBottomAngle": 20,
+        "faceLeftAngle": 20,
+        "faceRightAngle": 20
     }
 }
 ```
@@ -634,10 +733,10 @@ Content-type : */*
 ### 고객 URL 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### 요청
@@ -709,7 +808,7 @@ Content-type : */*
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
 | -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
-| -50008 | 에러 | 요청 값 오류 [{message}] | 요청 파라미터가 잘못된 경우 (메시지에 파라미터 정보 포함) |
+| -50008 | 에러 | 요청 값 오류 [{message}] | 요청 파라미터가 잘못된 경우(메시지에 파라미터 정보 포함) |
 | -50009 | 에러 | 지원되지 않는 Content-Type | 요청 Content-Type 이 지원되지 않는 경우 |
 | -50010 | 에러 | 지원되지 않는 HttpMethod | 요청 Method 가 지원 되지 않은 경우 |
 | -50011 | 에러 | 파일 사이즈 0 또는 파일 식별이 불가 | 첨부 파일이 정상적으로 업로드 되지 않았거나 오류가 있는 경우 |
@@ -731,9 +830,9 @@ Content-type : */*
 - 사용자\(지원자\)의 상태를 주기적으로 확인해 본인임을 확인
 
 ```
-URL : {webAuthUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webAuthUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### 요청
@@ -754,7 +853,7 @@ Content-type : application/json;charset=utf-8
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
     "via": "",
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
@@ -792,42 +891,39 @@ Content-type : application/json;charset=utf-8
 - 분석한 이미지 및 음성 파일에서 부정행위 감시 지 치팅 정보 전달**(콘솔에서 Webhook URL 설정 필수)**
 
 ```
-URL : {webhookUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webhookUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### 요청
-
-[Request Body] GAZE, POSE, BACKGROUND, AUDIO
-
+[Request Body] FRONT, SIDE
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 그룹( FRONT, SIDE, AUDIO 중 하나 응답 ) | O |
+| cheatGroup | String | 치트 그룹(FRONT, SIDE 중 하나 응답) | O |
 | cheatLevel | Integer | 부정행위 레벨(0: Normal,1:Attention\_Low, 2: Attention\_Hight, 3: Warning) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.cheatInfo | JSON | 부정행위 판단 결과 | O |
-| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 시선 추적(얼굴 인식 여부) <br />- 행동 탐지(사람 수) | X |
-| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부(시선 추적 사용 시) | X |
+| cheatData.cheatInfo.absence | Boolean | 부재 여부<br />- 정면 탐지(얼굴 인식 사용 시) <br />- 측면 탐지(사람 수) | X |
+| cheatData.cheatInfo.thirdPerson | Boolean | 제3자 식별 여부<br />- 정면 탐지(얼굴 인식 사용 시) <br />- 측면 탐지(사람 수) | X |
+| cheatData.cheatInfo.faceYawOut | Boolean | 얼굴 상하 각도 이탈 여부(얼굴 인식 사용 시) | X |
+| cheatData.cheatInfo.facePitchOut | Boolean | 얼굴 좌우 각도 이탈 여부(얼굴 인식 사용 시) | X |
 | cheatData.cheatInfo.eyeGazeYawOut | Boolean | 시선 상하 각도 이탈 여부(시선 추적 사용 시) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 시선 좌우 각도 이탈 여부(시선 추적 사용 시) | X |
-| cheatData.cheatInfo.eyeGazeScreenOut | Boolean | 시선 스크린 이탈 여부(사전 시선 등록 완료 시) | X |
 | cheatData.cheatInfo.unstableBackground | Boolean | 배경의 변경 여부(신체 외 백그라운드 변화 사용 시) | X |
-| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) | X |
-| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) | X |
+| cheatData.cheatInfo.leftHandNotExistence |Boolean | 왼손 식별 여부(신체 부위 탐지 사용 시) | X |
+| cheatData.cheatInfo.rightHandNotExistence |Boolean | 오른손 식별 여부(신체 부위 탐지 사용 시) | X |
 | cheatData.gaze | JSON | 시선 추적 정보 | X |
 | cheatData.gaze.numFaces | Integer | 감지된 얼굴 수 | X |
 | cheatData.gaze.facePitch | Integer | 얼굴 상하 각도 | X |
 | cheatData.gaze.faceYaw | Integer | 얼굴 좌우 각도 | X |
 | cheatData.gaze.eyePitch | Integer | 시선 상하 각도 | X |
 | cheatData.gaze.eyeYaw | Integer | 시선 좌우 각도 | X |
-| cheatData.gaze.screenX | float | 시선 X축 위치 | X |
-| cheatData.gaze.screenY | float | 시선 Y축 위치 | X |
 | chaetData.bg[] | List | 배경 변화 정보 | X |
 | chaetData.bg[].isChanged | Boolean | 배경 변화 여부 | X |
 | chaetData.bg[].eventTime | Long |발생 시간(timstamp 10자리) |X |
@@ -835,8 +931,8 @@ Content-type : application/json;charset=utf-8
 | chaetData.bg[].data.bgChangeDetFlag | Boolean |배경 변화 여부 감지 결과 |X |
 | chaetData.bg[].data.allocFlag | Boolean | 배경 이미지 공간 할당 여부(false: 배경 감지 불가) |X |
 | cheatData.pose[] | List | 행동 탐지 정보 |X |
-| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(행동 감지 사용 시) |X |
-| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(행동 감지 사용 시) |X |
+| cheatData.pose[].leftHandNotExistence |Boolean | 왼손 식별 여부(신체 부위 탐지 사용 시) |X |
+| cheatData.pose[].rightHandNotExistence |Boolean | 오른손 식별 여부(신체 부위 탐지 사용 시) |X |
 | cheatData.pose[].eventTime | Long | 이벤트 발생 시간(감지 요청 시간) |X |
 | cheatData.pose[].data | JSON | 행동 탐지 상세 정보 |X |
 | cheatData.pose[].data.numPerson |Integer | 탐지된 사람의 수 |X |
@@ -859,7 +955,7 @@ Content-type : application/json;charset=utf-8
 | cheatData.pose[].data.face.ymax |Integer |얼굴 영역의 바운딩 박스 오른쪽 꼭지점 좌표 정보 |X |
 | cheatData.pose[].data.face.isDetected |Boolean | 얼굴 감지 여부 |X |
 | cheatConfig | JSON | 설정 정보 | O |
-| cheatConfig.pose.poseEstimationYn | Boolean | 행동 탐지 사용 여부 | X |
+| cheatConfig.pose.poseEstimationYn | Boolean | 신체 부위 탐지 사용 여부 | X |
 | cheatConfig.pose.poseEstimationTime | Integer | 왼손/오른손 좌표 미식별 시간(N초) | X |
 | cheatConfig.gaze.gazeTrackingYn | String | 시선(동공) 추적 사용 여부 | X |
 | cheatConfig.gaze.gazeTopAngle | Integer | 동공 각도(상) | X |
@@ -872,124 +968,247 @@ Content-type : application/json;charset=utf-8
 | cheatConfig.gaze.regUserGaze.faceYaw | Integer | 등록된 얼굴 좌우 각도 | X |
 | cheatConfig.gaze.regUserGaze.eyePitch | Integer | 등록된 시선 상하 각도 | X |
 | cheatConfig.gaze.regUserGaze.eyeYaw | Integer | 등록된 시선 좌우 각도 | X |
-| cheatConfig.gaze.regUserGaze.screenX | Integer | 등록된 시선 X 좌표 | X |
-| cheatConfig.gaze.regUserGaze.screenY | Integer | 등록된 시선 Y 좌표 | X |
 | cheatConfig.face.faceDetectionYn | String | 얼굴 인식 사용 여부 | X |
 | cheatConfig.face.faceDetectionThreshold | Integer | 감지 얼굴 수 기준값 | X |
 | cheatConfig.face.faceTopAngle | Integer | 얼굴 각도(상) | X |
 | cheatConfig.face.faceBottomAngle | Integer | 얼굴 각도(하) | X |
 | cheatConfig.face.faceLeftAngle | Integer | 얼굴 각도(좌) | X |
 | cheatConfig.face.faceRightAngle | Integer | 얼굴 각도(우) | X |
-| cheatConfig.face.regUserGaze | JSON | 등록된 시선 정보 | X |
-| cheatConfig.face.regUserGaze.numFaces | Integer | 등록된 감지된 얼굴 수 | X |
-| cheatConfig.face.regUserGaze.facePitch | Integer | 등록된 얼굴 상하 각도 | X |
-| cheatConfig.face.regUserGaze.faceYaw | Integer | 등록된 얼굴 좌우 각도 | X |
-| cheatConfig.face.regUserGaze.eyePitch | Integer | 등록된 시선 상하 각도 | X |
-| cheatConfig.face.regUserGaze.eyeYaw | Integer | 등록된 시선 좌우 각도 | X |
-| cheatConfig.face.regUserGaze.screenX | Integer | 등록된 시선 X 좌표 | X |
-| cheatConfig.face.regUserGaze.screenY | Integer | 등록된 시선 Y 좌표 | X |
-| cheatConfig.bg.bgDetectionYn | String | 신체 이외의 백그라운드 변화 사용 여부 | X |
+| cheatConfig.bg.bgDetectionYn | String | 신체 이외의 변화 사용 여부 | X |
 | cheatConfig.bg.bgDetectionTime | Integer | 백그라운드 변화 탐지 시간(N초) | X |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화  | X |
 
-[요청 본문 예] POSE, GAZE
+[요청 본문 예] FRONT, SIDE
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"usertTest",
-    "examNo":"12345",
-    "cheatGroup":"POSE",
-    "cheatLevel":0,
-    "eventTime": 1621828945,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/test/front/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":false,
-            "thirdPerson":false,
-            "unstableBackground":false,
-            "leftHandNotExistence":false,
-            "rightHandNotExistence":false
-        }
-    },
-    "cheatConfig":{
-        "bg":{
-            "bgDetectionYn":"Y",
-            "bgDetectionTime":20
-        },
-        "pose":{
-            "poseEstimationYn":"Y",
-            "poseEstimationTime":20
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "FRONT",
+	"camLocation": "front",
+	"cheatLevel": 2,
+	"eventTime": 1661483728,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/FRONT/20220826121531000_1e7e9ade-42aa-48bc-899d-a0d54450913d.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"faceYawOut": true,
+			"facePitchOut": false,
+			"eyeGazeYawOut": false,
+			"eyeGazePitchOut": false,
+			"unstableBackground": true,
+			"exceedThreshold": false,
+			"registeredGaze": true
+		},
+		"gaze": {
+			"numFaces": 1,
+			"facePitch": 0,
+			"faceYaw": 26,
+			"faceDistance": 144,
+			"eyePitch": -5,
+			"eyeYaw": -7
+		},
+		"face": {
+			"numFaces": 1,
+			"facePitch": -8.174861,
+			"faceYaw": 24.84945
+		},
+		"bg": [{
+			"eventTime": 1661483728,
+			"data": {
+				"bgChangeDetFlag": true,
+				"allocFlag": true
+			}
+		}],
+		"levels": {
+			"gaze": 0,
+			"bg": 1,
+			"face": 2
+		}
+	},
+	"cheatConfig": {
+		"bg": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"bgDetectionYn": "Y",
+			"bgDetectionTime": 10
+		},
+		"gaze": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"gazeTrackingYn": "Y",
+			"gazeTopAngle": 5,
+			"gazeBottomAngle": 15,
+			"gazeLeftAngle": 10,
+			"gazeRightAngle": 10,
+			"regUserGaze": {
+				"numFaces": 0,
+				"facePitch": 0,
+				"faceYaw": 0,
+				"faceDistance": 0,
+				"eyePitch": 0,
+				"eyeYaw": 0
+			}
+		},
+		"face": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"faceDetectionYn": "Y",
+			"faceDetectionThreshold": 1,
+			"faceTopAngle": 20,
+			"faceBottomAngle": 20,
+			"faceLeftAngle": 20,
+			"faceRightAngle": 20
+		}
+	}
 }
 ```
 
-``` Json
+``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"userTestId",
-    "examNo":"12345",
-    "cheatGroup":"GAZE",
-    "cheatLevel":3,
-    "eventTime": 1621828940,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":true,
-            "thirdPerson":false,
-            "eyeGazeYawOut":false,
-            "eyeGazePitchOut":false,
-        },
-        "gaze":{
-        "numFaces":0,
-        "facePitch":0,
-        "faceYaw":0,
-        "eyePitch":0,
-        "eyeYaw":0,
-        "screenX":0.0,
-        "screenY":0.0
-        }
-    },
-    "cheatConfig":{
-        "gaze":{
-            "gazeTrackingYn":"Y",
-            "gazeTopAngle":24,
-            "gazeBottomAngle":24,
-            "gazeLeftAngle":24,
-            "gazeRightAngle":24,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        },
-        "face":{
-            "faceDetectionYn":"Y",
-            "faceDetectionThreshold":1,
-            "faceTopAngle":25,
-            "faceBottomAngle":25,
-            "faceLeftAngle":25,
-            "faceRightAngle":25,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "SIDE",
+	"camLocation": "side",
+	"cheatLevel": 3,
+	"eventTime": 1661484082,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/SIDE/20220826122123710_863921e0-aa46-4401-80de-65e3d8a2bf0e.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"thirdPerson": false,
+			"leftHandNotExistence": true,
+			"rightHandNotExistence": true,
+			"exceedThreshold": true,
+			"preCheckSideCam": false
+		},
+		"pose": [{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484081
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 335,
+						"ymin": 238,
+						"xmax": 452,
+						"ymax": 358,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484074
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 332,
+						"ymin": 251,
+						"xmax": 449,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484082
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 375,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484076
+			}
+		]
+	},
+	"cheatConfig": {
+		"pose": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"poseEstimationYn": "Y",
+			"poseEstimationTime": 30
+		}
+	}
 }
 ```
 
@@ -1000,45 +1219,31 @@ Content-type : application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (AUDIO 고정) | O |
+| cheatGroup | String | 치트 구분(AUDIO 고정) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatLevel | Integer | 음성 감지 여부(0: 미감지, 1: 감지) | O |
 | cheatData | JSON | 감지 정보 | X |
 | cheatData.voice | Long[] | 음성 감지 시간(초)<br>예) [3,4] > 3,4초에 음성 감지 | X |
-| validation | String | 유효성 체크 <br> *사용자 ip, 인입시간 ts(Unix 13 digit Timestamp) 값을 AES256 암호화한 정보 <br> 예) {"ip":"127.0.0.1", "ts": 1621840609833} JSON 텍스트를 AES256 암호화  | X |
+
 
 [요청 본문 예]
 
 음성 감지
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo": "12345",
-    "cheatGroup": "AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl": "https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/AUDIO/demoWebTest/test/20210707123916831.webm",
-    "cheatLevel" : 1,
-    "cheatData" : {
-        "voice": [1,2,3]
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-}
-```
-
-음성 미감지
-
-``` json
-{
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo":"12345",
-    "cheatGroup":"AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-    "cheatLevel" : 0,
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "AUDIO",
+	"cheatLevel": 1,
+	"eventTime": 1661489862,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/AUDIO/demoWebTest/test/20220826135742960_4d99727c-af6a-4fb5-900e-507460587284.webm",
+	"cheatData": {
+		"voice": [
+			2
+		]
+	}
 }
 ```
 
@@ -1049,10 +1254,10 @@ Content-type : application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (PROCTOR 고정) | O |
+| cheatGroup | String | 치트 구분(PROCTOR 고정) | O |
 | platformOs | String | OS 정보 | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
-| cheatLevel | Integer | 치트 발생 여부 (1) 고정 | O |
+| cheatLevel | Integer | 치트 발생 여부(1) 고정 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.keyboard | String | 키보드 이벤트 | X |
 | cheatData.mouse | String | 마우스 이벤트 | X |
@@ -1068,9 +1273,9 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "appKey": "testAppKey",
     "userId": "usertTest",
-    "platformOs" :"Windows10",
+    "platformOs":"Windows10",
     "examNo":"12345",
     "cheatGroup": "PROCTOR",
     "eventTime": 1621828940,
@@ -1079,13 +1284,13 @@ Content-type : application/json;charset=utf-8
         "keyboard": "Attempting switch program."
     },
     "cheatConfig": {
-        "appKey" : "bdyfjdff",
+        "appKey": "bdyfjdff",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn":"Y",
         "blockProgramYn":"Y"
     },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
