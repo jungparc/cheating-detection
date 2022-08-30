@@ -174,7 +174,7 @@ Content-type: multipart/form-data
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
-| file | Binary | 画像ファイル <br>画像推奨事項 <br> side (Size：640 x 360、拡張子：jpg, jpeg) <br>front (Size：640 x 480、拡張子：jpg, jpeg) | O |
+| file | Binary | 画像ファイル <br>画像推奨事項 <br> side (Size：640 x 360、拡張子：.jpg、.jpeg) <br>front (Size：640 x 480、拡張子：.jpg、.jpeg) | O |
 
 [Path Variable]
 
@@ -243,7 +243,7 @@ Content-type: multipart/form-data
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
-| file | Binary | 音声ファイル<br>(サポート形式 .wav, .wave, .webm)<br>(推奨16bit、16,000 sampling rate、mono channel) | O |
+| file | Binary | 音声ファイル<br>(サポート形式 .wav、.wave、.webm)<br>(推奨16bit、16,000 sampling rate、mono channel) | O |
 
 [Path Variable]
 
@@ -460,7 +460,7 @@ Content-type: application/json;charset=utf-8
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
-| file | Binary | 画像ファイル <br>推奨事項(Size：640 x 480、拡張子：jpg, jpeg) | O |
+| file | Binary | 画像ファイル <br>推奨事項(Size：640 x 480、拡張子：.jpg、.jpeg) | O |
 
 [Path Variable]
 
@@ -806,7 +806,7 @@ Content-type: application/json;charset=utf-8
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| cheatGroup | String | チートグループ( FRONT, SIDEのいずれかをレスポンス) | O |
+| cheatGroup | String | チートグループ( FRONT、SIDEのいずれかをレスポンス) | O |
 | cheatLevel | Integer | 不正行為レベル(0：Normal、1：Attention\_Low、2：Attention\_Hight、3：Warning) | O |
 | eventTime | Long | イベント発生時間(timestamp) | O |
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
@@ -879,7 +879,7 @@ Content-type: application/json;charset=utf-8
 | cheatConfig.bg.bgDetectionTime | Integer | バックグラウンド変化検知時間(N秒) | X |
 
 
-[リクエスト本文例] FRONT, SIDE
+[リクエスト本文例] FRONT、SIDE
 
 ``` json
 {

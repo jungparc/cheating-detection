@@ -175,7 +175,7 @@ Content-type: multipart/form-data
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Image recommendation<br> side (Size: 640 x 360, extension: jpg, jpeg) <br>front (Size: 640 x 480, extension: jpg, jpeg) | O         |
+| file | Binary | Image file <br>Image recommendation<br> side (Size: 640 x 360, extension: .jpg, .jpeg) <br>front (Size: 640 x 480, extension: .jpg, .jpeg) | O         |
 
 [Path Variable]
 
@@ -461,7 +461,7 @@ Content-type: application/json;charset=utf-8
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Recommended (Size: 640 x 480, Extension: jpg, jpeg) | O         |
+| file | Binary | Image file <br>Recommended (Size: 640 x 480, Extension: .jpg, .jpeg) | O         |
 
 [Path Variable]
 
