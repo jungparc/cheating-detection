@@ -320,7 +320,7 @@ Content-type: application/json;charset=utf-8
 | event.status | String | initialize: 로그인, begintTest: 시험 시작 , endTest: 시험 종료<br><span style="color:#e11d21">\* Window / Mac | O |
 | event.keyboard | String | 작업 전환 시도(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
 | event.mouse | String | 시험 영역 밖, 마우스 이동 감지(시험장 외의 영역으로 이동이 불가능한 상황이지만 예외가 발생한 경우)<br><span style="color:#e11d21">* Window | X |
-| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동시(풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동 시(풀스크린 및 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도 시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도 시 <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | 이벤트 부가 설명 <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | 기타 이벤트 정보 | X |
 
