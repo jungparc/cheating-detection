@@ -42,7 +42,7 @@ Content-type: application/json;charset=utf-8
 | --- | --- | --- | --- |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| deviceType | String | デバイス区分(pc：PC、mo：Mobile ) | O |
+| deviceType | String | デバイス区分(pc：PC、mo：Mobile) | O |
 | webAuth | JSON | WebAuth認証データ | O |
 | webAuth.userId | String | ユーザーID(受験生番号) | O |
 | webAuth.token | String | **<span style="color:#e11d21">顧客が発行したWebAuth認証トークン</span>** | O |
@@ -174,7 +174,7 @@ Content-type: multipart/form-data
 
 | 名前 | タイプ | 説明 | 必須かどうか |
 | --- | --- | --- | --- |
-| file | Binary | 画像ファイル <br>画像推奨事項 <br> side (Size：640 x 360、拡張子：.jpg、.jpeg) <br>front (Size：640 x 480、拡張子：.jpg、.jpeg) | O |
+| file | Binary | 画像ファイル <br>画像推奨事項 <br> side(Size：640 x 360、拡張子：.jpg、.jpeg) <br>front(Size：640 x 480、拡張子：.jpg、.jpeg) | O |
 
 [Path Variable]
 
@@ -315,7 +315,7 @@ Content-type: application/json;charset=utf-8
 | deviceId | String | UUID形式のデバイス識別子 - アプリインストール時に発行 | O |
 | sessionId | String | UUID形式のセッションID - ブラウザローディング時に発行 | O |
 | platform | String | OS情報 | O |
-| eventSource | String | イベントソース( 「Proctor」固定) | O |
+| eventSource | String | イベントソース(「Proctor」固定) | O |
 | event | JSON | イベント | O |
 | event.status | String | initialize：ログイン、 begintTest：テスト開始、endTest：テスト終了<br><span style="color:#e11d21">\* Window / Mac | O |
 | event.keyboard | String | タスクの切り替えを試行(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
@@ -806,7 +806,7 @@ Content-type: application/json;charset=utf-8
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | userId | String | ユーザーID(受験生番号) | O |
 | examNo | String | 試験番号 | O |
-| cheatGroup | String | チートグループ( FRONT、SIDEのいずれかをレスポンス) | O |
+| cheatGroup | String | チートグループ(FRONT、SIDEのいずれかをレスポンス) | O |
 | cheatLevel | Integer | 不正行為レベル(0：Normal、1：Attention\_Low、2：Attention\_Hight、3：Warning) | O |
 | eventTime | Long | イベント発生時間(timestamp) | O |
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |

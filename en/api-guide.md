@@ -35,7 +35,7 @@ Content-type: application/json;charset=utf-8
 | Name      | Type    | Description                           | Necessity |
 | --------- | ------- | ------------------------------ | --------- |
 | appKey    | String  | Integrated Appkey or Service Appkey | O         |
-| expiresIn | Integer | Token Time Limit ((sec)) <br> 0 < expiresIn <= 7200            | O         |
+| expiresIn | Integer | Token Time Limit (sec) <br> 0 < expiresIn <= 7200            | O         |
 
 [Request Body]
 
@@ -43,7 +43,7 @@ Content-type: application/json;charset=utf-8
 | -------------- | ------ | ------------------------------------------------------------ | --------- |
 | userId         | String | User ID (student number)                                       | O         |
 | examNo         | String | Exam number                                                    | O         |
-| deviceType     | String | Device category (pc: PC, mo: Mobile )                               | O         |
+| deviceType     | String | Device category (pc: PC, mo: Mobile)                               | O         |
 | webAuth        | JSON   | WebAuth authentication data                                          | O         |
 | webAuth.userId | String | User ID (student number)                                       | O         |
 | webAuth.token  | String | **<span style="color:#e11d21">WebAuth authentication token issued by the client** | O         |
@@ -75,7 +75,7 @@ Content-type: application/json;charset=utf-8
 | header.resultMessage | String  | Request result message                    |
 | data.tokenType       | String  | Fix to token type and bearer            |
 | data.accessToken     | String  | User access tokens                    |
-| data.expiresIn       | Integer | Access token expiry time(sec)             |
+| data.expiresIn       | Integer | Access token expiry time (sec)             |
 
 [Response body example]
 
@@ -698,7 +698,7 @@ Content-type: */*
 | 0      | Success | SUCCESS                         | Normally processed                                                   |
 | -20001 | Error | Access Token Expired                  | When requesting with access tokens that have been expired or requested to be canceled |
 | -20002 | Error | Invalid access token         | When requesting with invalid access tokens                         |
-| -20003 | Error | WebAuthUrl Communication Error       | Occurs when unable to proceed communication(access) with WebAuthUrl             |
+| -20003 | Error | WebAuthUrl Communication Error       | Occurs when unable to proceed communication (access) with WebAuthUrl             |
 | -20004 | Error | WebAuth authentication Failure                | When failed to authenticate with WebAuth                                        |
 | -20005 | Error | Error in access by unauthenticated users | Unable to authenticate due to X-Auth-Token field omitted                   |
 | -20006 | Error | Error in access token type             | Occurs when the X-Auth-Token head bearer is omitted                       |
@@ -746,7 +746,7 @@ Content-type: application/json;charset=utf-8
 | userId     | String | User ID (student number)                                       | O         |
 | token      | String | WebAuth authentication token                                            | O         |
 | via        | String | Other Information                                                    | X         |
-| validation | String | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
+| validation | String | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts (Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
 [request body example]
 
@@ -807,13 +807,13 @@ Content-type: application/json;charset=utf-8
 | appKey                                    | String  | Integrated Appkey or Service Appkey                               | O         |
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
-| cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE )             | O         |
+| cheatGroup                                | String  | Cheat group (Respond as one of FRONT, SIDE)             | O         |
 | cheatLevel                                | Integer | Cheating activity level (0: Normal,1: Attention\_Low, 2: Attention\_High, 3: Warning) | O         |
-| eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
+| eventTime                                 | Long    | Event occurrence time (timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
 | cheatData.cheatInfo                       | JSON    | Cheating judgment result                                           | O         |
-| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person) | X         |
+| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking (Face recognition) <br />- Behavior detection (Number of person) | X         |
 | cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
 | cheatData.cheatInfo.eyeGazeYawOut         | Boolean | Gaze up/down angle departure (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazePitchOut       | Boolean | Gaze left/right angledeparture (if gaze tracking is in use)                  | X         |
@@ -831,7 +831,7 @@ Content-type: application/json;charset=utf-8
 | chaetData.bg[].eventTime                  | Long    | Occurrence time (timestamp 10 digits)                                   | X         |
 | chaetData.bg[].data                       | JSON    | Background detection details                                          | X         |
 | chaetData.bg[].data.bgChangeDetFlag       | Boolean | Background change detection result                                     | X         |
-| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation(false: background detection failed)            | X         |
+| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation (false: background detection failed)            | X         |
 | cheatData.pose[]                          | List    | Motion detection information                                               | X         |
 | cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (if motion detection is in use)                            | X         |
 | cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (if motion detection is in use)                          | X         |
@@ -875,7 +875,7 @@ Content-type: application/json;charset=utf-8
 | cheatConfig.face.faceTopAngle             | Integer | Face angle (top)                                                | X         |
 | cheatConfig.face.faceBottomAngle          | Integer | Face angle (bottom)                                                | X         |
 | cheatConfig.face.faceLeftAngle            | Integer | Face angle (left)                                                | X         |
-| cheatConfig.face.faceRightAngle           | Integer | Face angle(right)                                                | X         |
+| cheatConfig.face.faceRightAngle           | Integer | Face angle (right)                                                | X         |
 | cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of background change other than the body is used                        | X         |
 | cheatConfig.bg.bgDetectionTime            | Integer | Background change detection time (N sec)                               | X         |
 
@@ -1122,11 +1122,11 @@ Content-type: application/json;charset=utf-8
 | userId          | String  | User ID (student number)                                       | O         |
 | examNo          | String  | Exam number                                                    | O         |
 | cheatGroup      | String  | Cheat classification (Fix AUDIO)                                       | O         |
-| eventTime       | Long    | Event occurrence time(timestamp)                                  | O         |
+| eventTime       | Long    | Event occurrence time (timestamp)                                  | O         |
 | fileUrl         | String  | Image or audio file storage path                         | O         |
 | cheatLevel      | Integer | Audio detection (0: undetected, 1: detected)                           | O         |
 | cheatData       | JSON    | Detection information                                                    | X         |
-| cheatData.voice | Long[]  | Audio detection time (sec )<br> ex ) [3,4] > audio detection at 3 and 4 sec          | X         |
+| cheatData.voice | Long[]  | Audio detection time (sec)<br> ex) [3,4] > audio detection at 3 and 4 sec          | X         |
 
 [request body example]
 
@@ -1157,7 +1157,7 @@ Voice detection
 | examNo                        | String  | Exam number                                                    | O         |
 | cheatGroup                    | String  | Cheat classification (Fix PROCTOR)                                     | O         |
 | platformOs                    | String  | OS information                                                      | O         |
-| eventTime                     | Long    | Event occurrence time(timestamp)                                  | O         |
+| eventTime                     | Long    | Event occurrence time (timestamp)                                  | O         |
 | cheatLevel                    | Integer | Cheating occurrence (1) fixed                                      | O         |
 | cheatData                     | JSON    | Cheating activity information                                                | O         |
 | cheatData.keyboard            | String  | Keyboard event                                                | X         |
@@ -1168,7 +1168,7 @@ Voice detection
 | cheatConfig.blockSwitchTaskYn | String  | Whether blocked job switching or not                                          | O         |
 | cheatConfig.blockScreenYn     | String  | Whether prevented exit from full screen                                     | O         |
 | cheatConfig.blockProgramYn    | String  | Application/program blocked or not                              | O         |
-| validation                    | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
+| validation                    | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts (Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
 [request body example]
 

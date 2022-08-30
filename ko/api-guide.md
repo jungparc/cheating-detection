@@ -42,7 +42,7 @@ Content-type: application/json;charset=utf-8
 | --- | --- | --- | --- |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| deviceType | String | 장비 구분(pc: PC, mo: Mobile ) | O |
+| deviceType | String | 장비 구분(pc: PC, mo: Mobile) | O |
 | webAuth | JSON | WebAuth 인증 데이터 | O |
 | webAuth.userId | String | 사용자 ID(수험생 번호) | O |
 | webAuth.token | String | **<span style="color:#e11d21">고객사에서 발급한 WebAuth 인증 토큰** | O |
@@ -174,7 +174,7 @@ Content-type: multipart/form-data
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size: 640 x 360, 확장자: .jpg, .jpeg) <br>front (Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
+| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side(Size: 640 x 360, 확장자: .jpg, .jpeg) <br>front(Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
 
 [Path Variable]
 
@@ -315,12 +315,12 @@ Content-type: application/json;charset=utf-8
 | deviceId | String | UUID 형태의 디바이스 식별자 - 앱 설치 시 발급 | O |
 | sessionId | String | UUID 형태의 세션 ID - 브라우저 로딩 시 발급 | O |
 | platform | String | OS 정보 | O |
-| eventSource | String | 이벤트 소스( 'Proctor' 고정) | O |
+| eventSource | String | 이벤트 소스('Proctor' 고정) | O |
 | event | JSON | 이벤트 | O |
 | event.status | String | initialize: 로그인, begintTest: 시험 시작 , endTest: 시험 종료<br><span style="color:#e11d21">\* Window / Mac | O |
 | event.keyboard | String | 작업 전환 시도(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
 | event.mouse | String | 시험 영역 밖, 마우스 이동 감지(시험장 외의 영역으로 이동이 불가능한 상황이지만 예외가 발생한 경우)<br><span style="color:#e11d21">* Window | X |
-| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동시 (풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동시(풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | 이벤트 부가 설명 <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | 기타 이벤트 정보 | X |
 
@@ -460,7 +460,7 @@ Content-type: application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>권장 사항 (Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
+| file | Binary | 이미지 파일 <br>권장 사항(Size: 640 x 480, 확장자: .jpg, .jpeg) | O |
 
 [Path Variable]
 
@@ -524,7 +524,7 @@ Content-type: application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일<br>권장 사항 (Size: 640 x 360, 확장자: .jpg, .jpeg) | O |
+| file | Binary | 이미지 파일<br>권장 사항(Size: 640 x 360, 확장자: .jpg, .jpeg) | O |
 
 [Path Variable]
 
@@ -553,12 +553,12 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
-| data.status | Boolean | 카메라 사전 검증 결과 (true: 정상, false: 이상 발견) |
-| data.thirdPerson | Boolean | 제3자 존재 여부 (true: 제3자 식별, false: 미식별) |
-| data.absence | Boolean | 수험생 부재 여부 (true: 수험생 부재 중, false: 수험생 식별) |
-| data.leftHandExistence | Boolean | 왼손 식별 여부 (true: 식별, false: 미식별) |
-| data.rightHandExistence | Boolean | 오른손 식별 여부 (true: 식별, false: 미식별) |
-| data.faceExistence | Boolean | 얼굴 식별 여부 (true: 식별, false: 미식별) |
+| data.status | Boolean | 카메라 사전 검증 결과(true: 정상, false: 이상 발견) |
+| data.thirdPerson | Boolean | 제3자 존재 여부(true: 제3자 식별, false: 미식별) |
+| data.absence | Boolean | 수험생 부재 여부(true: 수험생 부재 중, false: 수험생 식별) |
+| data.leftHandExistence | Boolean | 왼손 식별 여부(true: 식별, false: 미식별) |
+| data.rightHandExistence | Boolean | 오른손 식별 여부(true: 식별, false: 미식별) |
+| data.faceExistence | Boolean | 얼굴 식별 여부(true: 식별, false: 미식별) |
 
 [응답 본문 예] - 정상 확인 시
 
@@ -808,7 +808,7 @@ Content-type: */*
 | -50001 | 에러 | 요청 파일이 누락 | 파일이 첨부 되지 않은 경우 |
 | -50002 | 에러 | 파일 사이즈 초과 | 첨부 파일이 1G 초과 인 경우 발생 |
 | -50005 | 에러 | 첨부 필드 누락 오류 | 첨부 파일 필드가 Form Data 누락된 경우
-| -50008 | 에러 | 요청 값 오류 [{message}] | 요청 파라미터가 잘못된 경우 (메시지에 파라미터 정보 포함) |
+| -50008 | 에러 | 요청 값 오류 [{message}] | 요청 파라미터가 잘못된 경우(메시지에 파라미터 정보 포함) |
 | -50009 | 에러 | 지원되지 않는 Content-Type | 요청 Content-Type 이 지원되지 않는 경우 |
 | -50010 | 에러 | 지원되지 않는 HttpMethod | 요청 Method 가 지원 되지 않은 경우 |
 | -50011 | 에러 | 파일 사이즈 0 또는 파일 식별이 불가 | 첨부 파일이 정상적으로 업로드 되지 않았거나 오류가 있는 경우 |
@@ -903,7 +903,7 @@ Content-type: application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 그룹( FRONT, SIDE 중 하나 응답 ) | O |
+| cheatGroup | String | 치트 그룹(FRONT, SIDE 중 하나 응답) | O |
 | cheatLevel | Integer | 부정행위 레벨(0: Normal,1:Attention\_Low, 2: Attention\_Hight, 3: Warning) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
@@ -1219,7 +1219,7 @@ Content-type: application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (AUDIO 고정) | O |
+| cheatGroup | String | 치트 구분(AUDIO 고정) | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
 | fileUrl | String | 이미지 파일 또는 음성 파일 저장 경로 | O |
 | cheatLevel | Integer | 음성 감지 여부(0: 미감지, 1: 감지) | O |
@@ -1254,10 +1254,10 @@ Content-type: application/json;charset=utf-8
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | userId | String | 사용자 ID(수험생 번호) | O |
 | examNo | String | 시험 번호 | O |
-| cheatGroup | String | 치트 구분 (PROCTOR 고정) | O |
+| cheatGroup | String | 치트 구분(PROCTOR 고정) | O |
 | platformOs | String | OS 정보 | O |
 | eventTime | Long | 이벤트 발생 시간(timestamp) | O |
-| cheatLevel | Integer | 치트 발생 여부 (1) 고정 | O |
+| cheatLevel | Integer | 치트 발생 여부(1) 고정 | O |
 | cheatData | JSON | 부정행위 정보 | O |
 | cheatData.keyboard | String | 키보드 이벤트 | X |
 | cheatData.mouse | String | 마우스 이벤트 | X |
