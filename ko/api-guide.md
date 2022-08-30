@@ -22,9 +22,9 @@
 - 부정행위 감지 API 요청 시 필요한 접근 토큰 발급 API
 
 ```
-URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/token?appKey={appkey}&expiresIn={expiresIn}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -52,10 +52,10 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
-    "webAuth" : {
+    "userId": "user123",
+    "examNo": "21342",
+    "deviceType": "pc",
+    "webAuth": {
         "userId": "user123",
         "token": "ADs3Fsdfasdfnv23fkja34FX=",
         "via": ""
@@ -80,15 +80,15 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+    "data": {
+        "tokenType": "bearer",
+        "accessToken": "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
+        "expireIn": 600
     }
 }
 ```
@@ -98,9 +98,9 @@ Content-type : application/json;charset=utf-8
 - 발급받은 접근 토큰 취소\(강제 만료를 위한\) API
 
 ``` yaml
-URL : /auth/revoke
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/revoke
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -114,7 +114,7 @@ Content-type : application/json;charset=utf-8
 [요청 본문 예]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+   "accessToken": "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -133,13 +133,13 @@ Content-type : application/json;charset=utf-8
 
 ``` JSON
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    "data": {
+        "accessToken": "XDadhaS3dvns34Fdfnf23=="
     }
 }
 ```
@@ -149,10 +149,10 @@ Content-type : application/json;charset=utf-8
 ### 행동 감지 요청 API
 - 행동 감지 분석을 위한 요청 API
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### 요청
@@ -174,7 +174,7 @@ Content-type : multipart/form-data
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size : 640 x 360, 확장자 : jpg, jpeg) <br>front (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일 <br>이미지 권장 사항 <br> side (Size: 640 x 360, 확장자: jpg, jpeg) <br>front (Size: 640 x 480, 확장자: jpg, jpeg) | O |
 
 [Path Variable]
 
@@ -219,10 +219,10 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### 음성 감지 요청 API
 - 음성 감지 분석을 위한 요청 API
 ```
-URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### 요청
@@ -269,7 +269,7 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
+| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
 
 [응답 본문 예]
@@ -289,10 +289,10 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 ### Proctor 이벤트 수집 API
 - Proctor에서 발생하는 이벤트를 수집하는 API
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/event
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -320,7 +320,7 @@ Content-type : application/json;charset=utf-8
 | event.status | String | initialize: 로그인, begintTest: 시험 시작 , endTest: 시험 종료<br><span style="color:#e11d21">\* Window / Mac | O |
 | event.keyboard | String | 작업 전환 시도(Attempting switch program.)<br><span style="color:#e11d21">\* Window | X |
 | event.mouse | String | 시험 영역 밖, 마우스 이동 감지(시험장 외의 영역으로 이동이 불가능한 상황이지만 예외가 발생한 경우)<br><span style="color:#e11d21">* Window | X |
-| event.detection | String | mouseExit : 시험 화면 밖으로 마우스 이동시 (풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit : 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching : 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: 시험 화면 밖으로 마우스 이동시 (풀스크린 & 미러링 상태에서는 전송되지 않음) <br>fullScreenExit: 풀스크린 이탈 방지 상태에서 풀스크린 이탈 시도시 <br>processSwitching: 작업 전환 차단 상태에서 작업 전환 시도시 <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | 이벤트 부가 설명 <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | 기타 이벤트 정보 | X |
 
@@ -370,10 +370,10 @@ Content-type : application/json;charset=utf-8
 ### Proctor 지표 수집 API
 - Proctor에서 응시자의 PC에 설치된 프로그램 정보를 수집하는 API
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/collect
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -398,16 +398,16 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "installApp" : [
+    "installApp": [
         {
-            "displayApp" : "DropBox",
-            "displayVersion" : "3.18.1",
-            "publisher" : "Dropbox, Inc."
+            "displayApp": "DropBox",
+            "displayVersion": "3.18.1",
+            "publisher": "Dropbox, Inc."
         },
         {
-            "displayApp" : "Google Chrome",
-            "displayVersion" : "40.9.2623.111",
-            "publisher" : "Google, Inc."
+            "displayApp": "Google Chrome",
+            "displayVersion": "40.9.2623.111",
+            "publisher": "Google, Inc."
         }
      ]
 }
@@ -442,10 +442,10 @@ Content-type : application/json;charset=utf-8
  - 시선 추적 부정행위 감지 시에 사용자(응시자)의 시선 정보를 보정해주기 위한 API
 
 ```
-URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -460,7 +460,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일 <br>권장 사항 (Size : 640 x 480, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일 <br>권장 사항 (Size: 640 x 480, 확장자: jpg, jpeg) | O |
 
 [Path Variable]
 
@@ -506,10 +506,10 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 * 측면 카메라의 사전 점검을 위해 검증하는 API
 
 ``` yaml
-URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### 요청
@@ -524,7 +524,7 @@ Content-type : application/json;charset=utf-8
 
 | 이름 | 타입 | 설명 | 필수 여부 |
 | --- | --- | --- | --- |
-| file | Binary | 이미지 파일<br>권장 사항 (Size : 640 x 360, 확장자 : jpg, jpeg) | O |
+| file | Binary | 이미지 파일<br>권장 사항 (Size: 640 x 360, 확장자: jpg, jpeg) | O |
 
 [Path Variable]
 
@@ -553,12 +553,12 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 | header.isSuccessful | Boolean | 요청 성공 여부 |
 | header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
-| data.status | Boolean | 카메라 사전 검증 결과 (true : 정상, false : 이상 발견) |
-| data.thirdPerson | Boolean | 제3자 존재 여부 (true : 제3자 식별, false: 미식별) |
-| data.absence | Boolean | 수험생 부재 여부 (true : 수험생 부재 중, false : 수험생 식별) |
-| data.leftHandExistence | Boolean | 왼손 식별 여부 (true : 식별, false : 미식별) |
-| data.rightHandExistence | Boolean | 오른손 식별 여부 (true : 식별, false : 미식별) |
-| data.faceExistence | Boolean | 얼굴 식별 여부 (true : 식별, false : 미식별) |
+| data.status | Boolean | 카메라 사전 검증 결과 (true: 정상, false: 이상 발견) |
+| data.thirdPerson | Boolean | 제3자 존재 여부 (true: 제3자 식별, false: 미식별) |
+| data.absence | Boolean | 수험생 부재 여부 (true: 수험생 부재 중, false: 수험생 식별) |
+| data.leftHandExistence | Boolean | 왼손 식별 여부 (true: 식별, false: 미식별) |
+| data.rightHandExistence | Boolean | 오른손 식별 여부 (true: 식별, false: 미식별) |
+| data.faceExistence | Boolean | 얼굴 식별 여부 (true: 식별, false: 미식별) |
 
 [응답 본문 예] - 정상 확인 시
 
@@ -607,10 +607,10 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 ### 기기제어 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 #####
@@ -656,10 +656,10 @@ Content-type : */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode" : "KR1"
+        "resionCode": "KR1",
         "blockMonitorYn": "Y",
-        "blockSwitchTaskYn" :"Y",
-        "blockScreenYn" : "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn": "Y",
         "blockProgramYn": "Y"
     }
 }
@@ -669,10 +669,10 @@ Content-type : */*
 ### 얼굴 감지 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### 요청
@@ -717,14 +717,14 @@ Content-type : */*
         "resultMessage": "SUCCESS"
     },
     "data": {
-        "appKey" : "bdyfjdff",
-        "regionCode" : "KR1",
-        "faceDetectionYn" : "Y",
-        "faceDetectionThreshold" : 1,
+        "appKey": "bdyfjdff",
+        "regionCode": "KR1",
+        "faceDetectionYn": "Y",
+        "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
-        "faceBottomAngle" : 20,
-        "faceLeftAngle" : 20,
-        "faceRightAngle" : 20
+        "faceBottomAngle": 20,
+        "faceLeftAngle": 20,
+        "faceRightAngle": 20
     }
 }
 ```
@@ -733,10 +733,10 @@ Content-type : */*
 ### 고객 URL 설정조회
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### 요청
@@ -830,9 +830,9 @@ Content-type : */*
 - 사용자\(지원자\)의 상태를 주기적으로 확인해 본인임을 확인
 
 ```
-URL : {webAuthUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webAuthUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### 요청
@@ -853,7 +853,7 @@ Content-type : application/json;charset=utf-8
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
     "via": "",
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
@@ -891,9 +891,9 @@ Content-type : application/json;charset=utf-8
 - 분석한 이미지 및 음성 파일에서 부정행위 감시 지 치팅 정보 전달**(콘솔에서 Webhook URL 설정 필수)**
 
 ```
-URL : {webhookUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webhookUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### 요청
@@ -1275,7 +1275,7 @@ Content-type : application/json;charset=utf-8
 {
     "appKey": "testAppKey",
     "userId": "usertTest",
-    "platformOs" :"Windows10",
+    "platformOs":"Windows10",
     "examNo":"12345",
     "cheatGroup": "PROCTOR",
     "eventTime": 1621828940,
@@ -1284,13 +1284,13 @@ Content-type : application/json;charset=utf-8
         "keyboard": "Attempting switch program."
     },
     "cheatConfig": {
-        "appKey" : "bdyfjdff",
+        "appKey": "bdyfjdff",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn":"Y",
         "blockProgramYn":"Y"
     },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 

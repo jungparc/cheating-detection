@@ -22,9 +22,9 @@
 - 不正行為検知APIのリクエスト時に必要なアクセストークン発行API
 
 ```
-URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/token?appKey={appkey}&expiresIn={expiresIn}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### リクエスト
@@ -52,10 +52,10 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
-    "webAuth" : {
+    "userId": "user123",
+    "examNo": "21342",
+    "deviceType": "pc",
+    "webAuth": {
         "userId": "user123",
         "token": "ADs3Fsdfasdfnv23fkja34FX=",
         "via": ""
@@ -80,15 +80,15 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+    "data": {
+        "tokenType": "bearer",
+        "accessToken": "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
+        "expireIn": 600
     }
 }
 ```
@@ -98,9 +98,9 @@ Content-type : application/json;charset=utf-8
 - 発行されたアクセストークンのキャンセル\(強制的に無効にするための\) API
 
 ``` yaml
-URL : /auth/revoke
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/revoke
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### リクエスト
@@ -114,7 +114,7 @@ Content-type : application/json;charset=utf-8
 [リクエスト本文例]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+   "accessToken": "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -133,13 +133,13 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    "data": {
+        "accessToken": "XDadhaS3dvns34Fdfnf23=="
     }
 }
 ```
@@ -149,10 +149,10 @@ Content-type : application/json;charset=utf-8
 ### 行動検知リクエストAPI
 - 行動検知を分析するためのリクエストAPI
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### リクエスト
@@ -219,10 +219,10 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### 音声検知リクエストAPI
 - 音声検知を分析するためのリクエストAPI
 ```
-URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### リクエスト
@@ -289,10 +289,10 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 ### Proctorイベント収集API
 - Proctorで発生するイベントを収集するAPI
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/event
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### リクエスト
@@ -370,10 +370,10 @@ Content-type : application/json;charset=utf-8
 ### Proctor指標収集API
 - Proctorで受験者のPCにインストールされたプログラム情報を収集するAPI
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/collect
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### リクエスト
@@ -398,16 +398,16 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "installApp" : [
+    "installApp": [
         {
-            "displayApp" : "DropBox",
-            "displayVersion" : "3.18.1",
-            "publisher" : "Dropbox, Inc."
+            "displayApp": "DropBox",
+            "displayVersion": "3.18.1",
+            "publisher": "Dropbox, Inc."
         },
         {
-            "displayApp" : "Google Chrome",
-            "displayVersion" : "40.9.2623.111",
-            "publisher" : "Google, Inc."
+            "displayApp": "Google Chrome",
+            "displayVersion": "40.9.2623.111",
+            "publisher": "Google, Inc."
         }
      ]
 }
@@ -442,10 +442,10 @@ Content-type : application/json;charset=utf-8
  - 視線追跡不正行為の検知時にユーザー(受験者)の視線情報を補正するためのAPI
 
 ```
-URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### リクエスト
@@ -508,10 +508,10 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### 機器制御設定照会
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : application/x-www-form-urlencoded;charset=utf-8
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: application/x-www-form-urlencoded;charset=utf-8
 ```
 
 #####
@@ -557,10 +557,10 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode" : "KR1"
+        "resionCode": "KR1",
         "blockMonitorYn": "Y",
-        "blockSwitchTaskYn" :"Y",
-        "blockScreenYn" : "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn": "Y",
         "blockProgramYn": "Y"
     }
 }
@@ -570,10 +570,10 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 ### 顔検出設定照会
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : application/x-www-form-urlencoded;charset=utf-8
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: application/x-www-form-urlencoded;charset=utf-8
 ```
 
 ##### リクエスト
@@ -618,14 +618,14 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
         "resultMessage": "SUCCESS"
     },
     "data": {
-        "appKey" : "bdyfjdff",
-        "regionCode" : "KR1",
-        "faceDetectionYn" : "Y",
-        "faceDetectionThreshold" : 1,
+        "appKey": "bdyfjdff",
+        "regionCode": "KR1",
+        "faceDetectionYn": "Y",
+        "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
-        "faceBottomAngle" : 20,
-        "faceLeftAngle" : 20,
-        "faceRightAngle" : 20
+        "faceBottomAngle": 20,
+        "faceLeftAngle": 20,
+        "faceRightAngle": 20
     }
 }
 ```
@@ -634,10 +634,10 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 ### 顧客URL設定照会
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : application/x-www-form-urlencoded;charset=utf-8
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: application/x-www-form-urlencoded;charset=utf-8
 ```
 
 ##### リクエスト
@@ -731,9 +731,9 @@ Content-type : application/x-www-form-urlencoded;charset=utf-8
 - ユーザー\(志願者\)の状態を定期的に確認し、本人であることを確認
 
 ```
-URL : {webAuthUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webAuthUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### リクエスト
@@ -754,7 +754,7 @@ Content-type : application/json;charset=utf-8
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
     "via": "",
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
@@ -792,9 +792,9 @@ Content-type : application/json;charset=utf-8
 - 分析した画像および音声ファイルから不正行為を検出した時、チート情報を伝達**(コンソールでWebhook URL設定必須)**
 
 ```
-URL : {webhookUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webhookUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### リクエスト
@@ -1178,7 +1178,7 @@ Content-type : application/json;charset=utf-8
 {
     "appKey": "AQJ33tPUaI9Y4lc2IrjX",
     "userId": "usertTest",
-    "platformOs" :"Windows10",
+    "platformOs":"Windows10",
     "examNo":"12345",
     "cheatGroup": "PROCTOR",
     "eventTime": 1621828940,
@@ -1187,13 +1187,13 @@ Content-type : application/json;charset=utf-8
         "keyboard": "Attempting switch program."
     },
     "cheatConfig": {
-        "appKey" : "bdyfjdff",
+        "appKey": "bdyfjdff",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn":"Y",
         "blockProgramYn":"Y"
     },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 

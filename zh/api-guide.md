@@ -23,9 +23,9 @@
 -  API to issue access tokens required when requesting API to detect cheating
 
 ```
-URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/token?appKey={appkey}&expiresIn={expiresIn}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -53,10 +53,10 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
-    "webAuth" : {
+    "userId": "user123",
+    "examNo": "21342",
+    "deviceType": "pc",
+    "webAuth": {
         "userId": "user123",
         "token": "ADs3Fsdfasdfnv23fkja34FX=",
         "via": ""
@@ -81,15 +81,15 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+    "data": {
+        "tokenType": "bearer",
+        "accessToken": "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
+        "expireIn": 600
     }
 }
 ```
@@ -99,9 +99,9 @@ Content-type : application/json;charset=utf-8
 -  API to cancel the access token issued \(to force quit\)
 
 ``` yaml
-URL : /auth/revoke
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/revoke
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -115,7 +115,7 @@ Content-type : application/json;charset=utf-8
 [request body example]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+   "accessToken": "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -134,13 +134,13 @@ Content-type : application/json;charset=utf-8
 
 ``` JSON
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    "data": {
+        "accessToken": "XDadhaS3dvns34Fdfnf23=="
     }
 }
 ```
@@ -150,10 +150,10 @@ Content-type : application/json;charset=utf-8
 ### API to request detect cheating
 -  API to request behavior detection and analysis
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### Request
@@ -175,7 +175,7 @@ Content-type : multipart/form-data
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Image recommendation<br> side (Size : 640 x 360, extension : jpg, jpeg) <br>front (Size : 640 x 480, extension : jpg, jpeg) | O         |
+| file | Binary | Image file <br>Image recommendation<br> side (Size: 640 x 360, extension: jpg, jpeg) <br>front (Size: 640 x 480, extension: jpg, jpeg) | O         |
 
 [Path Variable]
 
@@ -220,10 +220,10 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### API to request detect voice
 -  API to request voice detection and analysis
 ```
-URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### Request
@@ -290,10 +290,10 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 ### API to Collect Proctor Event
 -  API to collect events occurred in project
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/event
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -321,7 +321,7 @@ Content-type : application/json;charset=utf-8
 | event.status   | String | initialize: log in, begintTest: begin test, endTest: end test<br><span style="color:#e11d21">\* Windows / Mac | O         |
 | event.keyboard | String | (Attempts to switch programs.)<br><span style="color:#e11d21">\* Windows | X         |
 | event.mouse    | String | Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs)<br><span style="color:#e11d21">* Windows  | X         |
-| event.detection | String | mouseExit : When the mouse moves outside the test area (Cannot be sent in full screen & mirroring mode)) <br>fullScreenExit : When attempting to exit the full screen in full screen exit prevention mode <br>processSwitching : When attempting to switch operation in operation switch blocking mode <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: When the mouse moves outside the test area (Cannot be sent in full screen & mirroring mode)) <br>fullScreenExit: When attempting to exit the full screen in full screen exit prevention mode <br>processSwitching: When attempting to switch operation in operation switch blocking mode <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | Additional description on the event <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | Other event information | X |
 
@@ -371,10 +371,10 @@ Content-type : application/json;charset=utf-8
 ### API to Collect Proctor Indicators
 - API to collect program information installed on the examinee's PC in Proctor
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/collect
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -399,16 +399,16 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "installApp" : [
+    "installApp": [
         {
-            "displayApp" : "DropBox",
-            "displayVersion" : "3.18.1",
-            "publisher" : "Dropbox, Inc."
+            "displayApp": "DropBox",
+            "displayVersion": "3.18.1",
+            "publisher": "Dropbox, Inc."
         },
         {
-            "displayApp" : "Google Chrome",
-            "displayVersion" : "40.9.2623.111",
-            "publisher" : "Google, Inc."
+            "displayApp": "Google Chrome",
+            "displayVersion": "40.9.2623.111",
+            "publisher": "Google, Inc."
         }
      ]
 }
@@ -443,10 +443,10 @@ Content-type : application/json;charset=utf-8
  -  API to correct gaze information of the user (examinee) when detecting cheating by gaze tracking
 
 ```
-URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -461,7 +461,7 @@ Content-type : application/json;charset=utf-8
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Recommended (Size : 640 x 480, Extension : jpg, jpeg) | O         |
+| file | Binary | Image file <br>Recommended (Size: 640 x 480, Extension: jpg, jpeg) | O         |
 
 [Path Variable]
 
@@ -509,10 +509,10 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### Search Device Control Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 #####
@@ -558,10 +558,10 @@ Content-type : */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode" : "KR1"
+        "resionCode": "KR1",
         "blockMonitorYn": "Y",
-        "blockSwitchTaskYn" :"Y",
-        "blockScreenYn" : "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn": "Y",
         "blockProgramYn": "Y"
     }
 }
@@ -571,10 +571,10 @@ Content-type : */*
 ### Search Face Detection Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### Request
@@ -619,14 +619,14 @@ Content-type : */*
         "resultMessage": "SUCCESS"
     },
     "data": {
-        "appKey" : "bdyfjdff",
-        "regionCode" : "KR1",
-        "faceDetectionYn" : "Y",
-        "faceDetectionThreshold" : 1,
+        "appKey": "bdyfjdff",
+        "regionCode": "KR1",
+        "faceDetectionYn": "Y",
+        "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
-        "faceBottomAngle" : 20,
-        "faceLeftAngle" : 20,
-        "faceRightAngle" : 20
+        "faceBottomAngle": 20,
+        "faceLeftAngle": 20,
+        "faceRightAngle": 20
     }
 }
 ```
@@ -635,10 +635,10 @@ Content-type : */*
 ### Search Customer URL Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### Request
@@ -732,9 +732,9 @@ Content-type : */*
 - Check user \(applicant\) status periodically to verify personal information
 
 ```
-URL : {webAuthUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webAuthUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### Request
@@ -755,7 +755,7 @@ Content-type : application/json;charset=utf-8
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
     "via": "",
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
@@ -793,9 +793,9 @@ Failure
 - Deliver cheating Information from the analyzed image and audio files **(Webhook URL setting required for the console screen)**
 
 ```
-URL : {webhookUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webhookUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### Request
@@ -808,7 +808,7 @@ Content-type : application/json;charset=utf-8
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
 | cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE, AUDIO )             | O         |
-| cheatLevel                                | Integer | Cheating activity level (0 : Normal,1 : Attention\_Low, 2 : Attention\_High, 3 : Warning) | O         |
+| cheatLevel                                | Integer | Cheating activity level (0: Normal,1: Attention\_Low, 2: Attention\_High, 3: Warning) | O         |
 | eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
@@ -831,7 +831,7 @@ Content-type : application/json;charset=utf-8
 | chaetData.bg[].eventTime                  | Long    | Occurrence time (timestamp 10 digits)                                   | X         |
 | chaetData.bg[].data                       | JSON    | Background detection details                                          | X         |
 | chaetData.bg[].data.bgChangeDetFlag       | Boolean | Background change detection result                                     | X         |
-| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation(false : background detection failed)            | X         |
+| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation(false: background detection failed)            | X         |
 | cheatData.pose[]                          | List    | Motion detection information                                               | X         |
 | cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (if motion detection is in use)                            | X         |
 | cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (if motion detection is in use)                          | X         |
@@ -1124,7 +1124,7 @@ Content-type : application/json;charset=utf-8
 | cheatGroup      | String  | Cheat classification (Fix AUDIO)                                       | O         |
 | eventTime       | Long    | Event occurrence time(timestamp)                                  | O         |
 | fileUrl         | String  | Image or audio file storage path                         | O         |
-| cheatLevel      | Integer | Audio detection (0 : undetected, 1 : detected)                           | O         |
+| cheatLevel      | Integer | Audio detection (0: undetected, 1: detected)                           | O         |
 | cheatData       | JSON    | Detection information                                                    | X         |
 | cheatData.voice | Long[]  | Audio detection time (sec )<br> ex ) [3,4] > audio detection at 3 and 4 sec          | X         |
 
@@ -1176,7 +1176,7 @@ Voice detection
 {
     "appKey": "AQJ33tPUaI9Y4lc2IrjX",
     "userId": "usertTest",
-    "platformOs" :"Windows10",
+    "platformOs":"Windows10",
     "examNo":"12345",
     "cheatGroup": "PROCTOR",
     "eventTime": 1621828940,
@@ -1185,13 +1185,13 @@ Voice detection
         "keyboard": "Attempting switch program."
     },
     "cheatConfig": {
-        "appKey" : "bdyfjdff",
+        "appKey": "bdyfjdff",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn":"Y",
         "blockProgramYn":"Y"
     },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
