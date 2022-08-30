@@ -503,7 +503,7 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 ### 측면 카메라 사전 검증 API
 
-* 측면카메라의 사전 점검을 위해 검증하는 API
+* 측면 카메라의 사전 점검을 위해 검증하는 API
 
 ``` yaml
 URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
@@ -551,9 +551,9 @@ curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{us
 | 이름 | 타입 | 설명 |
 | --- | --- | --- |
 | header.isSuccessful | Boolean | 요청 성공 여부 |
-| header.resultCode | Integer | 요청 결과 코드(0: 성공 , 이외: 실패) |
+| header.resultCode | Integer | 요청 결과 코드(0: 성공, 이외: 실패) |
 | header.resultMessage | String | 요청 결과 메시지 |
-| data.status | Boolean | 카메라 사전 검증결과 (true : 정상, false : 이상 발견) |
+| data.status | Boolean | 카메라 사전 검증 결과 (true : 정상, false : 이상 발견) |
 | data.thirdPerson | Boolean | 제3자 존재 여부 (true : 제3자 식별, false: 미식별) |
 | data.absence | Boolean | 수험생 부재 여부 (true : 수험생 부재 중, false : 수험생 식별) |
 | data.leftHandExistence | Boolean | 왼손 식별 여부 (true : 식별, false : 미식별) |
