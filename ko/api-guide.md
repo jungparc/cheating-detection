@@ -468,7 +468,7 @@ Content-type: application/json;charset=utf-8
 | --- | --- | --- | --- |
 | appKey | String | 통합 Appkey 또는 서비스 Appkey | O |
 | examNo | String | 시험 번호 | O |
-| userId | String | 사용자 ID(수험생 번호) | O |록
+| userId | String | 사용자 ID(수험생 번호) | O |
 
 [요청 본문 예]
 ```

@@ -436,7 +436,7 @@ Content-type: application/json;charset=utf-8
 ```
 
 
-## ユーザー情報登録API
+## ユーザー情報登録およびカメラ検証API
 
 ### 中視線情報登録API
  - 視線追跡不正行為の検知時にユーザー(受験者)の視線情報を補正するためのAPI
@@ -468,7 +468,7 @@ Content-type: application/json;charset=utf-8
 | --- | --- | --- | --- |
 | appKey | String | 統合AppkeyまたはサービスAppkey | O |
 | examNo | String | 試験番号 | O |
-| userId | String | ユーザーID(受験生番号) | O |ロック
+| userId | String | ユーザーID(受験生番号) | O |
 
 [リクエスト本文例]
 ```
@@ -501,7 +501,104 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 }
 ```
 
+### 側面カメラ事前検証API
 
+* 側面カメラの事前点検のために検証するAPI
+
+``` yaml
+URL: /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
+```
+
+##### リクエスト
+
+[Header Parameter]
+
+| 名前 | タイプ | 説明 | 必須かどうか |
+| --- | --- | --- | --- |
+| X-Auth-Token | String | AccessToken | O |
+
+[Request Body]
+
+| 名前 | タイプ | 説明 | 必須かどうか |
+| --- | --- | --- | --- |
+| file | Binary | 画像ファイル <br>推奨事項(Size：640 x 360、拡張子：.jpg、.jpeg) | O |
+
+[Path Variable]
+
+| 名前 | タイプ | 説明 | 必須かどうか |
+| --- | --- | --- | --- |
+| appKey | String | 統合AppkeyまたはサービスAppkey | O |
+| examNo | String | 試験番号 | O |
+| userId | String | ユーザーID(受験生番号) | O |
+
+[リクエスト本文例]
+
+```
+curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
+-F "file=@testImage.jpeg;type=image/jpeg"
+```
+
+##### レスポンス
+
+[Response Body]
+
+| 名前 | タイプ | 説明 |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | リクエスト成否 |
+| header.resultCode | Integer | リクエスト結果コード(0：成功、それ以外：失敗) |
+| header.resultMessage | String | リクエスト結果メッセージ  |
+| data.status | Boolean | カメラ事前検証結果(true：正常、false：異常発見) |
+| data.thirdPerson | Boolean | 第三者存在可否(true：第三者識別、false：未識別) |
+| data.absence | Boolean | 受験生不在可否(true：受験生不在中、false：受験生識別) |
+| data.leftHandExistence | Boolean | 左手識別可否(true：識別、false：未識別) |
+| data.rightHandExistence | Boolean | 右手識別可否(true：識別、false：未識別) |
+| data.faceExistence | Boolean | 顔識別可否(true：識別、false：未識別) |
+
+[レスポンス本文例] 正常確認時
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": true,
+		"thirdPerson": false,
+		"absence": false,
+		"leftHandExistence": true,
+		"rightHandExistence": true,
+		"faceExistence": true
+	}
+}
+```
+
+[レスポンス本文例] 不在時
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+		"status": false,
+		"thirdPerson": false,
+		"absence": true,
+		"leftHandExistence": false,
+		"rightHandExistence": false,
+		"faceExistence": false
+	}
+}
+```
 
 ## 設定照会API
 
@@ -812,13 +909,15 @@ Content-type: application/json;charset=utf-8
 | fileUrl | String | 画像ファイルまたは音声ファイル保存パス | O |
 | cheatData | JSON | 不正行為情報 | O |
 | cheatData.cheatInfo | JSON | 不正行為判断結果 | O |
-| cheatData.cheatInfo.absence | boolean | 不在かどうか<br />- 視線追跡(顔認識を行うかどうか) <br />- 行動検知(人の数) | X |
-| cheatData.cheatInfo.thirdPerson | boolean | 第三者を識別するかどうか(視線追跡使用時) | X |
-| cheatData.cheatInfo.eyeGazeYawOut | boolean | 視線上下角度離脱有無(視線追跡使用時) | X |
+| cheatData.cheatInfo.absence | Boolean | 不在可否<br />- 正面検出(顔認識使用時) <br />- 側面検出(人数) | X |
+| cheatData.cheatInfo.thirdPerson | Boolean | 第三者識別可否<br />- 正面検出(顔認識使用時) <br />- 側面検出(人数) | X |
+| cheatData.cheatInfo.faceYawOut | Boolean | 顔上下角度離脱可否(顔認識使用時) | X |
+| cheatData.cheatInfo.facePitchOut | Boolean | 顔左右角度離脱可否(顔認識使用時) | X |
+| cheatData.cheatInfo.eyeGazeYawOut | Boolean | 視線上下角度離脱有無(視線追跡使用時) | X |
 | cheatData.cheatInfo.eyeGazePitchOut | Boolean | 視線左右角度離脱有無(視線追跡使用時) | X |
-| cheatData.cheatInfo.unstableBackground | boolean | 背景の変更有無(身体以外のバックグラウンド変化使用時) | X |
-| cheatData.cheatInfo.leftHandNotExistence |Boolean | 左手識別有無(行動検知使用時) | X |
-| cheatData.cheatInfo.rightHandNotExistence |Boolean | 右手識別を行うかどうか(行動検知使用時) | X |
+| cheatData.cheatInfo.unstableBackground | Boolean | 背景の変更有無(身体以外のバックグラウンド変化使用時) | X |
+| cheatData.cheatInfo.leftHandNotExistence |Boolean | 左手識別可否(身体部位検出使用時) | X |
+| cheatData.cheatInfo.rightHandNotExistence |Boolean | 右手識別可否(身体部位検出使用時) | X |
 | cheatData.gaze | JSON | 視線追跡情報 | X |
 | cheatData.gaze.numFaces | Integer | 検出された顔の数 | X |
 | cheatData.gaze.facePitch | Integer | 顔の上下角度 | X |
@@ -832,8 +931,8 @@ Content-type: application/json;charset=utf-8
 | chaetData.bg[].data.bgChangeDetFlag | Boolean |背景変化有無検知結果 |X |
 | chaetData.bg[].data.allocFlag | Boolean | 背景画像スペース割り当て有無(false：背景検知不可) |X |
 | cheatData.pose[] | List | 行動検知情報 |X |
-| cheatData.pose[].leftHandNotExistence |Boolean | 左手識別有無(行動検知使用時) |X |
-| cheatData.pose[].rightHandNotExistence |Boolean | 右手識別有無(行動検知使用時) |X |
+| cheatData.pose[].leftHandNotExistence |Boolean | 左手識別可否(身体部位検出使用時) |X |
+| cheatData.pose[].rightHandNotExistence |Boolean | 右手識別可否(身体部位検出使用時) |X |
 | cheatData.pose[].eventTime | Long | イベント発生時間(検知リクエスト時間) |X |
 | cheatData.pose[].data | JSON | 行動検知詳細情報 |X |
 | cheatData.pose[].data.numPerson |Integer | 検出された人の数 |X |
@@ -856,7 +955,7 @@ Content-type: application/json;charset=utf-8
 | cheatData.pose[].data.face.ymax |Integer |顔領域のバウンディングボックス右側の頂点座標情報 |X |
 | cheatData.pose[].data.face.isDetected |Boolean | 顔検出有無 |X |
 | cheatConfig | JSON | 設定情報 | O |
-| cheatConfig.pose.poseEstimationYn | Boolean | 行動検知使用有無 | X |
+| cheatConfig.pose.poseEstimationYn | Boolean | 身体部位検出使用可否 | X |
 | cheatConfig.pose.poseEstimationTime | Integer | 左手/右手座標の未識別時間(N秒) | X |
 | cheatConfig.gaze.gazeTrackingYn | String | 視線(瞳孔)追跡使用有無 | X |
 | cheatConfig.gaze.gazeTopAngle | Integer | 瞳孔角度(上) | X |
@@ -875,7 +974,7 @@ Content-type: application/json;charset=utf-8
 | cheatConfig.face.faceBottomAngle | Integer | 顔の角度(下) | X |
 | cheatConfig.face.faceLeftAngle | Integer | 顔の角度(左) | X |
 | cheatConfig.face.faceRightAngle | Integer | 顔の角度(右) | X |
-| cheatConfig.bg.bgDetectionYn | String | 身体以外のバックグラウンド変化使用有無 | X |
+| cheatConfig.bg.bgDetectionYn | String | 身体以外の変化使用有無 | X |
 | cheatConfig.bg.bgDetectionTime | Integer | バックグラウンド変化検知時間(N秒) | X |
 
 
