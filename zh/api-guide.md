@@ -437,7 +437,7 @@ Content-type: application/json;charset=utf-8
 ```
 
 
-## Register User Information API
+## API to Register User Information and Validate Camera
 
 ### API to Register Middle Gaze Information
  -  API to correct gaze information of the user (examinee) when detecting cheating by gaze tracking
@@ -469,7 +469,7 @@ Content-type: application/json;charset=utf-8
 | ------ | ------ | ------------------------------ | --------- |
 | appKey | String | Integrated Appkey or Service Appkey | O         |
 | examNo | String | Exam number                      | O         |
-| userId | String | User ID (student number) | O |Lock
+| userId | String | User ID (student number) | O |
 
 [request body example]
 ```
@@ -501,8 +501,104 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
     }
 }
 ```
+### API to Pre-validate Side Camera
 
+* API to validate side cameras in advance
 
+``` yaml
+URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD : POST
+X-Auth-Token : Bearer {accessToken}
+Content-type : application/json;charset=utf-8
+```
+
+##### Request
+
+[Header Parameter]
+
+| Name         | Type   | Description        | Necessity |
+| --- | --- | --- | --- |
+| X-Auth-Token | String | AccessToken | O |
+
+[Request Body]
+
+| Name | Type   | Description                                                         | Necessity |
+| --- | --- | --- | --- |
+| file | Binary | Image file <br>Recommended (Size: 640 x 360, Extension: .jpg, .jpeg) | O |
+
+[Path Variable]
+
+| Name   | Type   | Description                           | Necessity |
+| ------ | ------ | ------------------------------ | --------- |
+| appKey | String | Integrated Appkey or Service Appkey | O         |
+| examNo | String | Exam number                      | O         |
+| userId | String | User ID (student number) | O |
+
+[request body example]
+
+```
+curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
+-F "file=@testImage.jpeg;type=image/jpeg"
+```
+
+##### Response
+
+[Response Body]
+
+| Name                 | Type    | Description             |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | Request success |
+| header.resultCode | Integer | Request result code (0: success, others: failure) |
+| header.resultMessage | String | Request result message |
+| data.status | Boolean | Camera pre-validation result (true: normal, false: abnormality found) |
+| data.thirdPerson | Boolean | Whether a third person exists (true: third party identified, false: unidentified) |
+| data.absence | Boolean | Whether a student is absent (true: absent, false: student identified) |
+| data.leftHandExistence | Boolean | Whether the left hand is detected (true: detected, false: undetected) |
+| data.rightHandExistence | Boolean | Whether the right hand is detected (true: detected, false: undetected) |
+| data.faceExistence | Boolean | Whether a face is detected (true: detected, false: undetected) |
+
+[request body example] - When identified
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+	    "status" : true,
+		"thirdPerson": false,
+		"absence": false,
+		"leftHandExistence": true,
+		"rightHandExistence": true,
+	    "faceExistence" : true
+	}
+}
+```
+
+[request body example] - When unidentified
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"	
+	},
+	"data": {
+		"status" : false,
+		"thirdPerson": false,
+		"absence": true,
+		"leftHandExistence": false,
+		"rightHandExistence": false,
+		"faceExistence" : false
+	}
+}
+```
 
 ## View Settings API
 
@@ -813,13 +909,15 @@ Content-type: application/json;charset=utf-8
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
 | cheatData.cheatInfo                       | JSON    | Cheating judgment result                                           | O         |
-| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking (Face recognition) <br />- Behavior detection (Number of person) | X         |
-| cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
+| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Frontal face detection (when using face recognition) <br />- Side face detection (number of people) | X         |
+| cheatData.cheatInfo.thirdPerson           | Boolean | Third person identification<br />- Frontal face detection (when using face recognition) <br />- Side face detection (number of people)                          | X         |
+| cheatData.cheatInfo.faceYawOut | Boolean | Face up/down angle departure (when using face recognition) | X |
+| cheatData.cheatInfo.facePitchOut | Boolean | Face left/right angle departure (when using face recognition) | X |
 | cheatData.cheatInfo.eyeGazeYawOut         | Boolean | Gaze up/down angle departure (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazePitchOut       | Boolean | Gaze left/right angledeparture (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.unstableBackground    | Boolean | Background change (if the detection of background change other than the body is in use)            | X         |
-| cheatData.cheatInfo.leftHandNotExistence  | Boolean | Left hand detection (if motion detection is in use)                            | X         |
-| cheatData.cheatInfo.rightHandNotExistence | Boolean | Right hand detection (if motion detection is in use)                          | X         |
+| cheatData.cheatInfo.leftHandNotExistence  | Boolean | Left hand detection (when using body part detection)                            | X         |
+| cheatData.cheatInfo.rightHandNotExistence | Boolean | Right hand detection (when using body part detection)                          | X         |
 | cheatData.gaze                            | JSON    | Eye tracking information                                               | X         |
 | cheatData.gaze.numFaces                   | Integer | Number of faces detected                                               | X         |
 | cheatData.gaze.facePitch                  | Integer | Face up/down angle                                               | X         |
@@ -833,8 +931,8 @@ Content-type: application/json;charset=utf-8
 | chaetData.bg[].data.bgChangeDetFlag       | Boolean | Background change detection result                                     | X         |
 | chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation (false: background detection failed)            | X         |
 | cheatData.pose[]                          | List    | Motion detection information                                               | X         |
-| cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (if motion detection is in use)                            | X         |
-| cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (if motion detection is in use)                          | X         |
+| cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (when using body part detection)                            | X         |
+| cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (when using body part detection)                         | X         |
 | cheatData.pose[].eventTime                | Long    | Event occurrence time (detection request time)                             | X         |
 | cheatData.pose[].data                     | JSON    | Motion detection details                                          | X         |
 | cheatData.pose[].data.numPerson           | Integer | Number of people detected                                             | X         |
@@ -857,7 +955,7 @@ Content-type: application/json;charset=utf-8
 | cheatData.pose[].data.face.ymax           | Integer | Coordinates of the right vertex of the bounding box of the face area              | X         |
 | cheatData.pose[].data.face.isDetected     | Boolean | Face detection                                               | X         |
 | cheatConfig                               | JSON    | Settings                                                    | O         |
-| cheatConfig.pose.poseEstimationYn         | Boolean | Motion detection usage                                          | X         |
+| cheatConfig.pose.poseEstimationYn         | Boolean | Whether to use body part detection                                          | X         |
 | cheatConfig.pose.poseEstimationTime       | Integer | Duration of not identifying left/right hand coordinates (N sec)                            | X         |
 | cheatConfig.gaze.gazeTrackingYn           | String  | Eye (pupil) tracking usage                                    | X         |
 | cheatConfig.gaze.gazeTopAngle             | Integer | Pupil angle (upper)                                                | X         |
@@ -876,7 +974,7 @@ Content-type: application/json;charset=utf-8
 | cheatConfig.face.faceBottomAngle          | Integer | Face angle (bottom)                                                | X         |
 | cheatConfig.face.faceLeftAngle            | Integer | Face angle (left)                                                | X         |
 | cheatConfig.face.faceRightAngle           | Integer | Face angle (right)                                                | X         |
-| cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of background change other than the body is used                        | X         |
+| cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of change other than the body is used                        | X         |
 | cheatConfig.bg.bgDetectionTime            | Integer | Background change detection time (N sec)                               | X         |
 
 [Request body example] FRONT, SIDE
@@ -1174,7 +1272,7 @@ Voice detection
 
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "appKey": "testAppKey",
     "userId": "usertTest",
     "platformOs":"Windows10",
     "examNo":"12345",
