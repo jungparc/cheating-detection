@@ -1,6 +1,9 @@
 ## Application Service > Cheating Detection > リリースノート
+### 2022. 09. 27.
+#### 機能変更/改善
+* 身体部位検出不正行為検出ロジックの改善
 ### 2022. 06. 30.
-#### 機能改善/変更
+#### 機能変更/改善
 * APIエンドポイントのドメイン名が`ctd-api.cloud.toast.com`から`kr1-cheating-detection.api.nhncloudservice.com`に変更
 ### 2022. 04. 26.
 #### 機能追加

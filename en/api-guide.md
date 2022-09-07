@@ -23,9 +23,9 @@
 -  API to issue access tokens required when requesting API to detect cheating
 
 ```
-URL : /auth/token?appKey={appkey}&expiresIn={expiresIn}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/token?appKey={appkey}&expiresIn={expiresIn}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -35,7 +35,7 @@ Content-type : application/json;charset=utf-8
 | Name      | Type    | Description                           | Necessity |
 | --------- | ------- | ------------------------------ | --------- |
 | appKey    | String  | Integrated Appkey or Service Appkey | O         |
-| expiresIn | Integer | Token Time Limit ((sec)) <br> 0 < expiresIn <= 7200            | O         |
+| expiresIn | Integer | Token Time Limit (sec) <br> 0 < expiresIn <= 7200            | O         |
 
 [Request Body]
 
@@ -43,7 +43,7 @@ Content-type : application/json;charset=utf-8
 | -------------- | ------ | ------------------------------------------------------------ | --------- |
 | userId         | String | User ID (student number)                                       | O         |
 | examNo         | String | Exam number                                                    | O         |
-| deviceType     | String | Device category (pc: PC, mo: Mobile )                               | O         |
+| deviceType     | String | Device category (pc: PC, mo: Mobile)                               | O         |
 | webAuth        | JSON   | WebAuth authentication data                                          | O         |
 | webAuth.userId | String | User ID (student number)                                       | O         |
 | webAuth.token  | String | **<span style="color:#e11d21">WebAuth authentication token issued by the client** | O         |
@@ -53,10 +53,10 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "userId" : "user123",
-    "examNo" : "21342",
-    "deviceType" : "pc",
-    "webAuth" : {
+    "userId": "user123",
+    "examNo": "21342",
+    "deviceType": "pc",
+    "webAuth": {
         "userId": "user123",
         "token": "ADs3Fsdfasdfnv23fkja34FX=",
         "via": ""
@@ -75,21 +75,21 @@ Content-type : application/json;charset=utf-8
 | header.resultMessage | String  | Request result message                    |
 | data.tokenType       | String  | Fix to token type and bearer            |
 | data.accessToken     | String  | User access tokens                    |
-| data.expiresIn       | Integer | Access token expiry time(sec)             |
+| data.expiresIn       | Integer | Access token expiry time (sec)             |
 
 [Response body example]
 
 ``` json
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "tokenType" : "bearer",
-        "accessToken" : "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
-        "expireIn" : 600
+    "data": {
+        "tokenType": "bearer",
+        "accessToken": "DfA3f3da3/34SF+edf6898D2343fsasdf3f=",
+        "expireIn": 600
     }
 }
 ```
@@ -99,9 +99,9 @@ Content-type : application/json;charset=utf-8
 -  API to cancel the access token issued \(to force quit\)
 
 ``` yaml
-URL : /auth/revoke
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: /auth/revoke
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -115,7 +115,7 @@ Content-type : application/json;charset=utf-8
 [request body example]
 ``` json
 {
-   "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+   "accessToken": "XDadhaS3dvns34Fdfnf23=="
 }
 ```
 
@@ -134,13 +134,13 @@ Content-type : application/json;charset=utf-8
 
 ``` JSON
 {
-    "header" : {
-        "isSuccessful" : true,
-        "resultCode" : 0,
-        "resultMessage" : "Success"
+    "header": {
+        "isSuccessful": true,
+        "resultCode": 0,
+        "resultMessage": "Success"
     },
-    "data" : {
-        "accessToken" : "XDadhaS3dvns34Fdfnf23=="
+    "data": {
+        "accessToken": "XDadhaS3dvns34Fdfnf23=="
     }
 }
 ```
@@ -150,10 +150,10 @@ Content-type : application/json;charset=utf-8
 ### API to request detect cheating
 -  API to request behavior detection and analysis
 ```
-URL : /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?camLocation={camLocation}&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### Request
@@ -175,7 +175,7 @@ Content-type : multipart/form-data
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Image recommendation<br> side (Size : 1280 x 720, extension : jpg, jpeg) <br>front (Size : 640 x 480, extension : jpg, jpeg) | O         |
+| file | Binary | Image file <br>Image recommendation<br> side (Size: 640 x 360, extension: .jpg, .jpeg) <br>front (Size: 640 x 480, extension: .jpg, .jpeg) | O         |
 
 [Path Variable]
 
@@ -220,10 +220,10 @@ curl -X POST "{doamin}/nhn-behavior-det/v1.0/appkeys/{appKey}/exam/{examNo}/user
 ### API to request detect voice
 -  API to request voice detection and analysis
 ```
-URL : /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : multipart/form-data
+URL: /nhn-voice-det/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}?&reqTime={reqTime}
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### Request
@@ -290,10 +290,10 @@ curl -X POST "{domain}/nhn-voice-det/v1.0/appkeys/{appkey}/exam/{examNo}/users/{
 ### API to Collect Proctor Event
 -  API to collect events occurred in project
 ```
-URL : /nhn-cht-prt/v1.0/proctor/event
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/event
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -321,7 +321,7 @@ Content-type : application/json;charset=utf-8
 | event.status   | String | initialize: log in, begintTest: begin test, endTest: end test<br><span style="color:#e11d21">\* Windows / Mac | O         |
 | event.keyboard | String | (Attempts to switch programs.)<br><span style="color:#e11d21">\* Windows | X         |
 | event.mouse    | String | Mouse movement detection outside the test area (when it is impossible to move to an area outside of the test area, but an exception occurs)<br><span style="color:#e11d21">* Windows  | X         |
-| event.detection | String | mouseExit : When the mouse moves outside the test area (Cannot be sent in full screen & mirroring mode)) <br>fullScreenExit : When attempting to exit the full screen in full screen exit prevention mode <br>processSwitching : When attempting to switch operation in operation switch blocking mode <br><span style="color:#e11d21">\* Mac| X
+| event.detection | String | mouseExit: When the mouse moves outside the test area (Cannot be sent in full screen & mirroring mode)) <br>fullScreenExit: When attempting to exit the full screen in full screen exit prevention mode <br>processSwitching: When attempting to switch operation in operation switch blocking mode <br><span style="color:#e11d21">\* Mac| X
 | event.description | String | Additional description on the event <br><span style="color:#e11d21">\* Mac
 | event.additionalEvent | String | Other event information | X |
 
@@ -371,10 +371,10 @@ Content-type : application/json;charset=utf-8
 ### API to Collect Proctor Indicators
 - API to collect program information installed on the examinee's PC in Proctor
 ```
-URL : /nhn-cht-prt/v1.0/proctor/collect
-METHOD : POST
-X-CD-Client-Type : Proctor
-Content-type : application/json;charset=utf-8
+URL: /nhn-cht-prt/v1.0/proctor/collect
+METHOD: POST
+X-CD-Client-Type: Proctor
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -399,16 +399,16 @@ Content-type : application/json;charset=utf-8
 
 ``` json
 {
-    "installApp" : [
+    "installApp": [
         {
-            "displayApp" : "DropBox",
-            "displayVersion" : "3.18.1",
-            "publisher" : "Dropbox, Inc."
+            "displayApp": "DropBox",
+            "displayVersion": "3.18.1",
+            "publisher": "Dropbox, Inc."
         },
         {
-            "displayApp" : "Google Chrome",
-            "displayVersion" : "40.9.2623.111",
-            "publisher" : "Google, Inc."
+            "displayApp": "Google Chrome",
+            "displayVersion": "40.9.2623.111",
+            "publisher": "Google, Inc."
         }
      ]
 }
@@ -437,16 +437,16 @@ Content-type : application/json;charset=utf-8
 ```
 
 
-## Register User Information API
+## API to Register User Information and Validate Camera
 
 ### API to Register Middle Gaze Information
  -  API to correct gaze information of the user (examinee) when detecting cheating by gaze tracking
 
 ```
-URL : /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: application/json;charset=utf-8
 ```
 
 ##### Request
@@ -461,7 +461,7 @@ Content-type : application/json;charset=utf-8
 
 | Name | Type   | Description                                                         | Necessity |
 | ---- | ------ | ------------------------------------------------------------ | --------- |
-| file | Binary | Image file <br>Recommended (Size : 640 x 480, Extension : jpg, jpeg) | O         |
+| file | Binary | Image file <br>Recommended (Size: 640 x 480, Extension: .jpg, .jpeg) | O         |
 
 [Path Variable]
 
@@ -469,7 +469,7 @@ Content-type : application/json;charset=utf-8
 | ------ | ------ | ------------------------------ | --------- |
 | appKey | String | Integrated Appkey or Service Appkey | O         |
 | examNo | String | Exam number                      | O         |
-| userId | String | User ID (student number) | O |Lock
+| userId | String | User ID (student number) | O |
 
 [request body example]
 ```
@@ -501,18 +501,114 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
     }
 }
 ```
+### API to Pre-validate Side Camera
 
+* API to validate side cameras in advance
 
+``` yaml
+URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD : POST
+X-Auth-Token : Bearer {accessToken}
+Content-type : application/json;charset=utf-8
+```
+
+##### Request
+
+[Header Parameter]
+
+| Name         | Type   | Description        | Necessity |
+| --- | --- | --- | --- |
+| X-Auth-Token | String | AccessToken | O |
+
+[Request Body]
+
+| Name | Type   | Description                                                         | Necessity |
+| --- | --- | --- | --- |
+| file | Binary | Image file <br>Recommended (Size: 640 x 360, Extension: .jpg, .jpeg) | O |
+
+[Path Variable]
+
+| Name   | Type   | Description                           | Necessity |
+| ------ | ------ | ------------------------------ | --------- |
+| appKey | String | Integrated Appkey or Service Appkey | O         |
+| examNo | String | Exam number                      | O         |
+| userId | String | User ID (student number) | O |
+
+[request body example]
+
+```
+curl -X POST "{domain}/nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side" 
+-H "accept: application/json;charset=UTF-8" 
+-H "X-Auth-Token: Bearer {accessToken}" 
+-H "Content-Type: multipart/form-data" 
+-F "file=@testImage.jpeg;type=image/jpeg"
+```
+
+##### Response
+
+[Response Body]
+
+| Name                 | Type    | Description             |
+| --- | --- | --- |
+| header.isSuccessful | Boolean | Request success |
+| header.resultCode | Integer | Request result code (0: success, others: failure) |
+| header.resultMessage | String | Request result message |
+| data.status | Boolean | Camera pre-validation result (true: normal, false: abnormality found) |
+| data.thirdPerson | Boolean | Whether a third person exists (true: third party identified, false: unidentified) |
+| data.absence | Boolean | Whether a student is absent (true: absent, false: student identified) |
+| data.leftHandExistence | Boolean | Whether the left hand is detected (true: detected, false: undetected) |
+| data.rightHandExistence | Boolean | Whether the right hand is detected (true: detected, false: undetected) |
+| data.faceExistence | Boolean | Whether a face is detected (true: detected, false: undetected) |
+
+[request body example] - When identified
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"
+	},
+	"data": {
+	    "status" : true,
+		"thirdPerson": false,
+		"absence": false,
+		"leftHandExistence": true,
+		"rightHandExistence": true,
+	    "faceExistence" : true
+	}
+}
+```
+
+[request body example] - When unidentified
+
+``` json
+{
+	"header": {
+		"isSuccessful": true,
+		"resultCode": 0,
+		"resultMessage": "Success"	
+	},
+	"data": {
+		"status" : false,
+		"thirdPerson": false,
+		"absence": true,
+		"leftHandExistence": false,
+		"rightHandExistence": false,
+		"faceExistence" : false
+	}
+}
+```
 
 ## View Settings API
 
 ### Search Device Control Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/device
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 #####
@@ -558,10 +654,10 @@ Content-type : */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode" : "KR1"
+        "resionCode": "KR1",
         "blockMonitorYn": "Y",
-        "blockSwitchTaskYn" :"Y",
-        "blockScreenYn" : "Y",
+        "blockSwitchTaskYn":"Y",
+        "blockScreenYn": "Y",
         "blockProgramYn": "Y"
     }
 }
@@ -571,10 +667,10 @@ Content-type : */*
 ### Search Face Detection Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/face
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### Request
@@ -619,14 +715,14 @@ Content-type : */*
         "resultMessage": "SUCCESS"
     },
     "data": {
-        "appKey" : "bdyfjdff",
-        "regionCode" : "KR1",
-        "faceDetectionYn" : "Y",
-        "faceDetectionThreshold" : 1,
+        "appKey": "bdyfjdff",
+        "regionCode": "KR1",
+        "faceDetectionYn": "Y",
+        "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
-        "faceBottomAngle" : 20,
-        "faceLeftAngle" : 20,
-        "faceRightAngle" : 20
+        "faceBottomAngle": 20,
+        "faceLeftAngle": 20,
+        "faceRightAngle": 20
     }
 }
 ```
@@ -635,10 +731,10 @@ Content-type : */*
 ### Search Customer URL Setting
 
 ```
-URL : /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
-METHOD : GET
-X-CD-Client-Type : Proctor
-Content-type : */*
+URL: /nhn-cht-cfg/v1.0/appkeys/{appKey}/configuration/url
+METHOD: GET
+X-CD-Client-Type: Proctor
+Content-type: */*
 ```
 
 ##### Request
@@ -698,7 +794,7 @@ Content-type : */*
 | 0      | Success | SUCCESS                         | Normally processed                                                   |
 | -20001 | Error | Access Token Expired                  | When requesting with access tokens that have been expired or requested to be canceled |
 | -20002 | Error | Invalid access token         | When requesting with invalid access tokens                         |
-| -20003 | Error | WebAuthUrl Communication Error       | Occurs when unable to proceed communication(access) with WebAuthUrl             |
+| -20003 | Error | WebAuthUrl Communication Error       | Occurs when unable to proceed communication (access) with WebAuthUrl             |
 | -20004 | Error | WebAuth authentication Failure                | When failed to authenticate with WebAuth                                        |
 | -20005 | Error | Error in access by unauthenticated users | Unable to authenticate due to X-Auth-Token field omitted                   |
 | -20006 | Error | Error in access token type             | Occurs when the X-Auth-Token head bearer is omitted                       |
@@ -732,9 +828,9 @@ Content-type : */*
 - Check user \(applicant\) status periodically to verify personal information
 
 ```
-URL : {webAuthUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webAuthUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### Request
@@ -746,7 +842,7 @@ Content-type : application/json;charset=utf-8
 | userId     | String | User ID (student number)                                       | O         |
 | token      | String | WebAuth authentication token                                            | O         |
 | via        | String | Other Information                                                    | X         |
-| validation | String | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
+| validation | String | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts (Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
 [request body example]
 
@@ -755,7 +851,7 @@ Content-type : application/json;charset=utf-8
     "userId": "user123",
     "token": "asdfasdfnv23fkja..",
     "via": "",
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
@@ -793,52 +889,50 @@ Failure
 - Deliver cheating Information from the analyzed image and audio files **(Webhook URL setting required for the console screen)**
 
 ```
-URL : {webhookUrl}
-METHOD : POST
-Content-type : application/json;charset=utf-8
+URL: {webhookUrl}
+METHOD: POST
+Content-type: application/json;charset=utf-8
 ```
 
 #### Request
 
-[Request Body] GAZE, POSE, BACKGROUND, AUDIO
+[Request Body] FRONT, SIDE
 
 | Name                                      | Type    | Description                                                         | Necessity |
 | ----------------------------------------- | ------- | ------------------------------------------------------------ | --------- |
 | appKey                                    | String  | Integrated Appkey or Service Appkey                               | O         |
 | userId                                    | String  | User ID (student number)                                       | O         |
 | examNo                                    | String  | Exam number                                                    | O         |
-| cheatGroup                                | String  | Cheat group( Respond as one of FRONT, SIDE, AUDIO )             | O         |
-| cheatLevel                                | Integer | Cheating activity level (0 : Normal,1 : Attention\_Low, 2 : Attention\_High, 3 : Warning) | O         |
-| eventTime                                 | Long    | Event occurrence time(timestamp)                                  | O         |
+| cheatGroup                                | String  | Cheat group (Respond as one of FRONT, SIDE)             | O         |
+| cheatLevel                                | Integer | Cheating activity level (0: Normal,1: Attention\_Low, 2: Attention\_High, 3: Warning) | O         |
+| eventTime                                 | Long    | Event occurrence time (timestamp)                                  | O         |
 | fileUrl                                   | String  | Image or audio file storage path                         | O         |
 | cheatData                                 | JSON    | Cheating activity information                                                | O         |
 | cheatData.cheatInfo                       | JSON    | Cheating judgment result                                           | O         |
-| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Gaze tracking(Face recognition) <br />- Behavior detection(Number of person)
-X | X         |
-| cheatData.cheatInfo.thirdPerson           | Boolean | Third party identification (if gaze tracking is in use)                           | X         |
+| cheatData.cheatInfo.absence               | Boolean | Absence<br />- Frontal face detection (when using face recognition) <br />- Side face detection (number of people) | X         |
+| cheatData.cheatInfo.thirdPerson           | Boolean | Third person identification<br />- Frontal face detection (when using face recognition) <br />- Side face detection (number of people)                          | X         |
+| cheatData.cheatInfo.faceYawOut | Boolean | Face up/down angle departure (when using face recognition) | X |
+| cheatData.cheatInfo.facePitchOut | Boolean | Face left/right angle departure (when using face recognition) | X |
 | cheatData.cheatInfo.eyeGazeYawOut         | Boolean | Gaze up/down angle departure (if gaze tracking is in use)                  | X         |
 | cheatData.cheatInfo.eyeGazePitchOut       | Boolean | Gaze left/right angledeparture (if gaze tracking is in use)                  | X         |
-| cheatData.cheatInfo.eyeGazeScreenOut      | Boolean | Gaze screen departure (if previous gaze registration is complete)                | X         |
 | cheatData.cheatInfo.unstableBackground    | Boolean | Background change (if the detection of background change other than the body is in use)            | X         |
-| cheatData.cheatInfo.leftHandNotExistence  | Boolean | Left hand detection (if motion detection is in use)                            | X         |
-| cheatData.cheatInfo.rightHandNotExistence | Boolean | Right hand detection (if motion detection is in use)                          | X         |
+| cheatData.cheatInfo.leftHandNotExistence  | Boolean | Left hand detection (when using body part detection)                            | X         |
+| cheatData.cheatInfo.rightHandNotExistence | Boolean | Right hand detection (when using body part detection)                          | X         |
 | cheatData.gaze                            | JSON    | Eye tracking information                                               | X         |
 | cheatData.gaze.numFaces                   | Integer | Number of faces detected                                               | X         |
 | cheatData.gaze.facePitch                  | Integer | Face up/down angle                                               | X         |
 | cheatData.gaze.faceYaw                    | Integer | Face left/right angle                                               | X         |
 | cheatData.gaze.eyePitch                   | Integer | Gaze up/down angle                                               | X         |
 | cheatData.gaze.eyeYaw                     | Integer | Gaze left/right angle                                               | X         |
-| cheatData.gaze.screenX                    | float   | Gaze X-axis location                                                | X         |
-| cheatData.gaze.screenY                    | float   | Gaze Y-axis location                                                | X         |
 | chaetData.bg[]                            | List    | Background change information                                               | X         |
 | chaetData.bg[].isChanged                  | Boolean | Background change                                               | X         |
 | chaetData.bg[].eventTime                  | Long    | Occurrence time (timestamp 10 digits)                                   | X         |
 | chaetData.bg[].data                       | JSON    | Background detection details                                          | X         |
 | chaetData.bg[].data.bgChangeDetFlag       | Boolean | Background change detection result                                     | X         |
-| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation(false : background detection failed)            | X         |
+| chaetData.bg[].data.allocFlag             | Boolean | Background image space allocation (false: background detection failed)            | X         |
 | cheatData.pose[]                          | List    | Motion detection information                                               | X         |
-| cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (if motion detection is in use)                            | X         |
-| cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (if motion detection is in use)                          | X         |
+| cheatData.pose[].leftHandNotExistence     | Boolean | Left hand detection (when using body part detection)                            | X         |
+| cheatData.pose[].rightHandNotExistence    | Boolean | Right hand detection (when using body part detection)                         | X         |
 | cheatData.pose[].eventTime                | Long    | Event occurrence time (detection request time)                             | X         |
 | cheatData.pose[].data                     | JSON    | Motion detection details                                          | X         |
 | cheatData.pose[].data.numPerson           | Integer | Number of people detected                                             | X         |
@@ -861,7 +955,7 @@ X | X         |
 | cheatData.pose[].data.face.ymax           | Integer | Coordinates of the right vertex of the bounding box of the face area              | X         |
 | cheatData.pose[].data.face.isDetected     | Boolean | Face detection                                               | X         |
 | cheatConfig                               | JSON    | Settings                                                    | O         |
-| cheatConfig.pose.poseEstimationYn         | Boolean | Motion detection usage                                          | X         |
+| cheatConfig.pose.poseEstimationYn         | Boolean | Whether to use body part detection                                          | X         |
 | cheatConfig.pose.poseEstimationTime       | Integer | Duration of not identifying left/right hand coordinates (N sec)                            | X         |
 | cheatConfig.gaze.gazeTrackingYn           | String  | Eye (pupil) tracking usage                                    | X         |
 | cheatConfig.gaze.gazeTopAngle             | Integer | Pupil angle (upper)                                                | X         |
@@ -873,125 +967,248 @@ X | X         |
 | cheatConfig.gaze.regUserGaze.facePitch    | Integer | Up/down angle of registered face                                        | X         |
 | cheatConfig.gaze.regUserGaze.faceYaw      | Integer | Left/right angle of registered face                                        | X         |
 | cheatConfig.gaze.regUserGaze.eyePitch     | Integer | Up/down angle of registered gaze                                         | X         |
-| cheatConfig.gaze.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         |
-| cheatConfig.gaze.regUserGaze.screenX      | Integer | X-coordinate of registered gaze                                           | X         |
-| cheatConfig.gaze.regUserGaze.screenY      | Integer | Y-coordinate of registered gaze                                           | X         |
+| cheatConfig.gaze.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         
 | cheatConfig.face.faceDetectionYn          | String  | Whether to use face recognition                                          | X         |
 | cheatConfig.face.faceDetectionThreshold   | Integer | Reference value for number of faces detected                                          | X         |
 | cheatConfig.face.faceTopAngle             | Integer | Face angle (top)                                                | X         |
 | cheatConfig.face.faceBottomAngle          | Integer | Face angle (bottom)                                                | X         |
 | cheatConfig.face.faceLeftAngle            | Integer | Face angle (left)                                                | X         |
-| cheatConfig.face.faceRightAngle           | Integer | Face angle(right)                                                | X         |
-| cheatConfig.face.regUserGaze              | JSON    | Registered gaze information                                             | X         |
-| cheatConfig.face.regUserGaze.numFaces     | Integer | Number of registered faces detected                                        | X         |
-| cheatConfig.face.regUserGaze.facePitch    | Integer | Up/down angle of registered face                                        | X         |
-| cheatConfig.face.regUserGaze.faceYaw      | Integer | Left/right angle of registered face                                        | X         |
-| cheatConfig.face.regUserGaze.eyePitch     | Integer | Up/down angle of registered gaze                                         | X         |
-| cheatConfig.face.regUserGaze.eyeYaw       | Integer | Left/right angle of registered gaze                                         | X         |
-| cheatConfig.face.regUserGaze.screenX      | Integer | X-coordinate of registered gaze                                           | X         |
-| cheatConfig.face.regUserGaze.screenY      | Integer | Y-coordinate of registered gaze                                           | X         |
-| cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of background change other than the body is used                        | X         |
+| cheatConfig.face.faceRightAngle           | Integer | Face angle (right)                                                | X         |
+| cheatConfig.bg.bgDetectionYn              | String  | Whether the detection of change other than the body is used                        | X         |
 | cheatConfig.bg.bgDetectionTime            | Integer | Background change detection time (N sec)                               | X         |
-| validation                                | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
-[Request body example] POSE, GAZE
+[Request body example] FRONT, SIDE
 
 ``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"usertTest",
-    "examNo":"12345",
-    "cheatGroup":"POSE",
-    "cheatLevel":0,
-    "eventTime": 1621828945,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/test/front/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":false,
-            "thirdPerson":false,
-            "unstableBackground":false,
-            "leftHandNotExistence":false,
-            "rightHandNotExistence":false
-        }
-    },
-    "cheatConfig":{
-        "bg":{
-            "bgDetectionYn":"Y",
-            "bgDetectionTime":20
-        },
-        "pose":{
-            "poseEstimationYn":"Y",
-            "poseEstimationTime":20
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "FRONT",
+	"camLocation": "front",
+	"cheatLevel": 2,
+	"eventTime": 1661483728,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/FRONT/20220826121531000_1e7e9ade-42aa-48bc-899d-a0d54450913d.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"faceYawOut": true,
+			"facePitchOut": false,
+			"eyeGazeYawOut": false,
+			"eyeGazePitchOut": false,
+			"unstableBackground": true,
+			"exceedThreshold": false,
+			"registeredGaze": true
+		},
+		"gaze": {
+			"numFaces": 1,
+			"facePitch": 0,
+			"faceYaw": 26,
+			"faceDistance": 144,
+			"eyePitch": -5,
+			"eyeYaw": -7
+		},
+		"face": {
+			"numFaces": 1,
+			"facePitch": -8.174861,
+			"faceYaw": 24.84945
+		},
+		"bg": [{
+			"eventTime": 1661483728,
+			"data": {
+				"bgChangeDetFlag": true,
+				"allocFlag": true
+			}
+		}],
+		"levels": {
+			"gaze": 0,
+			"bg": 1,
+			"face": 2
+		}
+	},
+	"cheatConfig": {
+		"bg": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"bgDetectionYn": "Y",
+			"bgDetectionTime": 10
+		},
+		"gaze": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"gazeTrackingYn": "Y",
+			"gazeTopAngle": 5,
+			"gazeBottomAngle": 15,
+			"gazeLeftAngle": 10,
+			"gazeRightAngle": 10,
+			"regUserGaze": {
+				"numFaces": 0,
+				"facePitch": 0,
+				"faceYaw": 0,
+				"faceDistance": 0,
+				"eyePitch": 0,
+				"eyeYaw": 0
+			}
+		},
+		"face": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"faceDetectionYn": "Y",
+			"faceDetectionThreshold": 1,
+			"faceTopAngle": 20,
+			"faceBottomAngle": 20,
+			"faceLeftAngle": 20,
+			"faceRightAngle": 20
+		}
+	}
 }
 ```
 
-``` Json
+``` json
 {
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId":"userTestId",
-    "examNo":"12345",
-    "cheatGroup":"GAZE",
-    "cheatLevel":3,
-    "eventTime": 1621828940,
-    "fileUrl":"https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/IMAGE/demoWebTest/diablo3/test/20210707123901682.jpg",
-    "cheatData":{
-        "cheatInfo":{
-            "absence":true,
-            "thirdPerson":false,
-            "eyeGazeYawOut":false,
-            "eyeGazePitchOut":false,
-        },
-        "gaze":{
-        "numFaces":0,
-        "facePitch":0,
-        "faceYaw":0,
-        "eyePitch":0,
-        "eyeYaw":0,
-        "screenX":0.0,
-        "screenY":0.0
-        }
-    },
-    "cheatConfig":{
-        "gaze":{
-            "gazeTrackingYn":"Y",
-            "gazeTopAngle":24,
-            "gazeBottomAngle":24,
-            "gazeLeftAngle":24,
-            "gazeRightAngle":24,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        },
-        "face":{
-            "faceDetectionYn":"Y",
-            "faceDetectionThreshold":1,
-            "faceTopAngle":25,
-            "faceBottomAngle":25,
-            "faceLeftAngle":25,
-            "faceRightAngle":25,
-            "regUserGaze": {
-                "numFaces": 0,
-                "facePitch": 0,
-                "faceYaw": 0,
-                "faceDistance": 0,
-                "eyePitch": 0,
-                "eyeYaw": 0,
-                "screenX": 0,
-                "screenY": 0
-            }
-        }
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "SIDE",
+	"camLocation": "side",
+	"cheatLevel": 3,
+	"eventTime": 1661484082,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/IMAGE/demoWebTest/test/SIDE/20220826122123710_863921e0-aa46-4401-80de-65e3d8a2bf0e.jpg",
+	"cheatData": {
+		"cheatInfo": {
+			"absence": false,
+			"thirdPerson": false,
+			"leftHandNotExistence": true,
+			"rightHandNotExistence": true,
+			"exceedThreshold": true,
+			"preCheckSideCam": false
+		},
+		"pose": [{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484081
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 335,
+						"ymin": 238,
+						"xmax": 452,
+						"ymax": 358,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484074
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 332,
+						"ymin": 251,
+						"xmax": 449,
+						"ymax": 374,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484082
+			},
+			{
+				"leftHandNotExistence": true,
+				"rightHandNotExistence": true,
+				"data": {
+					"numPerson": 1,
+					"face": {
+						"xmin": 330,
+						"ymin": 251,
+						"xmax": 448,
+						"ymax": 375,
+						"detected": true
+					},
+					"rhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					},
+					"lhand": {
+						"xmin": -1,
+						"ymin": -1,
+						"xmax": -1,
+						"ymax": -1,
+						"detected": false
+					}
+				},
+				"eventTime": 1661484076
+			}
+		]
+	},
+	"cheatConfig": {
+		"pose": {
+			"appKey": "testAppKey",
+			"regionCode": "KR1",
+			"poseEstimationYn": "Y",
+			"poseEstimationTime": 30
+		}
+	}
 }
 ```
 
@@ -1003,44 +1220,29 @@ X | X         |
 | userId          | String  | User ID (student number)                                       | O         |
 | examNo          | String  | Exam number                                                    | O         |
 | cheatGroup      | String  | Cheat classification (Fix AUDIO)                                       | O         |
-| eventTime       | Long    | Event occurrence time(timestamp)                                  | O         |
+| eventTime       | Long    | Event occurrence time (timestamp)                                  | O         |
 | fileUrl         | String  | Image or audio file storage path                         | O         |
-| cheatLevel      | Integer | Audio detection (0 : undetected, 1 : detected)                           | O         |
+| cheatLevel      | Integer | Audio detection (0: undetected, 1: detected)                           | O         |
 | cheatData       | JSON    | Detection information                                                    | X         |
-| cheatData.voice | Long[]  | Audio detection time (sec )<br> ex ) [3,4] > audio detection at 3 and 4 sec          | X         |
-| validation      | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
+| cheatData.voice | Long[]  | Audio detection time (sec)<br> ex) [3,4] > audio detection at 3 and 4 sec          | X         |
 
 [request body example]
 
 Voice detection
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo": "12345",
-    "cheatGroup": "AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl": "https://alp-api-storage.cloud.toast.com/v1/AUTH_3434343434534234234/cheatingdetection/AUDIO/demoWebTest/test/20210707123916831.webm",
-    "cheatLevel" : 1,
-    "cheatData" : {
-        "voice": [1,2,3]
-    },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg==",
-}
-```
-
-Voice not detected
-
-``` json
-{
-    "appKey":"AQJ33tPUaI9Y4lc2IrjX",
-    "userId": "usertTest",
-    "examNo":"12345",
-    "cheatGroup":"AUDIO",
-    "senderTime": 1621828948,
-    "fileUrl":"https://toast.cloud.com/20210518193737738.wav",
-    "cheatLevel" : 0,
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+	"appKey": "testAppKey",
+	"examNo": "demoWebTest",
+	"userId": "test",
+	"cheatGroup": "AUDIO",
+	"cheatLevel": 1,
+	"eventTime": 1661489862,
+	"fileUrl": "https://api-storage.cloud.toast.com/usercontainer/AUDIO/demoWebTest/test/20220826135742960_4d99727c-af6a-4fb5-900e-507460587284.webm",
+	"cheatData": {
+		"voice": [
+			2
+		]
+	}
 }
 ```
 
@@ -1053,7 +1255,7 @@ Voice not detected
 | examNo                        | String  | Exam number                                                    | O         |
 | cheatGroup                    | String  | Cheat classification (Fix PROCTOR)                                     | O         |
 | platformOs                    | String  | OS information                                                      | O         |
-| eventTime                     | Long    | Event occurrence time(timestamp)                                  | O         |
+| eventTime                     | Long    | Event occurrence time (timestamp)                                  | O         |
 | cheatLevel                    | Integer | Cheating occurrence (1) fixed                                      | O         |
 | cheatData                     | JSON    | Cheating activity information                                                | O         |
 | cheatData.keyboard            | String  | Keyboard event                                                | X         |
@@ -1064,15 +1266,15 @@ Voice not detected
 | cheatConfig.blockSwitchTaskYn | String  | Whether blocked job switching or not                                          | O         |
 | cheatConfig.blockScreenYn     | String  | Whether prevented exit from full screen                                     | O         |
 | cheatConfig.blockProgramYn    | String  | Application/program blocked or not                              | O         |
-| validation                    | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts(Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
+| validation                    | String  | Validity check <br> *Information that has been AES256 encoded the user ip, incoming time ts (Unix 13 digit Timestamp) value <br> Example) {"ip":"127.0.0.1", "ts": 1621840609833} JSON tested was AES256 encoded | X         |
 
 [request body example]
 
 ``` json
 {
-    "appKey": "AQJ33tPUaI9Y4lc2IrjX",
+    "appKey": "testAppKey",
     "userId": "usertTest",
-    "platformOs" :"Windows10",
+    "platformOs":"Windows10",
     "examNo":"12345",
     "cheatGroup": "PROCTOR",
     "eventTime": 1621828940,
@@ -1081,13 +1283,13 @@ Voice not detected
         "keyboard": "Attempting switch program."
     },
     "cheatConfig": {
-        "appKey" : "bdyfjdff",
+        "appKey": "bdyfjdff",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn":"Y",
         "blockProgramYn":"Y"
     },
-    "validation" : "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
+    "validation": "LrXE8YJolAdgNiAKikontAb8aj8YkFf3vl+3oM6hdMVDE5bcmbzNgA9aV4y/ZDLdDpTsEsNtKqzcCxnYZMy2lg=="
 }
 ```
 
