@@ -1,5 +1,5 @@
 ## Application Service > Cheating Detection > Release Notes
-### June 30, 2022
+### October 4, 2022
 #### Feature Updates
 * Changed the domain name of the API endpoint from `ctd-api.cloud.toast.com` to `kr1-cheating-detection.api.nhncloudservice.com`
 ### April 26, 2022

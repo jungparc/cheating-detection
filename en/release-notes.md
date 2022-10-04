@@ -1,6 +1,6 @@
 ## Application Service > Cheating Detection > Release Notes
 
-### September 27, 2022
+### October 4, 2022
 
 #### Feature Updates
 

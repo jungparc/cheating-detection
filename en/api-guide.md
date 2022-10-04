@@ -446,7 +446,7 @@ Content-type: application/json;charset=utf-8
 URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
 METHOD: POST
 X-Auth-Token: Bearer {accessToken}
-Content-type: application/json;charset=utf-8
+Content-type: multipart/form-data
 ```
 
 ##### Request
@@ -505,11 +505,11 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 * API to validate side cameras in advance
 
-``` yaml
-URL : /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
-METHOD : POST
-X-Auth-Token : Bearer {accessToken}
-Content-type : application/json;charset=utf-8
+```
+URL: /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
+METHOD: POST
+X-Auth-Token: Bearer {accessToken}
+Content-type: multipart/form-data
 ```
 
 ##### Request
