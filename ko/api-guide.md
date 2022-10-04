@@ -445,7 +445,7 @@ Content-type: application/json;charset=utf-8
 URL: /nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/gaze
 METHOD: POST
 X-Auth-Token: Bearer {accessToken}
-Content-type: application/json;charset=utf-8
+Content-type: multipart/form-data
 ```
 
 ##### 요청
@@ -505,11 +505,11 @@ curl -X POST "{domain}/nhn-behavior-reg/v1.0/appkeys/{appKey}/exam/{examNo}/user
 
 * 측면 카메라의 사전 점검을 위해 검증하는 API
 
-``` yaml
+```
 URL: /nhn-pre-chk/v1.0/appkeys/{appKey}/exam/{examNo}/users/{userId}/side
 METHOD: POST
 X-Auth-Token: Bearer {accessToken}
-Content-type: application/json;charset=utf-8
+Content-type: multipart/form-data
 ```
 
 ##### 요청
