@@ -13,7 +13,7 @@
 
  | 環境 | ドメイン |
  | --- | --- |
- | Real | https://kr1-cheating-detection.api.nhncloudservice.com |
+ | Real | https://cheating-detection.api.nhncloudservice.com |
 
 ## 認証API
 

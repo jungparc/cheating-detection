@@ -14,7 +14,7 @@
 
 | Environment | Domain                         |
 | ---- | ------------------------------ |
-| Real | https://kr1-cheating-detection.api.nhncloudservice.com |
+| Real | https://cheating-detection.api.nhncloudservice.com |
 
 ## Authenticate API
 
