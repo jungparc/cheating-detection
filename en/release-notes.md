@@ -1,5 +1,11 @@
 ## Application Service > Cheating Detection > Release Notes
 
+### October 17, 2023
+
+#### Feature Updates
+
+* Changed the domain name of the API endpoint from `kr1-cheating-detection.api.nhncloudservice.com` to `cheating-detection.api.nhncloudservice.com`
+
 ### October 4, 2022
 
 #### Feature Updates
