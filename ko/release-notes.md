@@ -2,9 +2,9 @@
 
 ### 2023. 10. 17.
 
-* API 엔드포인트의 도메인 이름이 `kr1-cheating-detection.api.nhncloudservice.com`에서 `cheating-detection.api.nhncloudservice.com`로 변경
-
 #### 기능 변경/개선
+
+* API 엔드포인트의 도메인 이름이 `kr1-cheating-detection.api.nhncloudservice.com`에서 `cheating-detection.api.nhncloudservice.com`로 변경
 
 ### 2022. 10. 04.
 
