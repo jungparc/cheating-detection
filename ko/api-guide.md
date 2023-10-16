@@ -13,7 +13,7 @@
 
  | 환경 | 도메인 |
  | --- | --- |
- | Real | https://kr1-cheating-detection.api.nhncloudservice.com |
+ | Real | https://cheating-detection.api.nhncloudservice.com |
 
 ## 인증 API
 
@@ -639,7 +639,6 @@ Content-type: */*
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
 | data.blockMonitorYn | String | 추가 모니터 차단 여부 |
 | data.blockSwitchTaskYn | String | 작업 전환 차단 여부 |
 | data.blockScreenYn | String | 풀 스크린 이탈 방지 여부 |
@@ -656,7 +655,6 @@ Content-type: */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode": "KR1",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn": "Y",
@@ -699,7 +697,6 @@ Content-type: */*
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
 | data.faceDetectionYn | String | 얼굴 인식 사용 여부 |
 | data.faceDetectionThreshold | Integer | 탐지된 얼굴 수 |
 | data.faceTopAngle | Integer | 얼굴 각도(상) |
@@ -718,7 +715,6 @@ Content-type: */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "regionCode": "KR1",
         "faceDetectionYn": "Y",
         "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
@@ -763,7 +759,6 @@ Content-type: */*
 | header.resultCode | Integer | 요청 결과 코드 |
 | header.resultMessage | String | 요청 결과 메시지 |
 | data.appKey | String | 통합 Appkey 또는 서비스 Appkey |
-| data.regionCode | String | 리전 코드 |
 | data.serviceUrl | String | 고객 서비스 URL |
 | data.webAuthUrl | String | 사용자 인증 연동 URL |
 | data.webhookUrl | String | 부정행위 감지 시 발송 URL |
@@ -779,7 +774,6 @@ Content-type: */*
   },
   "data": {
     "appKey": "bdyfjdff",
-    "regionCode": "KR1",
     "serviceUrl": "https://hook.nhnent.com/service",
     "webAuthUrl": "https://hook.nhnent.com/redirect",
     "webhookUrl": "https://hook.nhnent.com/webhook"
@@ -1030,13 +1024,11 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"bg": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"bgDetectionYn": "Y",
 			"bgDetectionTime": 10
 		},
 		"gaze": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"gazeTrackingYn": "Y",
 			"gazeTopAngle": 5,
 			"gazeBottomAngle": 15,
@@ -1053,7 +1045,6 @@ Content-type: application/json;charset=utf-8
 		},
 		"face": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"faceDetectionYn": "Y",
 			"faceDetectionThreshold": 1,
 			"faceTopAngle": 20,
@@ -1205,7 +1196,6 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"pose": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"poseEstimationYn": "Y",
 			"poseEstimationTime": 30
 		}

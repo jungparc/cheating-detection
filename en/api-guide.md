@@ -14,7 +14,7 @@
 
 | Environment | Domain                         |
 | ---- | ------------------------------ |
-| Real | https://kr1-cheating-detection.api.nhncloudservice.com |
+| Real | https://cheating-detection.api.nhncloudservice.com |
 
 ## Authenticate API
 
@@ -637,7 +637,6 @@ Content-type: */*
 | header.resultCode      | Integer | Request result code                  |
 | header.resultMessage   | String  | Request result message                |
 | data.appKey            | String  | Integrated Appkey or Service Appkey  |
-| data.regionCode        | String  | Region code                       |
 | data.blockMonitorYn    | String  | Whether blocked additional monitors or not           |
 | data.blockSwitchTaskYn | String  | Whether blocked job switching or not             |
 | data.blockScreenYn     | String  | Whether prevented exit from full screen        |
@@ -654,7 +653,6 @@ Content-type: */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode": "KR1",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn": "Y",
@@ -697,7 +695,6 @@ Content-type: */*
 | header.resultCode           | Integer | Request result code                 |
 | header.resultMessage        | String  | Request result message               |
 | data.appKey                 | String  | Integrated Appkey or Service Appkey |
-| data.regionCode             | String  | Region code                      |
 | data.faceDetectionYn        | String  | Whether to use face recognition            |
 | data.faceDetectionThreshold | Integer | Number of faces detected                 |
 | data.faceTopAngle           | Integer | Face angle (top)                  |
@@ -716,7 +713,6 @@ Content-type: */*
     },
     "data": {
         "appKey": "bdyfjdff",
-        "regionCode": "KR1",
         "faceDetectionYn": "Y",
         "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
@@ -761,7 +757,6 @@ Content-type: */*
 | header.resultCode    | Integer | Request result code                 |
 | header.resultMessage | String  | Request result message               |
 | data.appKey          | String  | Integrated Appkey or Service Appkey |
-| data.regionCode      | String  | Region code                      |
 | data.serviceUrl      | String  | Customer service URL                |
 | data.webAuthUrl      | String  | User authentication link URL           |
 | data.webhookUrl      | String  | URL where cheating detection report is sent      |
@@ -777,7 +772,6 @@ Content-type: */*
   },
   "data": {
     "appKey": "bdyfjdff",
-    "regionCode": "KR1",
     "serviceUrl": "https://hook.nhnent.com/service",
     "webAuthUrl": "https://hook.nhnent.com/redirect",
     "webhookUrl": "https://hook.nhnent.com/webhook"
@@ -1029,13 +1023,11 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"bg": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"bgDetectionYn": "Y",
 			"bgDetectionTime": 10
 		},
 		"gaze": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"gazeTrackingYn": "Y",
 			"gazeTopAngle": 5,
 			"gazeBottomAngle": 15,
@@ -1052,7 +1044,6 @@ Content-type: application/json;charset=utf-8
 		},
 		"face": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"faceDetectionYn": "Y",
 			"faceDetectionThreshold": 1,
 			"faceTopAngle": 20,
@@ -1204,7 +1195,6 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"pose": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"poseEstimationYn": "Y",
 			"poseEstimationTime": 30
 		}

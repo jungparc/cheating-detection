@@ -13,7 +13,7 @@
 
  | 環境 | ドメイン |
  | --- | --- |
- | Real | https://kr1-cheating-detection.api.nhncloudservice.com |
+ | Real | https://cheating-detection.api.nhncloudservice.com |
 
 ## 認証API
 
@@ -637,7 +637,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
 | header.resultCode | Integer | リクエスト結果コード |
 | header.resultMessage | String | リクエスト結果メッセージ |
 | data.appKey | String | 統合AppkeyまたはサービスAppkey |
-| data.regionCode | String | リージョンコード |
 | data.blockMonitorYn | String | 追加モニター遮断設定 |
 | data.blockSwitchTaskYn | String | タスクの切り替え遮断設定 |
 | data.blockScreenYn | String | フルスクリーン離脱防止設定 |
@@ -654,7 +653,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
     },
     "data": {
         "appKey": "bdyfjdff",
-        "resionCode": "KR1",
         "blockMonitorYn": "Y",
         "blockSwitchTaskYn":"Y",
         "blockScreenYn": "Y",
@@ -697,7 +695,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
 | header.resultCode | Integer | リクエスト結果コード |
 | header.resultMessage | String | リクエスト結果メッセージ |
 | data.appKey | String | 統合AppkeyまたはサービスAppkey |
-| data.regionCode | String | リージョンコード |
 | data.faceDetectionYn | String | 顔認識使用設定 |
 | data.faceDetectionThreshold | Integer | 検出された顔の数 |
 | data.faceTopAngle | Integer | 顔の角度(上) |
@@ -716,7 +713,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
     },
     "data": {
         "appKey": "bdyfjdff",
-        "regionCode": "KR1",
         "faceDetectionYn": "Y",
         "faceDetectionThreshold": 1,
         "faceTopAngle": 20,
@@ -761,7 +757,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
 | header.resultCode | Integer | リクエスト結果コード |
 | header.resultMessage | String | リクエスト結果メッセージ |
 | data.appKey | String | 統合AppkeyまたはサービスAppkey |
-| data.regionCode | String | リージョンコード |
 | data.serviceUrl | String | 顧客サービスURL |
 | data.webAuthUrl | String | ユーザー認証連動URL |
 | data.webhookUrl | String | 不正行為を検知した時の送信URL |
@@ -777,7 +772,6 @@ Content-type: application/x-www-form-urlencoded;charset=utf-8
   },
   "data": {
     "appKey": "bdyfjdff",
-    "regionCode": "KR1",
     "serviceUrl": "https://hook.nhnent.com/service",
     "webAuthUrl": "https://hook.nhnent.com/redirect",
     "webhookUrl": "https://hook.nhnent.com/webhook"
@@ -1030,13 +1024,11 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"bg": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"bgDetectionYn": "Y",
 			"bgDetectionTime": 10
 		},
 		"gaze": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"gazeTrackingYn": "Y",
 			"gazeTopAngle": 5,
 			"gazeBottomAngle": 15,
@@ -1053,7 +1045,6 @@ Content-type: application/json;charset=utf-8
 		},
 		"face": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"faceDetectionYn": "Y",
 			"faceDetectionThreshold": 1,
 			"faceTopAngle": 20,
@@ -1205,7 +1196,6 @@ Content-type: application/json;charset=utf-8
 	"cheatConfig": {
 		"pose": {
 			"appKey": "testAppKey",
-			"regionCode": "KR1",
 			"poseEstimationYn": "Y",
 			"poseEstimationTime": 30
 		}
