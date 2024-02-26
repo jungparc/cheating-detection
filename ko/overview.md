@@ -1,7 +1,5 @@
 ## Application Service > Cheating Detection > 개요
 
-
-
 AI Proctor(얼굴 인식, 신체 이외의 백그라운드 변화, 신체 부위 탐지, 음성 감지, 시선 추적)와 Application Proctor(추가 모니터 차단, 전체 화면 이탈 방지, 작업 전환 차단, 애플리케이션/프로그램 차단)를 사용해 이상 행동을 감지하고 제어할 수 있습니다.
 
 ## <span style="color:#0052cc">주요 기능</span>
